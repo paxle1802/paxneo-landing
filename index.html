@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paxneo — Học AI thực chiến: Marketing, Claude Code & Excel</title>
+<meta name="description" content="Khóa học AI thực chiến cho người Việt: dùng AI trong marketing, tự tạo app với Claude Code không cần biết code, tự động hóa Excel bằng AI. Học là làm được.">
+<meta property="og:title" content="Paxneo — Học AI thực chiến">
+<meta property="og:description" content="AI Marketing · Tự tạo app với Claude Code · AI với Excel. Học thực chiến, làm được ngay.">
+<meta property="og:type" content="website">
+<style>
+  :root{
+    --bg:#0a0a12;
+    --bg-soft:#12121f;
+    --card:#16162a;
+    --line:rgba(255,255,255,.08);
+    --txt:#ECECF5;
+    --muted:#9a9ab5;
+    --violet:#7c5cff;
+    --violet-2:#a78bff;
+    --cyan:#22d3ee;
+    --accent:#ffb347;
+    --grad:linear-gradient(135deg,#7c5cff 0%,#22d3ee 100%);
+    --radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Apple Color Emoji",sans-serif;
+    background:var(--bg);color:var(--txt);line-height:1.6;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+  .grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;
+    padding:14px 26px;border-radius:999px;border:0;cursor:pointer;transition:.2s transform,.2s box-shadow;
+  }
+  .btn-primary{background:var(--grad);color:#0a0a12;box-shadow:0 8px 30px rgba(124,92,255,.35)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 38px rgba(124,92,255,.5)}
+  .btn-ghost{background:rgba(255,255,255,.06);color:var(--txt);border:1px solid var(--line)}
+  .btn-ghost:hover{background:rgba(255,255,255,.12)}
+
+  /* NAV */
+  header{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(10,10,18,.7);border-bottom:1px solid var(--line)}
+  nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:-.5px}
+  .logo .dot{width:30px;height:30px;border-radius:9px;background:var(--grad);display:grid;place-items:center;font-size:16px}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{color:var(--muted);font-size:15px;font-weight:500}
+  .nav-links a:hover{color:var(--txt)}
+  .nav-cta{display:flex;gap:12px;align-items:center}
+  .burger{display:none;background:none;border:0;color:var(--txt);font-size:26px;cursor:pointer}
+
+  /* HERO */
+  .hero{position:relative;padding:90px 0 70px;text-align:center;overflow:hidden}
+  .hero::before{content:"";position:absolute;top:-200px;left:50%;transform:translateX(-50%);
+    width:900px;height:600px;background:radial-gradient(ellipse at center,rgba(124,92,255,.28),transparent 60%);filter:blur(20px);z-index:0}
+  .hero::after{content:"";position:absolute;bottom:-150px;right:-100px;width:500px;height:500px;
+    background:radial-gradient(circle,rgba(34,211,238,.18),transparent 60%);z-index:0}
+  .hero .wrap{position:relative;z-index:1}
+  .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(124,92,255,.12);border:1px solid rgba(124,92,255,.3);
+    color:var(--violet-2);padding:7px 16px;border-radius:999px;font-size:13.5px;font-weight:600;margin-bottom:26px}
+  .hero h1{font-size:clamp(34px,6vw,60px);line-height:1.08;font-weight:800;letter-spacing:-1.5px;margin-bottom:22px}
+  .hero p.sub{font-size:clamp(16px,2.2vw,20px);color:var(--muted);max-width:680px;margin:0 auto 36px}
+  .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .hero-note{margin-top:18px;font-size:13.5px;color:var(--muted)}
+
+  /* STATS */
+  .stats{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:54px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 26px;min-width:150px}
+  .stat b{display:block;font-size:26px;font-weight:800}
+  .stat span{font-size:13px;color:var(--muted)}
+
+  /* SECTION */
+  section{padding:78px 0}
+  .sec-head{text-align:center;max-width:640px;margin:0 auto 50px}
+  .sec-head .kick{color:var(--cyan);font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase}
+  .sec-head h2{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-1px;margin:10px 0 14px;line-height:1.15}
+  .sec-head p{color:var(--muted);font-size:17px}
+
+  /* COURSES */
+  .courses{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:22px}
+  .course{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px;position:relative;
+    transition:.25s transform,.25s border-color;overflow:hidden}
+  .course:hover{transform:translateY(-6px);border-color:rgba(124,92,255,.5)}
+  .course .ico{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;font-size:26px;margin-bottom:20px;
+    background:rgba(124,92,255,.14);border:1px solid rgba(124,92,255,.25)}
+  .course h3{font-size:21px;font-weight:800;margin-bottom:10px;letter-spacing:-.4px}
+  .course p{color:var(--muted);font-size:15px;margin-bottom:18px}
+  .course ul{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:22px}
+  .course li{font-size:14.5px;display:flex;gap:9px;align-items:flex-start;color:#c9c9dd}
+  .course li::before{content:"✓";color:var(--cyan);font-weight:800;flex-shrink:0}
+  .course .tag{position:absolute;top:22px;right:22px;font-size:11.5px;font-weight:700;padding:5px 11px;border-radius:999px;
+    background:rgba(34,211,238,.14);color:var(--cyan);border:1px solid rgba(34,211,238,.3)}
+  .course .price{font-weight:800;font-size:18px;margin-bottom:16px}
+  .course .price s{color:var(--muted);font-weight:500;font-size:15px;margin-right:8px}
+
+  /* BENEFITS */
+  .benefits{background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px}
+  .ben{display:flex;gap:16px;align-items:flex-start}
+  .ben .e{font-size:30px;flex-shrink:0}
+  .ben h4{font-size:18px;font-weight:700;margin-bottom:6px}
+  .ben p{color:var(--muted);font-size:14.5px}
+
+  /* AUDIENCE */
+  .aud{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+  .aud .a{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+  .aud .a .e{font-size:28px;margin-bottom:12px}
+  .aud .a h4{font-size:17px;margin-bottom:6px}
+  .aud .a p{font-size:14px;color:var(--muted)}
+
+  /* STEPS */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;counter-reset:s}
+  .step{position:relative;padding:28px;background:var(--card);border:1px solid var(--line);border-radius:14px;counter-increment:s}
+  .step::before{content:counter(s);position:absolute;top:-16px;left:24px;width:38px;height:38px;border-radius:10px;
+    background:var(--grad);color:#0a0a12;font-weight:800;display:grid;place-items:center;font-size:18px}
+  .step h4{margin:14px 0 8px;font-size:18px}
+  .step p{color:var(--muted);font-size:14.5px}
+
+  /* CTA BAND */
+  .cta-band{position:relative;text-align:center;background:linear-gradient(135deg,rgba(124,92,255,.18),rgba(34,211,238,.12));
+    border:1px solid rgba(124,92,255,.3);border-radius:26px;padding:56px 30px;overflow:hidden}
+  .cta-band h2{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-1px;margin-bottom:14px}
+  .cta-band p{color:var(--muted);font-size:17px;margin-bottom:28px;max-width:520px;margin-left:auto;margin-right:auto}
+
+  /* FAQ */
+  .faq{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+  details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:0 22px;transition:.2s}
+  details[open]{border-color:rgba(124,92,255,.4)}
+  summary{cursor:pointer;list-style:none;padding:20px 0;font-weight:600;font-size:16.5px;display:flex;justify-content:space-between;align-items:center;gap:14px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";font-size:24px;color:var(--violet-2);font-weight:400;transition:.2s}
+  details[open] summary::after{transform:rotate(45deg)}
+  details p{color:var(--muted);font-size:15px;padding:0 0 22px}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--line);padding:46px 0 30px;background:var(--bg-soft)}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:26px}
+  .foot .col h5{font-size:14px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:14px}
+  .foot .col a{display:block;color:#c9c9dd;font-size:14.5px;margin-bottom:9px}
+  .foot .col a:hover{color:var(--txt)}
+  .foot-bottom{margin-top:34px;padding-top:22px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:var(--muted);font-size:13.5px}
+
+  @media(max-width:760px){
+    .nav-links{display:none}
+    .burger{display:block}
+    .nav-links.open{display:flex;position:absolute;top:68px;left:0;right:0;flex-direction:column;
+      background:var(--bg-soft);padding:20px 22px;border-bottom:1px solid var(--line);gap:18px}
+    .hero{padding:60px 0 50px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <a href="#" class="logo"><span class="dot">⚡</span> Paxneo</a>
+      <div class="nav-links" id="navlinks">
+        <a href="#courses">Khóa học</a>
+        <a href="#benefits">Học được gì</a>
+        <a href="#how">Lộ trình</a>
+        <a href="#faq">Hỏi đáp</a>
+      </div>
+      <div class="nav-cta">
+        <a href="#courses" class="btn btn-primary">Đăng ký học</a>
+        <button class="burger" id="burger" aria-label="Menu">☰</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <span class="badge">🚀 Học AI thực chiến — Học xong làm được ngay</span>
+    <h1>Làm chủ <span class="grad-text">AI</span> để<br>tăng tốc công việc gấp 10 lần</h1>
+    <p class="sub">Khóa học AI thực chiến dành cho người Việt: dùng AI trong marketing, tự tay dựng app với Claude Code dù không biết code, và biến Excel thành trợ lý tự động. Không lý thuyết suông — cầm tay chỉ việc.</p>
+    <div class="hero-cta">
+      <a href="#courses" class="btn btn-primary">Xem các khóa học →</a>
+      <a href="#how" class="btn btn-ghost">Lộ trình học</a>
+    </div>
+    <p class="hero-note">✦ Học online · Thực hành trên dự án thật · Hỗ trợ trọn đời</p>
+
+    <div class="stats">
+      <div class="stat"><b class="grad-text">4</b><span>khóa học thực chiến</span></div>
+      <div class="stat"><b class="grad-text">100%</b><span>thực hành, dự án thật</span></div>
+      <div class="stat"><b class="grad-text">∞</b><span>hỗ trợ &amp; cập nhật</span></div>
+      <div class="stat"><b class="grad-text">0</b><span>cần biết code trước</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section id="courses">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kick">Các khóa học</span>
+      <h2>Chọn kỹ năng AI bạn muốn làm chủ</h2>
+      <p>Mỗi khóa thiết kế theo lối "học tới đâu, làm được tới đó" — kết thúc là bạn có sản phẩm thật trong tay.</p>
+    </div>
+
+    <div class="courses">
+      <div class="course">
+        <span class="tag">Bán chạy</span>
+        <div class="ico">📈</div>
+        <h3>AI trong Marketing</h3>
+        <p>Dùng AI để sản xuất content, chạy quảng cáo và làm SEO nhanh gấp nhiều lần — một mình làm bằng cả team.</p>
+        <ul>
+          <li>Viết content &amp; kịch bản bằng AI giữ đúng giọng thương hiệu</li>
+          <li>Tạo ảnh, video quảng cáo bằng AI</li>
+          <li>Nghiên cứu thị trường &amp; đối thủ tốc độ cao</li>
+          <li>Quy trình marketing tự động hóa với AI</li>
+        </ul>
+        <div class="price"><s>2.990.000đ</s> <span class="grad-text">1.490.000đ</span></div>
+        <a href="#register" class="btn btn-primary" style="width:100%;justify-content:center">Đăng ký</a>
+      </div>
+
+      <div class="course">
+        <span class="tag">Hot 🔥</span>
+        <div class="ico">🛠️</div>
+        <h3>Tự tạo App với Claude Code</h3>
+        <p>Không cần biết lập trình vẫn dựng được app, web, công cụ thật — chỉ cần biết mô tả ý tưởng cho AI.</p>
+        <ul>
+          <li>Làm quen Claude Code từ con số 0</li>
+          <li>Dựng web/app thật từ ý tưởng tới khi chạy được</li>
+          <li>Deploy lên mạng cho người khác dùng</li>
+          <li>Tự sửa lỗi, mở rộng tính năng cùng AI</li>
+        </ul>
+        <div class="price"><s>3.490.000đ</s> <span class="grad-text">1.990.000đ</span></div>
+        <a href="#register" class="btn btn-primary" style="width:100%;justify-content:center">Đăng ký</a>
+      </div>
+
+      <div class="course">
+        <div class="ico">📊</div>
+        <h3>AI với Excel</h3>
+        <p>Biến bảng tính thành trợ lý: AI viết công thức, phân tích dữ liệu, tự động hóa báo cáo giúp bạn.</p>
+        <ul>
+          <li>AI viết &amp; giải thích công thức, hàm phức tạp</li>
+          <li>Làm sạch &amp; phân tích dữ liệu trong vài phút</li>
+          <li>Tự động hóa báo cáo lặp đi lặp lại</li>
+          <li>Trực quan hóa dữ liệu, rút insight nhanh</li>
+        </ul>
+        <div class="price"><s>1.990.000đ</s> <span class="grad-text">990.000đ</span></div>
+        <a href="#register" class="btn btn-primary" style="width:100%;justify-content:center">Đăng ký</a>
+      </div>
+
+      <div class="course">
+        <span class="tag">Mới</span>
+        <div class="ico">🤖</div>
+        <h3>AI Automation &amp; Workflow</h3>
+        <p>Nối các công cụ AI thành quy trình tự chạy: tiết kiệm hàng giờ mỗi ngày cho công việc lặp lại.</p>
+        <ul>
+          <li>Tư duy thiết kế quy trình tự động</li>
+          <li>Kết nối AI với các app bạn đang dùng</li>
+          <li>Chatbot &amp; trợ lý ảo cho công việc</li>
+          <li>Đo lường &amp; tối ưu hiệu suất</li>
+        </ul>
+        <div class="price"><s>2.490.000đ</s> <span class="grad-text">1.490.000đ</span></div>
+        <a href="#register" class="btn btn-primary" style="width:100%;justify-content:center">Đăng ký</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="benefits" id="benefits">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kick">Vì sao chọn Paxneo</span>
+      <h2>Học để LÀM ĐƯỢC, không phải để biết</h2>
+    </div>
+    <div class="bgrid">
+      <div class="ben"><div class="e">🎯</div><div><h4>Thực chiến 100%</h4><p>Mỗi bài là một việc thật. Học xong có sản phẩm, có quy trình áp dụng ngay vào công việc.</p></div></div>
+      <div class="ben"><div class="e">⚡</div><div><h4>Đi thẳng vào kết quả</h4><p>Bỏ qua lý thuyết hàn lâm. Tập trung vào công cụ và cách làm cho ra kết quả nhanh nhất.</p></div></div>
+      <div class="ben"><div class="e">🧩</div><div><h4>Không cần nền tảng</h4><p>Bắt đầu từ con số 0. Không cần biết code, không cần dân kỹ thuật vẫn theo được.</p></div></div>
+      <div class="ben"><div class="e">🔄</div><div><h4>Cập nhật liên tục</h4><p>AI thay đổi từng tháng — khóa học cập nhật theo, bạn không bao giờ học cái lỗi thời.</p></div></div>
+      <div class="ben"><div class="e">💬</div><div><h4>Hỗ trợ trọn đời</h4><p>Cộng đồng học viên &amp; hỗ trợ giải đáp khi bạn áp dụng vào việc thật.</p></div></div>
+      <div class="ben"><div class="e">🇻🇳</div><div><h4>Dạy bằng tiếng Việt</h4><p>Giải thích dễ hiểu, ví dụ sát với công việc của người Việt.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCE -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kick">Dành cho ai</span>
+      <h2>Khóa học này hợp với bạn nếu…</h2>
+    </div>
+    <div class="aud">
+      <div class="a"><div class="e">💼</div><h4>Marketer &amp; chủ doanh nghiệp</h4><p>Muốn làm marketing nhanh, rẻ, hiệu quả hơn bằng AI.</p></div>
+      <div class="a"><div class="e">🚀</div><h4>Founder &amp; người khởi nghiệp</h4><p>Muốn tự dựng sản phẩm mà không tốn tiền thuê dev.</p></div>
+      <div class="a"><div class="e">📋</div><h4>Dân văn phòng</h4><p>Muốn tự động hóa Excel, báo cáo, công việc lặp lại.</p></div>
+      <div class="a"><div class="e">🌱</div><h4>Người mới với AI</h4><p>Muốn bắt đầu bài bản, không lan man, học là dùng được.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="benefits" id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kick">Lộ trình</span>
+      <h2>Học theo 4 bước, làm được ngay</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><h4>Chọn khóa</h4><p>Chọn kỹ năng AI bạn cần nhất cho công việc hiện tại.</p></div>
+      <div class="step"><h4>Học &amp; làm theo</h4><p>Xem bài, làm song song trên dự án mẫu — cầm tay chỉ việc.</p></div>
+      <div class="step"><h4>Áp dụng việc thật</h4><p>Mang ngay vào công việc của bạn, có hỗ trợ khi vướng.</p></div>
+      <div class="step"><h4>Tối ưu &amp; mở rộng</h4><p>Nâng cấp quy trình, kết hợp nhiều công cụ AI với nhau.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="register">
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>Sẵn sàng để AI làm việc cho bạn?</h2>
+      <p>Đăng ký nhận thông tin khai giảng &amp; ưu đãi sớm. Bắt đầu hành trình làm chủ AI ngay hôm nay.</p>
+      <a href="mailto:hello@paxneo.net?subject=Đăng%20ký%20khóa%20học%20AI%20Paxneo" class="btn btn-primary">Đăng ký / Nhận tư vấn →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kick">Hỏi đáp</span>
+      <h2>Câu hỏi thường gặp</h2>
+    </div>
+    <div class="faq">
+      <details open><summary>Tôi chưa biết gì về AI, học được không?</summary><p>Hoàn toàn được. Mọi khóa đều bắt đầu từ con số 0, giải thích bằng tiếng Việt dễ hiểu, đi từng bước. Bạn chỉ cần biết dùng máy tính cơ bản.</p></details>
+      <details><summary>Khóa "Tự tạo App với Claude Code" có cần biết lập trình không?</summary><p>Không. Cả khóa được thiết kế cho người không biết code. Bạn học cách mô tả ý tưởng cho AI và để AI viết code, bạn điều phối và kiểm tra kết quả.</p></details>
+      <details><summary>Học online hay offline?</summary><p>Học online, bạn chủ động thời gian. Có cộng đồng &amp; hỗ trợ giải đáp khi áp dụng vào việc thật.</p></details>
+      <details><summary>Sau khóa học tôi nhận được gì?</summary><p>Kỹ năng dùng được ngay, các bộ quy trình/prompt mẫu, sản phẩm thật bạn tự làm trong khóa, và quyền truy cập các bản cập nhật về sau.</p></details>
+      <details><summary>Thanh toán &amp; ưu đãi thế nào?</summary><p>Bấm "Đăng ký / Nhận tư vấn" để được hướng dẫn thanh toán và nhận ưu đãi học sớm. Đang có giá ưu đãi giới hạn cho các khóa.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div class="col" style="max-width:300px">
+        <a href="#" class="logo" style="margin-bottom:14px"><span class="dot">⚡</span> Paxneo</a>
+        <p style="color:var(--muted);font-size:14.5px">Học AI thực chiến cho người Việt. Học là làm được — tăng tốc công việc cùng AI.</p>
+      </div>
+      <div class="col">
+        <h5>Khóa học</h5>
+        <a href="#courses">AI trong Marketing</a>
+        <a href="#courses">Tự tạo App với Claude Code</a>
+        <a href="#courses">AI với Excel</a>
+        <a href="#courses">AI Automation</a>
+      </div>
+      <div class="col">
+        <h5>Liên kết</h5>
+        <a href="#benefits">Học được gì</a>
+        <a href="#how">Lộ trình</a>
+        <a href="#faq">Hỏi đáp</a>
+        <a href="#register">Đăng ký</a>
+      </div>
+      <div class="col">
+        <h5>Liên hệ</h5>
+        <a href="mailto:hello@paxneo.net">hello@paxneo.net</a>
+        <a href="#">paxneo.net</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Paxneo LLC. All rights reserved.</span>
+      <span>paxneo.net</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu
+  var b=document.getElementById('burger'),n=document.getElementById('navlinks');
+  b&&b.addEventListener('click',function(){n.classList.toggle('open')});
+  n&&n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){n.classList.remove('open')})});
+</script>
+</body>
+</html>
