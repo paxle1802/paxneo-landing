@@ -43,7 +43,7 @@ export default async function handler(req, res) {
       headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
         from: 'Paxneo Orders <onboarding@resend.dev>',
-        to: ['paxle86@gmail.com'],
+        to: ['support@paxneo.net'],
         reply_to: email,
         subject: `New enrollment: ${course || 'course'} — ${name}`,
         html,
