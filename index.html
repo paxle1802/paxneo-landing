@@ -15,51 +15,40 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <style>
   :root{
-    --bg:#0a0a12;
-    --bg-soft:#12121f;
-    --card:#16162a;
-    --line:rgba(255,255,255,.08);
-    --txt:#ECECF5;
-    --muted:#9a9ab5;
-    --violet:#7c5cff;
-    --violet-2:#a78bff;
-    --cyan:#22d3ee;
-    --accent:#ffb347;
-    --grad:linear-gradient(135deg,#7c5cff 0%,#22d3ee 100%);
-    --radius:18px;
+    --bg:#0a0a12;--bg-soft:#12121f;--card:#16162a;--line:rgba(255,255,255,.08);
+    --txt:#ECECF5;--muted:#9a9ab5;--violet:#7c5cff;--violet-2:#a78bff;--cyan:#22d3ee;
+    --accent:#ffb347;--grad:linear-gradient(135deg,#7c5cff 0%,#22d3ee 100%);--radius:18px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Apple Color Emoji",sans-serif;
-    background:var(--bg);color:var(--txt);line-height:1.6;
-    -webkit-font-smoothing:antialiased;overflow-x:hidden;
-  }
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Apple Color Emoji",sans-serif;
+    background:var(--bg);color:var(--txt);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
   a{color:inherit;text-decoration:none}
   .wrap{max-width:1140px;margin:0 auto;padding:0 22px}
   .grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-  .btn{
-    display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;
-    padding:14px 26px;border-radius:999px;border:0;cursor:pointer;transition:.2s transform,.2s box-shadow;
-  }
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;
+    padding:14px 26px;border-radius:999px;border:0;cursor:pointer;transition:.2s transform,.2s box-shadow;}
   .btn-primary{background:var(--grad);color:#0a0a12;box-shadow:0 8px 30px rgba(124,92,255,.35)}
   .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 38px rgba(124,92,255,.5)}
   .btn-ghost{background:rgba(255,255,255,.06);color:var(--txt);border:1px solid var(--line)}
   .btn-ghost:hover{background:rgba(255,255,255,.12)}
 
-  /* NAV */
   header{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(10,10,18,.7);border-bottom:1px solid var(--line)}
   nav{display:flex;align-items:center;justify-content:space-between;height:68px}
   .logo{display:flex;align-items:center;gap:1px;font-weight:800;font-size:21px;letter-spacing:-.5px}
   .logo .px-blue{color:#1ba0e2}
-  .logo .dot{width:30px;height:30px;border-radius:9px;background:var(--grad);display:grid;place-items:center;font-size:16px}
   .nav-links{display:flex;gap:28px;align-items:center}
   .nav-links a{color:var(--muted);font-size:15px;font-weight:500}
   .nav-links a:hover{color:var(--txt)}
   .nav-cta{display:flex;gap:12px;align-items:center}
   .burger{display:none;background:none;border:0;color:var(--txt);font-size:26px;cursor:pointer}
 
-  /* HERO */
+  /* LANGUAGE SWITCHER */
+  .langsw{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:rgba(255,255,255,.04)}
+  .langsw button{background:none;border:0;color:var(--muted);font-weight:700;font-size:12.5px;padding:7px 12px;cursor:pointer;transition:.15s}
+  .langsw button.active{background:var(--grad);color:#0a0a12}
+  .langsw button:not(.active):hover{color:var(--txt)}
+
   .hero{position:relative;padding:90px 0 70px;text-align:center;overflow:hidden}
   .hero::before{content:"";position:absolute;top:-200px;left:50%;transform:translateX(-50%);
     width:900px;height:600px;background:radial-gradient(ellipse at center,rgba(124,92,255,.28),transparent 60%);filter:blur(20px);z-index:0}
@@ -73,20 +62,17 @@
   .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
   .hero-note{margin-top:18px;font-size:13.5px;color:var(--muted)}
 
-  /* STATS */
   .stats{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:54px}
   .stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 26px;min-width:150px}
   .stat b{display:block;font-size:26px;font-weight:800}
   .stat span{font-size:13px;color:var(--muted)}
 
-  /* SECTION */
   section{padding:78px 0}
   .sec-head{text-align:center;max-width:660px;margin:0 auto 50px}
   .sec-head .kick{color:var(--cyan);font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase}
   .sec-head h2{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-1px;margin:10px 0 14px;line-height:1.15}
   .sec-head p{color:var(--muted);font-size:17px}
 
-  /* COURSES */
   .courses{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:22px}
   .course{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px;position:relative;
     transition:.25s transform,.25s border-color;overflow:hidden;display:flex;flex-direction:column}
@@ -107,7 +93,6 @@
   .course .price{font-weight:800;font-size:22px;margin-bottom:16px;margin-top:auto}
   .course .price s{color:var(--muted);font-weight:500;font-size:16px;margin-right:8px}
 
-  /* BENEFITS */
   .benefits{background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   .bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px}
   .ben{display:flex;gap:16px;align-items:flex-start}
@@ -115,14 +100,12 @@
   .ben h4{font-size:18px;font-weight:700;margin-bottom:6px}
   .ben p{color:var(--muted);font-size:14.5px}
 
-  /* AUDIENCE */
   .aud{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
   .aud .a{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
   .aud .a .e{font-size:28px;margin-bottom:12px}
   .aud .a h4{font-size:17px;margin-bottom:6px}
   .aud .a p{font-size:14px;color:var(--muted)}
 
-  /* STEPS */
   .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;counter-reset:s}
   .step{position:relative;padding:28px;background:var(--card);border:1px solid var(--line);border-radius:14px;counter-increment:s}
   .step::before{content:counter(s);position:absolute;top:-16px;left:24px;width:38px;height:38px;border-radius:10px;
@@ -130,13 +113,11 @@
   .step h4{margin:14px 0 8px;font-size:18px}
   .step p{color:var(--muted);font-size:14.5px}
 
-  /* CTA BAND */
   .cta-band{position:relative;text-align:center;background:linear-gradient(135deg,rgba(124,92,255,.18),rgba(34,211,238,.12));
     border:1px solid rgba(124,92,255,.3);border-radius:26px;padding:56px 30px;overflow:hidden}
   .cta-band h2{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-1px;margin-bottom:14px}
   .cta-band p{color:var(--muted);font-size:17px;margin-bottom:28px;max-width:540px;margin-left:auto;margin-right:auto}
 
-  /* FAQ */
   .faq{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
   details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:0 22px;transition:.2s}
   details[open]{border-color:rgba(124,92,255,.4)}
@@ -146,7 +127,6 @@
   details[open] summary::after{transform:rotate(45deg)}
   details p{color:var(--muted);font-size:15px;padding:0 0 22px}
 
-  /* FOOTER */
   footer{border-top:1px solid var(--line);padding:46px 0 30px;background:var(--bg-soft)}
   .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:26px}
   .foot .col h5{font-size:14px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:14px}
@@ -171,13 +151,17 @@
     <nav>
       <a href="#" class="logo">PAXNEO<span class="px-blue">TECH</span></a>
       <div class="nav-links" id="navlinks">
-        <a href="#courses">Courses</a>
-        <a href="#benefits">What you'll gain</a>
-        <a href="#how">How it works</a>
-        <a href="#faq">FAQ</a>
+        <a href="#courses" data-vi="Khóa học">Courses</a>
+        <a href="#benefits" data-vi="Lợi ích">What you'll gain</a>
+        <a href="#how" data-vi="Lộ trình">How it works</a>
+        <a href="#faq" data-vi="Hỏi đáp">FAQ</a>
       </div>
       <div class="nav-cta">
-        <a href="#courses" class="btn btn-primary">Enroll now</a>
+        <div class="langsw" id="langsw">
+          <button data-lang="en">EN</button>
+          <button data-lang="vi">VI</button>
+        </div>
+        <a href="#courses" class="btn btn-primary" data-vi="Đăng ký ngay">Enroll now</a>
         <button class="burger" id="burger" aria-label="Menu">☰</button>
       </div>
     </nav>
@@ -187,20 +171,20 @@
 <!-- HERO -->
 <section class="hero">
   <div class="wrap">
-    <span class="badge">🚀 Hands-on AI training — learn it, ship it</span>
-    <h1>Master <span class="grad-text">AI</span> and<br>get 10× more done</h1>
-    <p class="sub">Practical AI courses that turn skills into results: master AI in business with Claude Code (and build real apps without a coding background), put AI to work in your marketing, and turn Excel into an automated assistant. No fluff — you build as you learn.</p>
+    <span class="badge" data-vi="🚀 Học AI thực chiến — học là làm được">🚀 Hands-on AI training — learn it, ship it</span>
+    <h1 data-vi="Làm chủ <span class='grad-text'>AI</span> và<br>làm việc nhanh gấp 10 lần">Master <span class="grad-text">AI</span> and<br>get 10× more done</h1>
+    <p class="sub" data-vi="Khóa học AI thực chiến biến kỹ năng thành kết quả: làm chủ AI trong kinh doanh với Claude Code (dựng app thật dù không biết code), đưa AI vào marketing, và biến Excel thành trợ lý tự động. Không lý thuyết suông — học tới đâu làm tới đó.">Practical AI courses that turn skills into results: master AI in business with Claude Code (and build real apps without a coding background), put AI to work in your marketing, and turn Excel into an automated assistant. No fluff — you build as you learn.</p>
     <div class="hero-cta">
-      <a href="#courses" class="btn btn-primary">Explore the courses →</a>
-      <a href="#how" class="btn btn-ghost">See how it works</a>
+      <a href="#courses" class="btn btn-primary" data-vi="Xem các khóa học →">Explore the courses →</a>
+      <a href="#how" class="btn btn-ghost" data-vi="Xem lộ trình">See how it works</a>
     </div>
-    <p class="hero-note">✦ 100% digital · Delivered via Google Drive · Lifetime access &amp; updates</p>
+    <p class="hero-note" data-vi="✦ 100% digital · Giao qua Google Drive · Truy cập trọn đời &amp; cập nhật">✦ 100% digital · Delivered via Google Drive · Lifetime access &amp; updates</p>
 
     <div class="stats">
-      <div class="stat"><b class="grad-text">6</b><span>hands-on courses</span></div>
-      <div class="stat"><b class="grad-text">100%</b><span>practical, real projects</span></div>
-      <div class="stat"><b class="grad-text">∞</b><span>support &amp; updates</span></div>
-      <div class="stat"><b class="grad-text">0</b><span>coding background needed</span></div>
+      <div class="stat"><b class="grad-text">6</b><span data-vi="khóa học thực chiến">hands-on courses</span></div>
+      <div class="stat"><b class="grad-text">100%</b><span data-vi="thực hành, dự án thật">practical, real projects</span></div>
+      <div class="stat"><b class="grad-text">∞</b><span data-vi="hỗ trợ &amp; cập nhật">support &amp; updates</span></div>
+      <div class="stat"><b class="grad-text">0</b><span data-vi="cần biết code">coding background needed</span></div>
     </div>
   </div>
 </section>
@@ -209,105 +193,105 @@
 <section id="courses">
   <div class="wrap">
     <div class="sec-head">
-      <span class="kick">The Courses</span>
-      <h2>Pick the AI skill you want to master</h2>
-      <p>Every course is built around one principle — learn it, build it. You finish with a real product and a workflow you can use the next day.</p>
+      <span class="kick" data-vi="Các khóa học">The Courses</span>
+      <h2 data-vi="Chọn kỹ năng AI bạn muốn làm chủ">Pick the AI skill you want to master</h2>
+      <p data-vi="Mỗi khóa xoay quanh một nguyên tắc — học là làm. Kết thúc khóa, bạn có sản phẩm thật và quy trình dùng được ngay.">Every course is built around one principle — learn it, build it. You finish with a real product and a workflow you can use the next day.</p>
     </div>
 
     <div class="courses">
 
       <div class="course featured">
-        <span class="tag flag">Flagship</span>
-        <span class="eyebrow">Digital Course</span>
+        <span class="tag flag" data-vi="Chủ lực">Flagship</span>
+        <span class="eyebrow" data-vi="Khóa Digital">Digital Course</span>
         <div class="ico">🛠️</div>
-        <h3>Mastering AI in Business with Claude Code</h3>
-        <p>Go from idea to a working product. Build real apps, tools and internal systems with Claude Code — and automate your business — even with no coding background.</p>
+        <h3 data-vi="Làm chủ AI trong Kinh doanh với Claude Code">Mastering AI in Business with Claude Code</h3>
+        <p data-vi="Đi từ ý tưởng tới sản phẩm chạy được. Dựng app, công cụ và hệ thống nội bộ thật với Claude Code — và tự động hóa doanh nghiệp — dù không biết code.">Go from idea to a working product. Build real apps, tools and internal systems with Claude Code — and automate your business — even with no coding background.</p>
         <ul>
-          <li>Start with Claude Code from zero</li>
-          <li>Turn an idea into a shipped, working product</li>
-          <li>Automate real business operations end-to-end</li>
-          <li>Ship, debug and scale with AI as your engineer</li>
+          <li data-vi="Bắt đầu Claude Code từ con số 0">Start with Claude Code from zero</li>
+          <li data-vi="Biến ý tưởng thành sản phẩm chạy thật">Turn an idea into a shipped, working product</li>
+          <li data-vi="Tự động hóa vận hành doanh nghiệp đầu-cuối">Automate real business operations end-to-end</li>
+          <li data-vi="Ship, sửa lỗi và mở rộng với AI làm kỹ sư">Ship, debug and scale with AI as your engineer</li>
         </ul>
         <div class="price"><s>$499</s> <span class="grad-text">$300</span></div>
-        <a href="#enroll" class="btn btn-primary" style="width:100%;justify-content:center">Enroll</a>
+        <a href="#enroll" class="btn btn-primary" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
       </div>
 
       <div class="course">
-        <span class="tag">Start here</span>
-        <span class="eyebrow">Digital Course</span>
+        <span class="tag" data-vi="Bắt đầu từ đây">Start here</span>
+        <span class="eyebrow" data-vi="Khóa Digital">Digital Course</span>
         <div class="ico">🧠</div>
-        <h3>AI Foundations</h3>
-        <p>Brand-new to AI? Get the core concepts and start using AI tools with confidence in your everyday work.</p>
+        <h3 data-vi="AI Căn bản">AI Foundations</h3>
+        <p data-vi="Mới toanh với AI? Nắm các khái niệm cốt lõi và bắt đầu dùng công cụ AI tự tin trong công việc hằng ngày.">Brand-new to AI? Get the core concepts and start using AI tools with confidence in your everyday work.</p>
         <ul>
-          <li>Understand how AI &amp; chatbots really work</li>
-          <li>Write effective prompts that get results</li>
-          <li>Use AI safely for day-to-day tasks</li>
-          <li>The perfect base for every other course</li>
+          <li data-vi="Hiểu cách AI &amp; chatbot thật sự hoạt động">Understand how AI &amp; chatbots really work</li>
+          <li data-vi="Viết prompt hiệu quả, ra kết quả">Write effective prompts that get results</li>
+          <li data-vi="Dùng AI an toàn cho việc hằng ngày">Use AI safely for day-to-day tasks</li>
+          <li data-vi="Nền tảng hoàn hảo cho mọi khóa khác">The perfect base for every other course</li>
         </ul>
         <div class="price"><s>$29</s> <span class="grad-text">$13.50</span></div>
-        <a href="#enroll" class="btn btn-primary" style="width:100%;justify-content:center">Enroll</a>
+        <a href="#enroll" class="btn btn-primary" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
       </div>
 
       <div class="course">
-        <span class="eyebrow">Digital Course</span>
+        <span class="eyebrow" data-vi="Khóa Digital">Digital Course</span>
         <div class="ico">✍️</div>
-        <h3>Content Creation with AI</h3>
-        <p>Produce blog posts, social content, scripts and visuals with AI — fast, consistent and on-brand.</p>
+        <h3 data-vi="Tạo Content bằng AI">Content Creation with AI</h3>
+        <p data-vi="Sản xuất blog, nội dung mạng xã hội, kịch bản và hình ảnh bằng AI — nhanh, nhất quán, đúng thương hiệu.">Produce blog posts, social content, scripts and visuals with AI — fast, consistent and on-brand.</p>
         <ul>
-          <li>Generate blog, social &amp; ad copy with AI</li>
-          <li>Create images &amp; short videos with AI</li>
-          <li>Build a repeatable content workflow</li>
-          <li>Keep everything on-brand and consistent</li>
+          <li data-vi="Tạo blog, content social &amp; quảng cáo bằng AI">Generate blog, social &amp; ad copy with AI</li>
+          <li data-vi="Tạo hình ảnh &amp; video ngắn bằng AI">Create images &amp; short videos with AI</li>
+          <li data-vi="Xây quy trình sản xuất content lặp lại được">Build a repeatable content workflow</li>
+          <li data-vi="Giữ mọi thứ nhất quán, đúng thương hiệu">Keep everything on-brand and consistent</li>
         </ul>
         <div class="price"><s>$129</s> <span class="grad-text">$69</span></div>
-        <a href="#enroll" class="btn btn-primary" style="width:100%;justify-content:center">Enroll</a>
+        <a href="#enroll" class="btn btn-primary" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
       </div>
 
       <div class="course">
-        <span class="tag">Best seller</span>
-        <span class="eyebrow">Digital Course</span>
+        <span class="tag" data-vi="Bán chạy">Best seller</span>
+        <span class="eyebrow" data-vi="Khóa Digital">Digital Course</span>
         <div class="ico">📈</div>
-        <h3>AI in Marketing</h3>
-        <p>Produce content, ads and SEO at the speed of a whole team — on your own. Put AI at the center of your marketing engine.</p>
+        <h3 data-vi="AI trong Marketing">AI in Marketing</h3>
+        <p data-vi="Sản xuất content, quảng cáo và SEO với tốc độ của cả một team — một mình. Đưa AI vào trung tâm cỗ máy marketing.">Produce content, ads and SEO at the speed of a whole team — on your own. Put AI at the center of your marketing engine.</p>
         <ul>
-          <li>Write on-brand content &amp; scripts with AI</li>
-          <li>Generate ad images &amp; videos with AI</li>
-          <li>High-speed market &amp; competitor research</li>
-          <li>Automate your marketing workflows</li>
+          <li data-vi="Viết content &amp; kịch bản đúng giọng thương hiệu bằng AI">Write on-brand content &amp; scripts with AI</li>
+          <li data-vi="Tạo ảnh &amp; video quảng cáo bằng AI">Generate ad images &amp; videos with AI</li>
+          <li data-vi="Nghiên cứu thị trường &amp; đối thủ tốc độ cao">High-speed market &amp; competitor research</li>
+          <li data-vi="Tự động hóa quy trình marketing">Automate your marketing workflows</li>
         </ul>
         <div class="price"><s>$249</s> <span class="grad-text">$149</span></div>
-        <a href="#enroll" class="btn btn-primary" style="width:100%;justify-content:center">Enroll</a>
+        <a href="#enroll" class="btn btn-primary" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
       </div>
 
       <div class="course">
-        <span class="tag">New</span>
-        <span class="eyebrow">Digital Course</span>
+        <span class="tag" data-vi="Mới">New</span>
+        <span class="eyebrow" data-vi="Khóa Digital">Digital Course</span>
         <div class="ico">🤖</div>
-        <h3>AI Automation &amp; Workflow</h3>
-        <p>Wire AI tools into workflows that run themselves — and win back hours every day from repetitive work.</p>
+        <h3 data-vi="Tự động hóa &amp; Quy trình AI">AI Automation &amp; Workflow</h3>
+        <p data-vi="Nối các công cụ AI thành quy trình tự chạy — và giành lại hàng giờ mỗi ngày khỏi việc lặp lại.">Wire AI tools into workflows that run themselves — and win back hours every day from repetitive work.</p>
         <ul>
-          <li>Design automated, self-running workflows</li>
-          <li>Connect AI to the apps you already use</li>
-          <li>Build chatbots &amp; assistants for your work</li>
-          <li>Measure &amp; optimize performance</li>
+          <li data-vi="Thiết kế quy trình tự động, tự chạy">Design automated, self-running workflows</li>
+          <li data-vi="Kết nối AI với các app bạn đang dùng">Connect AI to the apps you already use</li>
+          <li data-vi="Xây chatbot &amp; trợ lý cho công việc">Build chatbots &amp; assistants for your work</li>
+          <li data-vi="Đo lường &amp; tối ưu hiệu suất">Measure &amp; optimize performance</li>
         </ul>
         <div class="price"><s>$299</s> <span class="grad-text">$199</span></div>
-        <a href="#enroll" class="btn btn-primary" style="width:100%;justify-content:center">Enroll</a>
+        <a href="#enroll" class="btn btn-primary" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
       </div>
 
       <div class="course">
-        <span class="eyebrow">Digital Course</span>
+        <span class="eyebrow" data-vi="Khóa Digital">Digital Course</span>
         <div class="ico">📊</div>
-        <h3>AI with Excel</h3>
-        <p>Turn spreadsheets into an assistant: let AI write formulas, analyze data and automate the reports you dread.</p>
+        <h3 data-vi="AI với Excel">AI with Excel</h3>
+        <p data-vi="Biến bảng tính thành trợ lý: để AI viết công thức, phân tích dữ liệu và tự động hóa các báo cáo bạn ngại làm.">Turn spreadsheets into an assistant: let AI write formulas, analyze data and automate the reports you dread.</p>
         <ul>
-          <li>Let AI write &amp; explain complex formulas</li>
-          <li>Clean &amp; analyze data in minutes</li>
-          <li>Automate repetitive reports</li>
-          <li>Turn raw data into insights, fast</li>
+          <li data-vi="Để AI viết &amp; giải thích công thức phức tạp">Let AI write &amp; explain complex formulas</li>
+          <li data-vi="Làm sạch &amp; phân tích dữ liệu trong vài phút">Clean &amp; analyze data in minutes</li>
+          <li data-vi="Tự động hóa báo cáo lặp đi lặp lại">Automate repetitive reports</li>
+          <li data-vi="Biến dữ liệu thô thành insight, nhanh">Turn raw data into insights, fast</li>
         </ul>
         <div class="price"><s>$149</s> <span class="grad-text">$99</span></div>
-        <a href="#enroll" class="btn btn-primary" style="width:100%;justify-content:center">Enroll</a>
+        <a href="#enroll" class="btn btn-primary" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
       </div>
 
     </div>
@@ -318,16 +302,16 @@
 <section class="benefits" id="benefits">
   <div class="wrap">
     <div class="sec-head">
-      <span class="kick">Why Paxneo</span>
-      <h2>Learn to DO it — not just to know it</h2>
+      <span class="kick" data-vi="Vì sao chọn Paxneo">Why Paxneo</span>
+      <h2 data-vi="Học để LÀM ĐƯỢC — không chỉ để biết">Learn to DO it — not just to know it</h2>
     </div>
     <div class="bgrid">
-      <div class="ben"><div class="e">🎯</div><div><h4>100% hands-on</h4><p>Every lesson is a real task. You finish with a product and a workflow you can apply immediately.</p></div></div>
-      <div class="ben"><div class="e">⚡</div><div><h4>Straight to results</h4><p>No academic fluff. Focused on the tools and methods that get results the fastest.</p></div></div>
-      <div class="ben"><div class="e">🧩</div><div><h4>No background required</h4><p>Start from zero. No coding, no technical background needed to keep up.</p></div></div>
-      <div class="ben"><div class="e">🔄</div><div><h4>Always up to date</h4><p>AI changes monthly — the courses update with it, so you never learn outdated material.</p></div></div>
-      <div class="ben"><div class="e">💬</div><div><h4>Lifetime support</h4><p>A learner community and support to help you when you apply it to real work.</p></div></div>
-      <div class="ben"><div class="e">🚀</div><div><h4>Built for real business</h4><p>Examples and projects mapped to actual business outcomes, not toy demos.</p></div></div>
+      <div class="ben"><div class="e">🎯</div><div><h4 data-vi="Thực chiến 100%">100% hands-on</h4><p data-vi="Mỗi bài là một việc thật. Học xong có sản phẩm và quy trình áp dụng được ngay.">Every lesson is a real task. You finish with a product and a workflow you can apply immediately.</p></div></div>
+      <div class="ben"><div class="e">⚡</div><div><h4 data-vi="Đi thẳng vào kết quả">Straight to results</h4><p data-vi="Bỏ qua lý thuyết hàn lâm. Tập trung vào công cụ và cách làm ra kết quả nhanh nhất.">No academic fluff. Focused on the tools and methods that get results the fastest.</p></div></div>
+      <div class="ben"><div class="e">🧩</div><div><h4 data-vi="Không cần nền tảng">No background required</h4><p data-vi="Bắt đầu từ con số 0. Không cần biết code hay nền tảng kỹ thuật vẫn theo được.">Start from zero. No coding, no technical background needed to keep up.</p></div></div>
+      <div class="ben"><div class="e">🔄</div><div><h4 data-vi="Luôn cập nhật">Always up to date</h4><p data-vi="AI thay đổi từng tháng — khóa học cập nhật theo, bạn không học cái lỗi thời.">AI changes monthly — the courses update with it, so you never learn outdated material.</p></div></div>
+      <div class="ben"><div class="e">💬</div><div><h4 data-vi="Hỗ trợ trọn đời">Lifetime support</h4><p data-vi="Cộng đồng học viên &amp; hỗ trợ khi bạn áp dụng vào việc thật.">A learner community and support to help you when you apply it to real work.</p></div></div>
+      <div class="ben"><div class="e">🚀</div><div><h4 data-vi="Cho kinh doanh thật">Built for real business</h4><p data-vi="Ví dụ và dự án gắn với kết quả kinh doanh thật, không phải demo cho có.">Examples and projects mapped to actual business outcomes, not toy demos.</p></div></div>
     </div>
   </div>
 </section>
@@ -336,14 +320,14 @@
 <section>
   <div class="wrap">
     <div class="sec-head">
-      <span class="kick">Who it's for</span>
-      <h2>This is for you if…</h2>
+      <span class="kick" data-vi="Dành cho ai">Who it's for</span>
+      <h2 data-vi="Khóa học này hợp với bạn nếu…">This is for you if…</h2>
     </div>
     <div class="aud">
-      <div class="a"><div class="e">💼</div><h4>Marketers &amp; business owners</h4><p>You want marketing that's faster, cheaper and more effective with AI.</p></div>
-      <div class="a"><div class="e">🚀</div><h4>Founders &amp; builders</h4><p>You want to ship your own product without hiring a dev team.</p></div>
-      <div class="a"><div class="e">📋</div><h4>Professionals &amp; teams</h4><p>You want to automate Excel, reports and repetitive work.</p></div>
-      <div class="a"><div class="e">🌱</div><h4>New to AI</h4><p>You want a structured start — no rabbit holes, usable from day one.</p></div>
+      <div class="a"><div class="e">💼</div><h4 data-vi="Marketer &amp; chủ doanh nghiệp">Marketers &amp; business owners</h4><p data-vi="Muốn marketing nhanh hơn, rẻ hơn, hiệu quả hơn với AI.">You want marketing that's faster, cheaper and more effective with AI.</p></div>
+      <div class="a"><div class="e">🚀</div><h4 data-vi="Founder &amp; người khởi nghiệp">Founders &amp; builders</h4><p data-vi="Muốn tự ship sản phẩm mà không cần thuê team dev.">You want to ship your own product without hiring a dev team.</p></div>
+      <div class="a"><div class="e">📋</div><h4 data-vi="Dân văn phòng &amp; team">Professionals &amp; teams</h4><p data-vi="Muốn tự động hóa Excel, báo cáo và việc lặp lại.">You want to automate Excel, reports and repetitive work.</p></div>
+      <div class="a"><div class="e">🌱</div><h4 data-vi="Người mới với AI">New to AI</h4><p data-vi="Muốn bắt đầu bài bản — không lan man, dùng được từ ngày đầu.">You want a structured start — no rabbit holes, usable from day one.</p></div>
     </div>
   </div>
 </section>
@@ -352,14 +336,14 @@
 <section class="benefits" id="how">
   <div class="wrap">
     <div class="sec-head">
-      <span class="kick">How it works</span>
-      <h2>Four steps from learning to shipping</h2>
+      <span class="kick" data-vi="Lộ trình">How it works</span>
+      <h2 data-vi="Bốn bước từ học tới ship">Four steps from learning to shipping</h2>
     </div>
     <div class="steps">
-      <div class="step"><h4>Pick a course</h4><p>Choose the AI skill your work needs most right now.</p></div>
-      <div class="step"><h4>Learn &amp; build</h4><p>Follow along on a real project — guided, step by step.</p></div>
-      <div class="step"><h4>Apply to real work</h4><p>Bring it straight into your job, with support when you're stuck.</p></div>
-      <div class="step"><h4>Optimize &amp; scale</h4><p>Level up your workflow and combine multiple AI tools together.</p></div>
+      <div class="step"><h4 data-vi="Chọn khóa">Pick a course</h4><p data-vi="Chọn kỹ năng AI mà công việc bạn cần nhất lúc này.">Choose the AI skill your work needs most right now.</p></div>
+      <div class="step"><h4 data-vi="Học &amp; làm">Learn &amp; build</h4><p data-vi="Làm theo trên dự án thật — hướng dẫn từng bước.">Follow along on a real project — guided, step by step.</p></div>
+      <div class="step"><h4 data-vi="Áp dụng việc thật">Apply to real work</h4><p data-vi="Mang thẳng vào công việc, có hỗ trợ khi vướng.">Bring it straight into your job, with support when you're stuck.</p></div>
+      <div class="step"><h4 data-vi="Tối ưu &amp; mở rộng">Optimize &amp; scale</h4><p data-vi="Nâng cấp quy trình và kết hợp nhiều công cụ AI.">Level up your workflow and combine multiple AI tools together.</p></div>
     </div>
   </div>
 </section>
@@ -368,9 +352,9 @@
 <section id="enroll">
   <div class="wrap">
     <div class="cta-band">
-      <h2>Ready to put AI to work for you?</h2>
-      <p>Enroll today or request a quick consult. Start your journey to mastering AI right now.</p>
-      <a href="mailto:paxle86@gmail.com?subject=Enroll%20in%20Paxneo%20AI%20Course" class="btn btn-primary">Enroll / Request info →</a>
+      <h2 data-vi="Sẵn sàng để AI làm việc cho bạn?">Ready to put AI to work for you?</h2>
+      <p data-vi="Đăng ký hôm nay hoặc nhận tư vấn nhanh. Bắt đầu hành trình làm chủ AI ngay bây giờ.">Enroll today or request a quick consult. Start your journey to mastering AI right now.</p>
+      <a href="mailto:paxle86@gmail.com?subject=Enroll%20in%20Paxneo%20AI%20Course" class="btn btn-primary" data-vi="Đăng ký / Nhận tư vấn →">Enroll / Request info →</a>
     </div>
   </div>
 </section>
@@ -379,15 +363,15 @@
 <section id="faq">
   <div class="wrap">
     <div class="sec-head">
-      <span class="kick">FAQ</span>
-      <h2>Frequently asked questions</h2>
+      <span class="kick" data-vi="Hỏi đáp">FAQ</span>
+      <h2 data-vi="Câu hỏi thường gặp">Frequently asked questions</h2>
     </div>
     <div class="faq">
-      <details open><summary>I'm new to AI — can I keep up?</summary><p>Absolutely. Every course starts from zero with clear, step-by-step guidance. You only need basic computer skills.</p></details>
-      <details><summary>Does "Mastering AI in Business with Claude Code" require coding?</summary><p>No. The course is designed for people without a coding background. You learn to describe what you want, let AI write the code, and you direct and review the results.</p></details>
-      <details><summary>How are the courses delivered?</summary><p>All courses are 100% digital. Once your enrollment is confirmed, we email you a Google Drive invite link with all course materials — videos, templates and resources. Access is granted to the email address you enroll with, so use the one you check.</p></details>
-      <details><summary>What do I get after enrolling?</summary><p>A Google Drive invite to the full course (videos + resources), ready-made workflow/prompt templates, the real project you build during the course, and access to future updates — all online, on your own schedule.</p></details>
-      <details><summary>How does payment &amp; pricing work?</summary><p>Click "Enroll / Request info" for payment details and early-bird offers. Limited introductory pricing is currently available across all courses.</p></details>
+      <details open><summary data-vi="Tôi mới với AI — học theo nổi không?">I'm new to AI — can I keep up?</summary><p data-vi="Hoàn toàn được. Mọi khóa bắt đầu từ con số 0 với hướng dẫn rõ ràng, từng bước. Bạn chỉ cần biết dùng máy tính cơ bản.">Absolutely. Every course starts from zero with clear, step-by-step guidance. You only need basic computer skills.</p></details>
+      <details><summary data-vi="Khóa 'Làm chủ AI với Claude Code' có cần biết code không?">Does "Mastering AI in Business with Claude Code" require coding?</summary><p data-vi="Không. Khóa thiết kế cho người không biết code. Bạn học cách mô tả điều mình muốn, để AI viết code, còn bạn điều phối và kiểm tra kết quả.">No. The course is designed for people without a coding background. You learn to describe what you want, let AI write the code, and you direct and review the results.</p></details>
+      <details><summary data-vi="Các khóa được giao thế nào?">How are the courses delivered?</summary><p data-vi="Tất cả khóa là 100% digital. Sau khi xác nhận đăng ký, chúng tôi gửi email link mời Google Drive chứa toàn bộ tài liệu — video, template và tài nguyên. Quyền truy cập cấp cho email bạn đăng ký, nên hãy dùng email bạn hay kiểm tra.">All courses are 100% digital. Once your enrollment is confirmed, we email you a Google Drive invite link with all course materials — videos, templates and resources. Access is granted to the email address you enroll with, so use the one you check.</p></details>
+      <details><summary data-vi="Sau khi đăng ký tôi nhận được gì?">What do I get after enrolling?</summary><p data-vi="Link mời Google Drive vào toàn bộ khóa (video + tài nguyên), bộ template quy trình/prompt làm sẵn, dự án thật bạn xây trong khóa, và quyền truy cập các bản cập nhật sau này — tất cả online, theo lịch của bạn.">A Google Drive invite to the full course (videos + resources), ready-made workflow/prompt templates, the real project you build during the course, and access to future updates — all online, on your own schedule.</p></details>
+      <details><summary data-vi="Thanh toán &amp; giá thế nào?">How does payment &amp; pricing work?</summary><p data-vi="Bấm 'Đăng ký / Nhận tư vấn' để biết chi tiết thanh toán và ưu đãi sớm. Đang có giá ưu đãi giới hạn cho tất cả các khóa.">Click "Enroll / Request info" for payment details and early-bird offers. Limited introductory pricing is currently available across all courses.</p></details>
     </div>
   </div>
 </section>
@@ -398,24 +382,24 @@
     <div class="foot">
       <div class="col" style="max-width:300px">
         <a href="#" class="logo" style="margin-bottom:14px">PAXNEO<span class="px-blue">TECH</span></a>
-        <p style="color:var(--muted);font-size:14.5px">Hands-on AI training. Learn it, ship it — get more done with AI.</p>
+        <p style="color:var(--muted);font-size:14.5px" data-vi="Đào tạo AI thực chiến. Học là làm được — làm nhiều hơn cùng AI.">Hands-on AI training. Learn it, ship it — get more done with AI.</p>
       </div>
       <div class="col">
-        <h5>Courses</h5>
-        <a href="#courses">Mastering AI with Claude Code</a>
-        <a href="#courses">AI in Marketing</a>
-        <a href="#courses">AI Automation &amp; Workflow</a>
-        <a href="#courses">AI with Excel</a>
+        <h5 data-vi="Khóa học">Courses</h5>
+        <a href="#courses" data-vi="Làm chủ AI với Claude Code">Mastering AI with Claude Code</a>
+        <a href="#courses" data-vi="AI trong Marketing">AI in Marketing</a>
+        <a href="#courses" data-vi="Tự động hóa &amp; Quy trình AI">AI Automation &amp; Workflow</a>
+        <a href="#courses" data-vi="AI với Excel">AI with Excel</a>
       </div>
       <div class="col">
-        <h5>Explore</h5>
-        <a href="#benefits">What you'll gain</a>
-        <a href="#how">How it works</a>
-        <a href="#faq">FAQ</a>
-        <a href="#enroll">Enroll</a>
+        <h5 data-vi="Khám phá">Explore</h5>
+        <a href="#benefits" data-vi="Lợi ích">What you'll gain</a>
+        <a href="#how" data-vi="Lộ trình">How it works</a>
+        <a href="#faq" data-vi="Hỏi đáp">FAQ</a>
+        <a href="#enroll" data-vi="Đăng ký">Enroll</a>
       </div>
       <div class="col">
-        <h5>Contact</h5>
+        <h5 data-vi="Liên hệ">Contact</h5>
         <a href="mailto:paxle86@gmail.com">paxle86@gmail.com</a>
         <a href="#">paxneo.net</a>
       </div>
@@ -428,9 +412,26 @@
 </footer>
 
 <script>
+  // Mobile menu
   var b=document.getElementById('burger'),n=document.getElementById('navlinks');
   b&&b.addEventListener('click',function(){n.classList.toggle('open')});
   n&&n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){n.classList.remove('open')})});
+
+  // i18n: EN default in markup, VI in data-vi. Capture EN on load, swap on toggle.
+  var nodes=document.querySelectorAll('[data-vi]');
+  nodes.forEach(function(el){ el.setAttribute('data-en', el.innerHTML); });
+  function setLang(l){
+    document.documentElement.lang=l;
+    nodes.forEach(function(el){ var v=el.getAttribute('data-'+l); if(v!=null) el.innerHTML=v; });
+    document.querySelectorAll('#langsw button').forEach(function(btn){ btn.classList.toggle('active', btn.getAttribute('data-lang')===l); });
+    try{ localStorage.setItem('paxneo_lang', l); }catch(e){}
+  }
+  var saved=null; try{ saved=localStorage.getItem('paxneo_lang'); }catch(e){}
+  var def = saved || ((navigator.language||'en').toLowerCase().indexOf('vi')===0 ? 'vi' : 'en');
+  document.querySelectorAll('#langsw button').forEach(function(btn){
+    btn.addEventListener('click', function(){ setLang(btn.getAttribute('data-lang')); });
+  });
+  setLang(def);
 </script>
 </body>
 </html>
