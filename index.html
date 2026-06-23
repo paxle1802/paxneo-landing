@@ -164,6 +164,18 @@
   .modal .note{font-size:13px;color:var(--muted);margin:16px 0}
   .modal-success{text-align:center;padding:14px 0}
   .modal-success .e{font-size:46px;margin-bottom:6px}
+  /* Course curriculum (roadmap) */
+  .course{cursor:pointer}
+  .cur-hint{font-size:13px;font-weight:700;color:var(--cyan);margin-bottom:16px;display:inline-flex;align-items:center;gap:6px}
+  .modal.wide{max-width:680px}
+  .cur-meta{color:var(--cyan);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.6px;margin:2px 0 16px}
+  .cur-intro{color:var(--muted);font-size:15px;margin-bottom:22px}
+  .roadmap{list-style:none;counter-reset:mod;margin-bottom:24px}
+  .roadmap li{position:relative;padding:0 0 20px 44px;border-left:2px solid rgba(124,92,255,.28);margin-left:13px}
+  .roadmap li:last-child{border-left-color:transparent;padding-bottom:4px}
+  .roadmap li::before{counter-increment:mod;content:counter(mod);position:absolute;left:-14px;top:-2px;width:28px;height:28px;border-radius:50%;background:var(--grad);color:#0a0a12;font-weight:800;font-size:13px;display:grid;place-items:center}
+  .roadmap h4{font-size:16px;font-weight:700;margin-bottom:4px;letter-spacing:-.2px}
+  .roadmap p{color:var(--muted);font-size:14px;margin:0;line-height:1.55}
 </style>
 </head>
 <body>
@@ -422,7 +434,7 @@
       </div>
       <div class="col">
         <h5 data-vi="Liên hệ">Contact</h5>
-        <a href="mailto:paxle86@gmail.com">paxle86@gmail.com</a>
+        <a href="mailto:support@paxneo.net">support@paxneo.net</a>
         <a href="#">paxneo.net</a>
       </div>
     </div>
@@ -434,6 +446,17 @@
 </footer>
 
 <!-- ENROLL MODAL -->
+<div class="modal-overlay" id="curModal" aria-hidden="true">
+  <div class="modal wide" role="dialog" aria-modal="true">
+    <button class="modal-close" id="curClose" aria-label="Close">&times;</button>
+    <h3 id="curTitle"></h3>
+    <p class="cur-meta" id="curMeta"></p>
+    <p class="cur-intro" id="curIntro"></p>
+    <ol class="roadmap" id="curList"></ol>
+    <button class="btn btn-primary" id="curEnroll" style="width:100%;justify-content:center"></button>
+  </div>
+</div>
+
 <div class="modal-overlay" id="enrollModal" aria-hidden="true">
   <div class="modal" role="dialog" aria-modal="true">
     <button class="modal-close" id="modalClose" aria-label="Close">×</button>
@@ -481,6 +504,14 @@
   var b=document.getElementById('burger'),n=document.getElementById('navlinks');
   b&&b.addEventListener('click',function(){n.classList.toggle('open')});
   n&&n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){n.classList.remove('open')})});
+
+  // Inject a "view curriculum" hint into each course card (before i18n capture so it localizes).
+  document.querySelectorAll('.course').forEach(function(card){
+    var ul=card.querySelector('ul'); if(!ul) return;
+    var hint=document.createElement('div'); hint.className='cur-hint';
+    hint.setAttribute('data-vi','📋 Xem lộ trình chi tiết →'); hint.innerHTML='📋 View curriculum →';
+    ul.insertAdjacentElement('afterend', hint);
+  });
 
   // i18n: EN default in markup, VI in data-vi. Capture EN on load, swap on toggle.
   var nodes=document.querySelectorAll('[data-vi]');
@@ -555,6 +586,100 @@
       .then(function(){ done(); })
       .catch(function(){ mailtoFallback(); })
       .then(function(){ if(sbtn){ sbtn.disabled=false; } });
+  });
+
+  // ---- Course curriculum (roadmap) modal. Module count scales with price (higher = more). ----
+  var CURRICULA = {
+    "foundations": [
+      {t_en:"How AI really works",d_en:"Models, tokens and what AI can and cannot do, in plain language.",t_vi:"AI thực sự hoạt động thế nào",d_vi:"Mô hình, token và giới hạn của AI, giải thích dễ hiểu."},
+      {t_en:"Prompting that gets results",d_en:"Structure prompts, add context and iterate to better answers.",t_vi:"Viết prompt ra kết quả",d_vi:"Cấu trúc prompt, thêm ngữ cảnh và lặp lại để có câu trả lời tốt hơn."},
+      {t_en:"AI for everyday work",d_en:"Email, summaries, research and planning with AI assistants.",t_vi:"AI cho công việc hằng ngày",d_vi:"Email, tóm tắt, nghiên cứu và lập kế hoạch với trợ lý AI."},
+      {t_en:"Using AI safely",d_en:"Protect privacy, check accuracy and verify what AI gives you.",t_vi:"Dùng AI an toàn",d_vi:"Bảo vệ riêng tư, kiểm tra độ chính xác và xác minh kết quả AI."}
+    ],
+    "content": [
+      {t_en:"Your AI content stack",d_en:"The writing, image and video tools and when to use each.",t_vi:"Bộ công cụ content AI",d_vi:"Công cụ viết, ảnh, video và khi nào dùng cái nào."},
+      {t_en:"On-brand writing with AI",d_en:"Turn your voice and brand rules into reusable prompts.",t_vi:"Viết đúng giọng thương hiệu",d_vi:"Biến giọng văn và quy tắc thương hiệu thành prompt dùng lại được."},
+      {t_en:"Blog, social and ad copy",d_en:"Templates for every format, plus repurposing one idea many ways.",t_vi:"Blog, social và quảng cáo",d_vi:"Mẫu cho từng định dạng, tái sử dụng một ý tưởng nhiều cách."},
+      {t_en:"AI images and short videos",d_en:"Generate visuals and clips that match your brand.",t_vi:"Ảnh và video ngắn bằng AI",d_vi:"Tạo hình ảnh và clip hợp thương hiệu."},
+      {t_en:"A repeatable content workflow",d_en:"Plan, produce, review and publish on a schedule.",t_vi:"Quy trình content lặp lại được",d_vi:"Lên kế hoạch, sản xuất, duyệt và xuất bản theo lịch."}
+    ],
+    "excel": [
+      {t_en:"AI inside your spreadsheet",d_en:"Set up AI helpers for Excel and Google Sheets.",t_vi:"AI ngay trong bảng tính",d_vi:"Thiết lập trợ lý AI cho Excel và Google Sheets."},
+      {t_en:"Formulas written by AI",d_en:"Get complex formulas built and explained without memorizing them.",t_vi:"Công thức do AI viết",d_vi:"Tạo và giải thích công thức phức tạp mà không cần thuộc lòng."},
+      {t_en:"Cleaning messy data",d_en:"Prepare and structure raw data in minutes, not hours.",t_vi:"Làm sạch dữ liệu lộn xộn",d_vi:"Chuẩn bị và sắp xếp dữ liệu thô trong vài phút."},
+      {t_en:"Analysis and pivot insights",d_en:"Ask questions in plain language and get charts and summaries.",t_vi:"Phân tích và insight",d_vi:"Hỏi bằng ngôn ngữ thường, nhận biểu đồ và tóm tắt."},
+      {t_en:"Automating recurring reports",d_en:"Build report templates that refresh themselves.",t_vi:"Tự động hóa báo cáo định kỳ",d_vi:"Xây mẫu báo cáo tự cập nhật."},
+      {t_en:"From raw data to decisions",d_en:"Turn numbers into clear, defensible recommendations.",t_vi:"Từ dữ liệu thô đến quyết định",d_vi:"Biến con số thành đề xuất rõ ràng, thuyết phục."}
+    ],
+    "marketing": [
+      {t_en:"The AI marketing engine",d_en:"Map your funnel and find the highest-leverage AI wins.",t_vi:"Cỗ máy marketing AI",d_vi:"Vẽ phễu và tìm điểm AI tạo đòn bẩy lớn nhất."},
+      {t_en:"On-brand content at scale",d_en:"Voice-locked copy and scripts produced with AI.",t_vi:"Content đúng giọng, quy mô lớn",d_vi:"Bài viết và kịch bản khóa-giọng tạo bằng AI."},
+      {t_en:"Ad creative: images and video",d_en:"Generate scroll-stopping ad visuals and short videos.",t_vi:"Sáng tạo quảng cáo: ảnh và video",d_vi:"Tạo ảnh và video quảng cáo bắt mắt."},
+      {t_en:"SEO and content that ranks",d_en:"Keyword research, briefs and on-page optimization with AI.",t_vi:"SEO và content lên top",d_vi:"Nghiên cứu từ khóa, brief và tối ưu on-page bằng AI."},
+      {t_en:"Market and competitor research",d_en:"Gather insights at high speed and act on them.",t_vi:"Nghiên cứu thị trường và đối thủ",d_vi:"Thu thập insight tốc độ cao và hành động."},
+      {t_en:"Email and social campaigns",d_en:"Sequences, content calendars and smart repurposing.",t_vi:"Chiến dịch email và social",d_vi:"Chuỗi email, lịch nội dung và tái sử dụng thông minh."},
+      {t_en:"Marketing automation",d_en:"Wire your tools into campaigns that run themselves.",t_vi:"Tự động hóa marketing",d_vi:"Nối công cụ thành chiến dịch tự chạy."},
+      {t_en:"Measure and optimize",d_en:"Track, test and improve return on every channel.",t_vi:"Đo lường và tối ưu",d_vi:"Theo dõi, thử nghiệm và cải thiện hiệu quả mỗi kênh."}
+    ],
+    "automation": [
+      {t_en:"The automation mindset",d_en:"Spot the repetitive work that is worth automating.",t_vi:"Tư duy tự động hóa",d_vi:"Nhận diện việc lặp lại đáng để tự động hóa."},
+      {t_en:"Your no-code toolkit",d_en:"The platforms that connect your apps without code.",t_vi:"Bộ công cụ no-code",d_vi:"Các nền tảng nối app mà không cần code."},
+      {t_en:"Connecting AI to your apps",d_en:"Triggers, actions and APIs made simple.",t_vi:"Nối AI với app của bạn",d_vi:"Trigger, action và API một cách đơn giản."},
+      {t_en:"Designing self-running workflows",d_en:"Go from a trigger to a finished outcome automatically.",t_vi:"Thiết kế quy trình tự chạy",d_vi:"Từ trigger đến kết quả hoàn chỉnh tự động."},
+      {t_en:"Building chatbots and assistants",d_en:"Task-specific helpers for your team and customers.",t_vi:"Xây chatbot và trợ lý",d_vi:"Trợ lý chuyên việc cho đội ngũ và khách hàng."},
+      {t_en:"Document and data pipelines",d_en:"Auto-process files, sheets and inboxes.",t_vi:"Pipeline tài liệu và dữ liệu",d_vi:"Tự xử lý file, bảng tính và hộp thư."},
+      {t_en:"Error handling and reliability",d_en:"Make automations robust so they do not break silently.",t_vi:"Xử lý lỗi và độ tin cậy",d_vi:"Làm quy trình bền vững, không hỏng âm thầm."},
+      {t_en:"Measuring performance",d_en:"Use logs and metrics to see what is working.",t_vi:"Đo lường hiệu suất",d_vi:"Dùng log và chỉ số để biết cái gì hiệu quả."},
+      {t_en:"Scaling your system",d_en:"Orchestrate many workflows into one reliable engine.",t_vi:"Mở rộng hệ thống",d_vi:"Điều phối nhiều quy trình thành một cỗ máy tin cậy."}
+    ],
+    "claude-code": [
+      {t_en:"Claude Code from zero",d_en:"Install, set up and run your first commands with confidence.",t_vi:"Claude Code từ con số 0",d_vi:"Cài đặt, thiết lập và chạy lệnh đầu tiên tự tin."},
+      {t_en:"Thinking in projects",d_en:"Learn to brief AI so it builds exactly what you need.",t_vi:"Tư duy theo dự án",d_vi:"Học cách brief AI để nó xây đúng thứ bạn cần."},
+      {t_en:"From idea to spec",d_en:"Turn a business need into a clear, buildable plan.",t_vi:"Từ ý tưởng đến spec",d_vi:"Biến nhu cầu kinh doanh thành kế hoạch xây được."},
+      {t_en:"Build your first real app",d_en:"Ship a working product end to end.",t_vi:"Xây app thật đầu tiên",d_vi:"Hoàn thiện một sản phẩm chạy được từ đầu đến cuối."},
+      {t_en:"Working with data and databases",d_en:"Store, query and manage real business data.",t_vi:"Làm việc với dữ liệu và database",d_vi:"Lưu, truy vấn và quản lý dữ liệu thật."},
+      {t_en:"Connecting APIs and services",d_en:"Add payments, email and third-party tools.",t_vi:"Nối API và dịch vụ",d_vi:"Thêm thanh toán, email và công cụ bên thứ ba."},
+      {t_en:"Automating business operations",d_en:"Build internal systems that run the busywork.",t_vi:"Tự động hóa vận hành",d_vi:"Xây hệ thống nội bộ lo việc lặp lại."},
+      {t_en:"Debugging with AI as your engineer",d_en:"Find and fix issues fast, without fear.",t_vi:"Sửa lỗi với AI là kỹ sư",d_vi:"Tìm và sửa lỗi nhanh, không sợ hãi."},
+      {t_en:"Shipping and deploying",d_en:"Get your product live for real users.",t_vi:"Phát hành và deploy",d_vi:"Đưa sản phẩm lên cho người dùng thật."},
+      {t_en:"Scaling and maintaining",d_en:"Grow your product without it breaking.",t_vi:"Mở rộng và bảo trì",d_vi:"Phát triển sản phẩm mà không vỡ."},
+      {t_en:"Internal tools and dashboards",d_en:"Build custom tools and dashboards for your team.",t_vi:"Công cụ và dashboard nội bộ",d_vi:"Xây công cụ và dashboard riêng cho đội ngũ."},
+      {t_en:"Your capstone business system",d_en:"Build one complete, real-world system end to end.",t_vi:"Dự án tốt nghiệp",d_vi:"Xây một hệ thống thực tế hoàn chỉnh từ đầu đến cuối."}
+    ]
+  };
+  var CUR_L = { en:{m:"modules",intro:"Your detailed, module-by-module learning path.",cta:"Enroll in this course"},
+                vi:{m:"mô-đun",intro:"Lộ trình học chi tiết theo từng mô-đun.",cta:"Đăng ký khóa này"} };
+  var curM=document.getElementById('curModal'),
+      curCloseBtn=document.getElementById('curClose'),
+      curEnrollBtn=document.getElementById('curEnroll');
+  function esc2(s){return String(s==null?'':s).replace(/[<>&]/g,function(c){return {'<':'&lt;','>':'&gt;','&':'&amp;'}[c];});}
+  function openCurriculum(cid){
+    var data=CURRICULA[cid]; if(!data||!curM) return;
+    var l=document.documentElement.lang==='vi'?'vi':'en';
+    var card=document.querySelector('.course[data-cid="'+cid+'"]');
+    var title=card?card.querySelector('h3').textContent.trim():'';
+    var pe=card?card.querySelector('.price .grad-text'):null, price=pe?pe.textContent.trim():'';
+    document.getElementById('curTitle').textContent=title;
+    document.getElementById('curMeta').textContent=price+(price?'  ·  ':'')+data.length+' '+CUR_L[l].m;
+    document.getElementById('curIntro').textContent=CUR_L[l].intro;
+    document.getElementById('curList').innerHTML=data.map(function(m){
+      return '<li><h4>'+esc2(m['t_'+l])+'</h4><p>'+esc2(m['d_'+l])+'</p></li>'; }).join('');
+    curEnrollBtn.textContent=CUR_L[l].cta;
+    curEnrollBtn._c=title; curEnrollBtn._p=price; curEnrollBtn._cid=cid;
+    curM.classList.add('open'); curM.setAttribute('aria-hidden','false');
+  }
+  function closeCur(){ if(curM){ curM.classList.remove('open'); curM.setAttribute('aria-hidden','true'); } }
+  document.querySelectorAll('.course').forEach(function(card){
+    card.addEventListener('click', function(e){
+      if(e.target.closest('.enroll-btn')) return; // let the Enroll button do its own thing
+      openCurriculum(card.getAttribute('data-cid'));
+    });
+  });
+  curCloseBtn&&curCloseBtn.addEventListener('click', closeCur);
+  curM&&curM.addEventListener('click', function(e){ if(e.target===curM) closeCur(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeCur(); });
+  curEnrollBtn&&curEnrollBtn.addEventListener('click', function(){
+    closeCur(); openModal(curEnrollBtn._c, curEnrollBtn._p, curEnrollBtn._cid);
   });
 </script>
 </body>
