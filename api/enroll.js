@@ -1,5 +1,5 @@
 // POST /api/enroll — create order, store it, email invoice PDF to customer + notify admin.
-import { COURSE, priceOf, sendEmail, saveOrder, buildPdf, buildAgreementPdf, bankHtml, AGREEMENT_FILENAME, CUSTOMER_CC } from '../lib/core.js';
+import { COURSE, priceOf, sendEmail, saveOrder, buildPdf, buildAgreementPdf, bankHtml, AGREEMENT_FILENAME, CUSTOMER_CC, mailConfigured } from '../lib/core.js';
 
 const esc = (s) => String(s || '').replace(/[<>&]/g, (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]));
 
@@ -20,7 +20,7 @@ export default async function handler(req, res) {
   }
   const c = COURSE[courseId];
   if (!c) return res.status(400).json({ error: 'Unknown course' });
-  if (!process.env.RESEND_API_KEY) return res.status(500).json({ error: 'Email not configured' });
+  if (!mailConfigured()) return res.status(500).json({ error: 'Email not configured' });
 
   const price = priceOf(courseId, lang);
   const now = new Date();
