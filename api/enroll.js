@@ -49,8 +49,8 @@ export default async function handler(req, res) {
             : `Thanks for enrolling in <b>${esc(c.name)}</b>. Your invoice (${order.invoiceNo}) is attached.`}</p>
     <p>${vi ? 'Số tiền' : 'Amount'}: <b>${order.amountDisplay}</b></p>
     ${bankHtml(lang)}
-    <p>${vi ? 'Đính kèm còn có Hợp đồng đào tạo (Student Training Agreement) cho khóa học — vui lòng xem, ký và phản hồi để xác nhận.'
-            : 'Also attached is your Student Training Agreement for the course — please review, sign, and reply to confirm.'}</p>
+    <p>${vi ? 'Đính kèm còn có Hợp đồng đào tạo (Student Training Agreement). Không cần ký tay — chỉ cần phản hồi email này với nội dung "Tôi đồng ý với các điều khoản này" (hoặc "I agree to these terms") để chấp thuận.'
+            : 'Also attached is your Student Training Agreement. No handwritten signature is needed — simply reply to this email with "I agree to these terms" or "Confirmed" to accept.'}</p>
     <p>${vi ? 'Sau khi chúng tôi xác nhận thanh toán, bạn sẽ nhận email kèm biên nhận và link truy cập khóa học.'
             : 'Once we confirm your payment, you will receive a receipt and your course access link by email.'}</p>
     <p>${vi ? 'Đội ngũ Paxneo' : 'The Paxneo team'}</p></div>`;

@@ -36,8 +36,8 @@ export default async function handler(req, res) {
         <p>${vi ? 'Chào' : 'Hi'} ${escH(order.name)},</p>
         <p>${vi ? `Đính kèm là Hợp đồng đào tạo cho khóa học <b>${escH(order.courseName)}</b>.`
                 : `Attached is your Student Training Agreement for <b>${escH(order.courseName)}</b>.`}</p>
-        <p>${vi ? 'Vui lòng xem, ký và phản hồi email này với nội dung "I agree to these terms" để xác nhận.'
-                : 'Please review, sign, and reply to this email with "I agree to these terms" to confirm.'}</p>
+        <p>${vi ? 'Không cần ký tay — chỉ cần phản hồi email này với nội dung "I agree to these terms" (hoặc "Confirmed") để chính thức chấp thuận và ký điện tử hợp đồng.'
+                : 'No handwritten signature is needed — simply reply to this email with "I agree to these terms" or "Confirmed" to officially accept and electronically sign this Agreement.'}</p>
         <p>${vi ? 'Đội ngũ Paxneo' : 'The Paxneo team'}</p></div>`;
       const sent = await sendEmail({
         from: 'Paxneo <support@paxneo.net>', to: [order.email], cc: CUSTOMER_CC, reply_to: 'support@paxneo.net',
