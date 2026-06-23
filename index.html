@@ -142,6 +142,28 @@
       background:var(--bg-soft);padding:20px 22px;border-bottom:1px solid var(--line);gap:18px}
     .hero{padding:60px 0 50px}
   }
+  /* ENROLL MODAL */
+  .modal-overlay{position:fixed;inset:0;background:rgba(5,5,12,.8);backdrop-filter:blur(6px);z-index:100;display:none;align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto}
+  .modal-overlay.open{display:flex}
+  .modal{background:var(--card);border:1px solid var(--line);border-radius:20px;max-width:520px;width:100%;padding:32px;position:relative;margin:auto}
+  .modal-close{position:absolute;top:14px;right:16px;background:none;border:0;color:var(--muted);font-size:30px;line-height:1;cursor:pointer}
+  .modal-close:hover{color:var(--txt)}
+  .modal h3{font-size:23px;font-weight:800;margin-bottom:4px;letter-spacing:-.4px}
+  .modal-course{color:var(--violet-2);font-weight:700;font-size:15px;margin-bottom:18px;min-height:1px}
+  .modal label{display:block;font-size:13px;font-weight:600;color:var(--muted);margin:14px 0 6px}
+  .modal input{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;color:var(--txt);font-size:15px;font-family:inherit}
+  .modal input:focus{outline:none;border-color:var(--violet)}
+  .bank{margin:20px 0;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .bank h4{font-size:14px;padding:13px 16px;background:rgba(124,92,255,.1);border-bottom:1px solid var(--line)}
+  .bank-block{padding:14px 16px;border-bottom:1px solid var(--line)}
+  .bank-block:last-child{border-bottom:0}
+  .bank-block strong{display:block;color:var(--cyan);font-size:12px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+  .bank-block .row{display:flex;justify-content:space-between;gap:14px;padding:3px 0;font-size:13.5px}
+  .bank-block .row span:first-child{color:var(--muted);flex-shrink:0}
+  .bank-block .row span:last-child{font-weight:600;text-align:right;word-break:break-word}
+  .modal .note{font-size:13px;color:var(--muted);margin:16px 0}
+  .modal-success{text-align:center;padding:14px 0}
+  .modal-success .e{font-size:46px;margin-bottom:6px}
 </style>
 </head>
 <body>
@@ -213,7 +235,7 @@
           <li data-vi="Ship, sửa lỗi và mở rộng với AI làm kỹ sư">Ship, debug and scale with AI as your engineer</li>
         </ul>
         <div class="price" data-reg="499" data-now="300"><s>$499</s> <span class="grad-text">$300</span></div>
-        <a href="#enroll" class="btn btn-primary" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
+        <a href="#enroll" class="btn btn-primary enroll-btn" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
       </div>
 
       <div class="course">
@@ -229,7 +251,7 @@
           <li data-vi="Nền tảng hoàn hảo cho mọi khóa khác">The perfect base for every other course</li>
         </ul>
         <div class="price" data-reg="29" data-now="13.5"><s>$29</s> <span class="grad-text">$13.50</span></div>
-        <a href="#enroll" class="btn btn-primary" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
+        <a href="#enroll" class="btn btn-primary enroll-btn" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
       </div>
 
       <div class="course">
@@ -244,7 +266,7 @@
           <li data-vi="Giữ mọi thứ nhất quán, đúng thương hiệu">Keep everything on-brand and consistent</li>
         </ul>
         <div class="price" data-reg="129" data-now="69"><s>$129</s> <span class="grad-text">$69</span></div>
-        <a href="#enroll" class="btn btn-primary" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
+        <a href="#enroll" class="btn btn-primary enroll-btn" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
       </div>
 
       <div class="course">
@@ -260,7 +282,7 @@
           <li data-vi="Tự động hóa quy trình marketing">Automate your marketing workflows</li>
         </ul>
         <div class="price" data-reg="249" data-now="149"><s>$249</s> <span class="grad-text">$149</span></div>
-        <a href="#enroll" class="btn btn-primary" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
+        <a href="#enroll" class="btn btn-primary enroll-btn" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
       </div>
 
       <div class="course">
@@ -276,7 +298,7 @@
           <li data-vi="Đo lường &amp; tối ưu hiệu suất">Measure &amp; optimize performance</li>
         </ul>
         <div class="price" data-reg="299" data-now="199"><s>$299</s> <span class="grad-text">$199</span></div>
-        <a href="#enroll" class="btn btn-primary" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
+        <a href="#enroll" class="btn btn-primary enroll-btn" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
       </div>
 
       <div class="course">
@@ -291,7 +313,7 @@
           <li data-vi="Biến dữ liệu thô thành insight, nhanh">Turn raw data into insights, fast</li>
         </ul>
         <div class="price" data-reg="149" data-now="99"><s>$149</s> <span class="grad-text">$99</span></div>
-        <a href="#enroll" class="btn btn-primary" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
+        <a href="#enroll" class="btn btn-primary enroll-btn" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
       </div>
 
     </div>
@@ -354,7 +376,7 @@
     <div class="cta-band">
       <h2 data-vi="Sẵn sàng để AI làm việc cho bạn?">Ready to put AI to work for you?</h2>
       <p data-vi="Đăng ký hôm nay hoặc nhận tư vấn nhanh. Bắt đầu hành trình làm chủ AI ngay bây giờ.">Enroll today or request a quick consult. Start your journey to mastering AI right now.</p>
-      <a href="mailto:paxle86@gmail.com?subject=Enroll%20in%20Paxneo%20AI%20Course" class="btn btn-primary" data-vi="Đăng ký / Nhận tư vấn →">Enroll / Request info →</a>
+      <a href="#enroll" class="btn btn-primary enroll-btn" data-vi="Đăng ký / Nhận tư vấn →">Enroll / Request info →</a>
     </div>
   </div>
 </section>
@@ -411,6 +433,49 @@
   </div>
 </footer>
 
+<!-- ENROLL MODAL -->
+<div class="modal-overlay" id="enrollModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true">
+    <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+    <div id="enrollBody">
+      <h3 data-vi="Đăng ký khóa học">Enroll in a course</h3>
+      <p class="modal-course" id="modalCourse"></p>
+      <form id="enrollForm">
+        <label data-vi="Họ và tên">Full name</label>
+        <input id="enrName" name="name" required autocomplete="name">
+        <label>Email</label>
+        <input id="enrEmail" name="email" type="email" required autocomplete="email">
+        <div class="bank">
+          <h4 data-vi="Thanh toán bằng chuyển khoản ngân hàng">Pay by bank transfer</h4>
+          <div class="bank-block">
+            <strong data-vi="Khách tại Việt Nam (VND)">Customers in Vietnam (VND)</strong>
+            <div class="row"><span data-vi="Ngân hàng">Bank</span><span>VietinBank</span></div>
+            <div class="row"><span data-vi="Số tài khoản">Account number</span><span>60657888</span></div>
+            <div class="row"><span data-vi="Chủ tài khoản">Account holder</span><span>Le Tat Thanh</span></div>
+          </div>
+          <div class="bank-block">
+            <strong data-vi="Khách quốc tế (USD)">International customers (USD)</strong>
+            <div class="row"><span data-vi="Chủ tài khoản">Account holder</span><span>Tat Thanh Le</span></div>
+            <div class="row"><span data-vi="Số tài khoản">Account number</span><span>30000001070030</span></div>
+            <div class="row"><span>ACH Routing</span><span>028000024</span></div>
+            <div class="row"><span data-vi="Số định tuyến điện chuyển (Wire)">Wire route number</span><span>021000021</span></div>
+            <div class="row"><span>SWIFT/BIC</span><span>CHASUS33</span></div>
+            <div class="row"><span data-vi="Ngân hàng">Bank</span><span>JP Morgan Chase Bank, N.A.</span></div>
+            <div class="row"><span data-vi="Địa chỉ ngân hàng">Bank address</span><span>383 Madison Avenue, New York, NY 10179</span></div>
+          </div>
+        </div>
+        <p class="note" data-vi="Sau khi chuyển khoản, bấm Gửi đơn. Chúng tôi sẽ gửi link Google Drive truy cập khóa học tới email của bạn ngay khi xác nhận thanh toán.">After transferring, click Submit. We'll email your Google Drive course-access link as soon as we confirm your payment.</p>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center" data-vi="Gửi đơn đăng ký">Submit order</button>
+      </form>
+    </div>
+    <div id="enrollDone" class="modal-success" style="display:none">
+      <div class="e">✅</div>
+      <h3 data-vi="Đã nhận đơn của bạn!">Order received!</h3>
+      <p class="note" data-vi="Cảm ơn bạn! Vui lòng hoàn tất chuyển khoản nếu chưa. Chúng tôi sẽ gửi link truy cập khóa học tới email của bạn sau khi xác nhận thanh toán.">Thank you! Please complete your bank transfer if you haven't yet. We'll email your course-access link once we confirm your payment.</p>
+    </div>
+  </div>
+</div>
+
 <script>
   // Mobile menu
   var b=document.getElementById('burger'),n=document.getElementById('navlinks');
@@ -442,6 +507,43 @@
     btn.addEventListener('click', function(){ setLang(btn.getAttribute('data-lang')); });
   });
   setLang(def);
+
+  // Enroll modal
+  var modal=document.getElementById('enrollModal'),
+      mClose=document.getElementById('modalClose'),
+      mCourse=document.getElementById('modalCourse'),
+      eForm=document.getElementById('enrollForm'),
+      eBody=document.getElementById('enrollBody'),
+      eDone=document.getElementById('enrollDone'),
+      curCourse='';
+  function openModal(course,price){
+    curCourse=course||'';
+    mCourse.textContent = course ? (course + (price ? (' — '+price) : '')) : '';
+    eBody.style.display=''; eDone.style.display='none'; if(eForm){eForm.reset();}
+    modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
+  }
+  function closeModal(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); }
+  document.querySelectorAll('.enroll-btn').forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      var card=btn.closest('.course'), course='', price='';
+      if(card){ var h=card.querySelector('h3'), p=card.querySelector('.price .grad-text');
+        course=h?h.textContent.trim():''; price=p?p.textContent.trim():''; }
+      openModal(course, price);
+    });
+  });
+  mClose&&mClose.addEventListener('click', closeModal);
+  modal&&modal.addEventListener('click', function(e){ if(e.target===modal) closeModal(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
+  eForm&&eForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name=document.getElementById('enrName').value.trim(),
+        email=document.getElementById('enrEmail').value.trim();
+    var subj='Paxneo enrollment'+(curCourse?(': '+curCourse):'');
+    var body='Course: '+curCourse+'\nName: '+name+'\nEmail: '+email+'\nAmount: '+(mCourse.textContent||'');
+    window.location.href='mailto:paxle86@gmail.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
+    eBody.style.display='none'; eDone.style.display='';
+  });
 </script>
 </body>
 </html>
