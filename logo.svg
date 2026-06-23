@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 430 118" width="430" height="118" role="img" aria-label="PAXNEOTECH — Global Digital Solutions and Technology Consulting">
+  <style>
+    .wm{ font-family:'Montserrat','Helvetica Neue',Arial,sans-serif; font-weight:800; font-size:50px; letter-spacing:-1px; }
+    .tag{ font-family:'Montserrat','Helvetica Neue',Arial,sans-serif; font-weight:400; font-size:14px; letter-spacing:1.2px; }
+  </style>
+  <text x="4" y="56" class="wm">
+    <tspan fill="#16213c">PAXNEO</tspan><tspan fill="#1ba0e2">TECH</tspan>
+  </text>
+  <text x="6" y="92" class="tag" fill="#8b97a8">Global Digital Solutions &amp; Technology Consulting</text>
+</svg>
