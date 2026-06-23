@@ -1,5 +1,5 @@
 // /api/admin — password-protected. GET: list orders. POST {id}: confirm payment -> receipt PDF + course link to customer.
-import { listOrders, getOrder, updateOrder, courseLink, sendEmail, buildPdf } from '../lib/core.js';
+import { listOrders, getOrder, updateOrder, courseLink, sendEmail, buildPdf, buildAgreementPdf, AGREEMENT_FILENAME, CUSTOMER_CC } from '../lib/core.js';
 
 const escH = (s) => String(s || '').replace(/[<>&]/g, (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]));
 
@@ -24,6 +24,30 @@ export default async function handler(req, res) {
     let order;
     try { order = await getOrder(id); } catch (e) { return res.status(500).json({ error: 'Store unavailable', detail: String(e) }); }
     if (!order) return res.status(404).json({ error: 'Order not found' });
+
+    // Send (or resend) the Student Training Agreement — works regardless of payment status.
+    if (b && b.action === 'agreement') {
+      const agreement = await buildAgreementPdf({
+        student: { name: order.name, email: order.email, nationality: (b.nationality || '').toString() },
+        courseName: order.courseName, fee: order.amountDisplay, date: order.date,
+      });
+      const vi = order.lang === 'vi';
+      const html = `<div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.6;color:#222">
+        <p>${vi ? 'Chào' : 'Hi'} ${escH(order.name)},</p>
+        <p>${vi ? `Đính kèm là Hợp đồng đào tạo cho khóa học <b>${escH(order.courseName)}</b>.`
+                : `Attached is your Student Training Agreement for <b>${escH(order.courseName)}</b>.`}</p>
+        <p>${vi ? 'Vui lòng xem, ký và phản hồi email này với nội dung "I agree to these terms" để xác nhận.'
+                : 'Please review, sign, and reply to this email with "I agree to these terms" to confirm.'}</p>
+        <p>${vi ? 'Đội ngũ Paxneo' : 'The Paxneo team'}</p></div>`;
+      const sent = await sendEmail({
+        from: 'Paxneo <support@paxneo.net>', to: [order.email], cc: CUSTOMER_CC, reply_to: 'support@paxneo.net',
+        subject: 'Paxneo Tech — Student Training Agreement',
+        html, attachments: [{ filename: AGREEMENT_FILENAME, content: agreement }],
+      });
+      if (!sent.ok) return res.status(502).json({ error: 'Agreement email failed', detail: sent.body });
+      return res.status(200).json({ ok: true, sentAgreement: true });
+    }
+
     if (order.status === 'paid') return res.status(200).json({ ok: true, already: true });
 
     const link = courseLink(order.courseId);
@@ -41,7 +65,7 @@ export default async function handler(req, res) {
       <p>${vi ? 'Chúc bạn học vui!' : 'Happy learning!'}</p><p>${vi ? 'Đội ngũ Paxneo' : 'The Paxneo team'}</p></div>`;
 
     const sent = await sendEmail({
-      from: 'Paxneo <support@paxneo.net>', to: [order.email], reply_to: 'support@paxneo.net',
+      from: 'Paxneo <support@paxneo.net>', to: [order.email], cc: CUSTOMER_CC, reply_to: 'support@paxneo.net',
       subject: vi ? `Đã nhận thanh toán — Truy cập khóa học: ${order.courseName}` : `Payment received — Course access: ${order.courseName}`,
       html, attachments: [{ filename: receiptNo + '.pdf', content: pdf }],
     });

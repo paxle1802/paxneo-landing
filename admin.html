@@ -67,14 +67,27 @@
         '<td>'+esc(o.amountDisplay)+'</td>'+
         '<td><span class="pill '+(paid?'paid':'pending')+'">'+(paid?'PAID':'PENDING')+'</span></td>'+
         '<td>'+(paid?'<span class="muted">'+esc(o.receiptNo||'sent')+'</span>'
-              :'<button class="row-btn" data-id="'+esc(o.id)+'">Confirm payment</button>')+'</td>'+
+              :'<button class="row-btn" data-id="'+esc(o.id)+'">Confirm payment</button>')+
+              ' <button class="row-btn agr" data-id="'+esc(o.id)+'" style="background:rgba(255,255,255,.08);color:var(--txt)">Agreement</button></td>'+
       '</tr>';
     }).join('');
     document.getElementById('tableWrap').innerHTML=
       '<table><thead><tr><th>Date</th><th>Customer</th><th>Course</th><th>Amount</th><th>Status</th><th>Action</th></tr></thead><tbody>'+rows+'</tbody></table>';
-    document.querySelectorAll('.row-btn').forEach(function(btn){
+    document.querySelectorAll('.row-btn:not(.agr)').forEach(function(btn){
       btn.addEventListener('click', function(){ confirmPay(btn.getAttribute('data-id'), btn); });
     });
+    document.querySelectorAll('.agr').forEach(function(btn){
+      btn.addEventListener('click', function(){ sendAgreement(btn.getAttribute('data-id'), btn); });
+    });
+  }
+  function sendAgreement(id, btn){
+    var nat=prompt('Student nationality (for the agreement, optional):','');
+    if(nat===null) return;
+    btn.disabled=true; btn.textContent='Sending...';
+    api('POST',{id:id,action:'agreement',nationality:nat}).then(function(r){return r.json();}).then(function(d){
+      btn.disabled=false; btn.textContent='Agreement';
+      alert(d&&d.ok?'Agreement emailed to the customer.':((d&&d.error||'Failed')+((d&&d.detail)?('\n'+d.detail):'')));
+    }).catch(function(){ btn.disabled=false; btn.textContent='Agreement'; alert('Network error'); });
   }
   function load(){
     document.getElementById('panelErr').textContent='';
