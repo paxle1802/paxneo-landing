@@ -222,7 +222,7 @@
 
     <div class="courses">
 
-      <div class="course featured">
+      <div class="course featured" data-cid="claude-code">
         <span class="tag flag" data-vi="Chủ lực">Flagship</span>
         <span class="eyebrow" data-vi="Khóa Digital">Digital Course</span>
         <div class="ico">🛠️</div>
@@ -238,7 +238,7 @@
         <a href="#enroll" class="btn btn-primary enroll-btn" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
       </div>
 
-      <div class="course">
+      <div class="course" data-cid="foundations">
         <span class="tag" data-vi="Bắt đầu từ đây">Start here</span>
         <span class="eyebrow" data-vi="Khóa Digital">Digital Course</span>
         <div class="ico">🧠</div>
@@ -254,7 +254,7 @@
         <a href="#enroll" class="btn btn-primary enroll-btn" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
       </div>
 
-      <div class="course">
+      <div class="course" data-cid="content">
         <span class="eyebrow" data-vi="Khóa Digital">Digital Course</span>
         <div class="ico">✍️</div>
         <h3 data-vi="Tạo Content bằng AI">Content Creation with AI</h3>
@@ -269,7 +269,7 @@
         <a href="#enroll" class="btn btn-primary enroll-btn" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
       </div>
 
-      <div class="course">
+      <div class="course" data-cid="marketing">
         <span class="tag" data-vi="Bán chạy">Best seller</span>
         <span class="eyebrow" data-vi="Khóa Digital">Digital Course</span>
         <div class="ico">📈</div>
@@ -285,7 +285,7 @@
         <a href="#enroll" class="btn btn-primary enroll-btn" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
       </div>
 
-      <div class="course">
+      <div class="course" data-cid="automation">
         <span class="tag" data-vi="Mới">New</span>
         <span class="eyebrow" data-vi="Khóa Digital">Digital Course</span>
         <div class="ico">🤖</div>
@@ -301,7 +301,7 @@
         <a href="#enroll" class="btn btn-primary enroll-btn" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
       </div>
 
-      <div class="course">
+      <div class="course" data-cid="excel">
         <span class="eyebrow" data-vi="Khóa Digital">Digital Course</span>
         <div class="ico">📊</div>
         <h3 data-vi="AI với Excel">AI with Excel</h3>
@@ -515,9 +515,9 @@
       eForm=document.getElementById('enrollForm'),
       eBody=document.getElementById('enrollBody'),
       eDone=document.getElementById('enrollDone'),
-      curCourse='';
-  function openModal(course,price){
-    curCourse=course||'';
+      curCourse='', curCid='';
+  function openModal(course,price,cid){
+    curCourse=course||''; curCid=cid||'';
     mCourse.textContent = course ? (course + (price ? (' — '+price) : '')) : '';
     eBody.style.display=''; eDone.style.display='none'; if(eForm){eForm.reset();}
     modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
@@ -526,10 +526,10 @@
   document.querySelectorAll('.enroll-btn').forEach(function(btn){
     btn.addEventListener('click', function(e){
       e.preventDefault();
-      var card=btn.closest('.course'), course='', price='';
+      var card=btn.closest('.course'), course='', price='', cid='';
       if(card){ var h=card.querySelector('h3'), p=card.querySelector('.price .grad-text');
-        course=h?h.textContent.trim():''; price=p?p.textContent.trim():''; }
-      openModal(course, price);
+        course=h?h.textContent.trim():''; price=p?p.textContent.trim():''; cid=card.getAttribute('data-cid')||''; }
+      openModal(course, price, cid);
     });
   });
   mClose&&mClose.addEventListener('click', closeModal);
@@ -550,7 +550,7 @@
     }
     if(sbtn){ sbtn.disabled=true; }
     fetch('/api/enroll',{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({name:name,email:email,course:curCourse,amount:amount})})
+      body:JSON.stringify({name:name,email:email,course:curCourse,courseId:curCid,amount:amount,lang:document.documentElement.lang})})
       .then(function(r){ return r.ok ? r.json() : Promise.reject(r); })
       .then(function(){ done(); })
       .catch(function(){ mailtoFallback(); })

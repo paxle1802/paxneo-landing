@@ -1,60 +1,67 @@
-// Vercel serverless function: receive enrollment order, email it via Resend.
-// Requires env var RESEND_API_KEY. Sends the order to the Paxneo inbox.
+// POST /api/enroll — create order, store it, email invoice PDF to customer + notify admin.
+import { COURSE, priceOf, sendEmail, saveOrder, buildPdf, bankHtml } from '../lib/core.js';
+
+const esc = (s) => String(s || '').replace(/[<>&]/g, (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]));
+
 export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  // Parse body (Vercel auto-parses JSON; fall back to manual parse just in case)
-  let body = req.body;
-  if (typeof body === 'string') {
-    try { body = JSON.parse(body); } catch (e) { body = {}; }
-  }
-  if (!body || typeof body !== 'object') body = {};
+  let b = req.body;
+  if (typeof b === 'string') { try { b = JSON.parse(b); } catch (e) { b = {}; } }
+  if (!b || typeof b !== 'object') b = {};
 
-  const name = (body.name || '').toString().trim();
-  const email = (body.email || '').toString().trim();
-  const course = (body.course || '').toString().trim();
-  const amount = (body.amount || '').toString().trim();
+  const name = (b.name || '').toString().trim();
+  const email = (b.email || '').toString().trim();
+  const courseId = (b.courseId || '').toString().trim();
+  const lang = b.lang === 'vi' ? 'vi' : 'en';
 
   if (!name || !email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
     return res.status(400).json({ error: 'Invalid name or email' });
   }
+  const c = COURSE[courseId];
+  if (!c) return res.status(400).json({ error: 'Unknown course' });
+  if (!process.env.RESEND_API_KEY) return res.status(500).json({ error: 'Email not configured' });
 
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    return res.status(500).json({ error: 'Email service not configured' });
-  }
+  const price = priceOf(courseId, lang);
+  const now = new Date();
+  const id = 'PX' + now.getTime().toString(36) + Math.random().toString(36).slice(2, 6);
+  const ymd = now.toISOString().slice(0, 10);
+  const order = {
+    id, invoiceNo: 'INV-' + ymd.replace(/-/g, '') + '-' + id.slice(-4).toUpperCase(),
+    date: ymd, name, email, courseId, courseName: c.name, lang,
+    amountDisplay: price.display, amountValue: price.value, currency: price.currency,
+    status: 'pending', createdAt: now.toISOString(),
+  };
 
-  const esc = (s) => s.replace(/[<>&]/g, (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]));
-  const html = `
-    <h2>New course enrollment</h2>
-    <table cellpadding="6" style="font-family:Arial,sans-serif;font-size:14px">
-      <tr><td><b>Course</b></td><td>${esc(course) || '(not specified)'}</td></tr>
-      <tr><td><b>Amount</b></td><td>${esc(amount) || '-'}</td></tr>
-      <tr><td><b>Name</b></td><td>${esc(name)}</td></tr>
-      <tr><td><b>Email</b></td><td>${esc(email)}</td></tr>
-    </table>
-    <p style="color:#888;font-size:12px">Sent from paxneo.net enrollment form.</p>`;
+  let stored = true;
+  try { await saveOrder(order); } catch (e) { stored = false; }
 
-  try {
-    const r = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        from: 'Paxneo Orders <onboarding@resend.dev>',
-        to: ['support@paxneo.net'],
-        reply_to: email,
-        subject: `New enrollment: ${course || 'course'} — ${name}`,
-        html,
-      }),
-    });
-    if (!r.ok) {
-      const detail = await r.text();
-      return res.status(502).json({ error: 'Email send failed', detail });
-    }
-    return res.status(200).json({ ok: true });
-  } catch (err) {
-    return res.status(502).json({ error: 'Email send error', detail: String(err) });
-  }
+  const pdf = await buildPdf({ kind: 'INVOICE', order: { ...order, docNo: order.invoiceNo } });
+
+  const vi = lang === 'vi';
+  const custHtml = `<div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.6;color:#222">
+    <p>${vi ? 'Chào' : 'Hi'} ${esc(name)},</p>
+    <p>${vi ? `Cảm ơn bạn đã đăng ký <b>${esc(c.name)}</b>. Đính kèm là hóa đơn (${order.invoiceNo}).`
+            : `Thanks for enrolling in <b>${esc(c.name)}</b>. Your invoice (${order.invoiceNo}) is attached.`}</p>
+    <p>${vi ? 'Số tiền' : 'Amount'}: <b>${order.amountDisplay}</b></p>
+    ${bankHtml(lang)}
+    <p>${vi ? 'Sau khi chúng tôi xác nhận thanh toán, bạn sẽ nhận email kèm biên nhận và link truy cập khóa học.'
+            : 'Once we confirm your payment, you will receive a receipt and your course access link by email.'}</p>
+    <p>${vi ? 'Đội ngũ Paxneo' : 'The Paxneo team'}</p></div>`;
+
+  const cust = await sendEmail({
+    from: 'Paxneo <support@paxneo.net>', to: [email], reply_to: 'support@paxneo.net',
+    subject: vi ? `Hóa đơn đăng ký: ${c.name}` : `Your invoice: ${c.name}`,
+    html: custHtml, attachments: [{ filename: order.invoiceNo + '.pdf', content: pdf }],
+  });
+
+  await sendEmail({
+    from: 'Paxneo Orders <onboarding@resend.dev>', to: ['support@paxneo.net'], reply_to: email,
+    subject: `New order ${order.invoiceNo}: ${c.name} — ${name}`,
+    html: `<h2>New enrollment</h2><p><b>${esc(name)}</b> (${esc(email)})<br>Course: ${esc(c.name)}<br>
+      Amount: ${order.amountDisplay}<br>Order id: ${order.id}<br>Stored: ${stored}</p>
+      <p>Confirm payment in the <a href="https://paxneo.net/admin.html">admin panel</a>.</p>`,
+  });
+
+  return res.status(200).json({ ok: true, customerEmailed: cust.ok, stored });
 }

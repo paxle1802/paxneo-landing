@@ -1,0 +1,57 @@
+// /api/admin — password-protected. GET: list orders. POST {id}: confirm payment -> receipt PDF + course link to customer.
+import { listOrders, getOrder, updateOrder, courseLink, sendEmail, buildPdf } from '../lib/core.js';
+
+const escH = (s) => String(s || '').replace(/[<>&]/g, (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]));
+
+function authed(req) {
+  const want = process.env.ADMIN_PASSWORD || '';
+  const got = req.headers['x-admin-password'] || '';
+  return want && got === want;
+}
+
+export default async function handler(req, res) {
+  if (!authed(req)) return res.status(401).json({ error: 'Unauthorized' });
+
+  if (req.method === 'GET') {
+    try { return res.status(200).json({ ok: true, orders: await listOrders() }); }
+    catch (e) { return res.status(500).json({ error: 'Store unavailable', detail: String(e) }); }
+  }
+
+  if (req.method === 'POST') {
+    let b = req.body;
+    if (typeof b === 'string') { try { b = JSON.parse(b); } catch (e) { b = {}; } }
+    const id = (b && b.id || '').toString();
+    let order;
+    try { order = await getOrder(id); } catch (e) { return res.status(500).json({ error: 'Store unavailable', detail: String(e) }); }
+    if (!order) return res.status(404).json({ error: 'Order not found' });
+    if (order.status === 'paid') return res.status(200).json({ ok: true, already: true });
+
+    const link = courseLink(order.courseId);
+    const now = new Date();
+    const receiptNo = 'RCP-' + now.toISOString().slice(0, 10).replace(/-/g, '') + '-' + id.slice(-4).toUpperCase();
+    const pdf = await buildPdf({ kind: 'RECEIPT', order: { ...order, docNo: receiptNo, link } });
+
+    const vi = order.lang === 'vi';
+    const html = `<div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.6;color:#222">
+      <p>${vi ? 'Chào' : 'Hi'} ${escH(order.name)},</p>
+      <p>${vi ? `Chúng tôi đã nhận thanh toán cho <b>${escH(order.courseName)}</b>. Biên nhận (${receiptNo}) đính kèm.`
+              : `We've received your payment for <b>${escH(order.courseName)}</b>. Your receipt (${receiptNo}) is attached.`}</p>
+      ${link ? `<p><a href="${link}" style="display:inline-block;background:#7c5cff;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:bold">${vi ? 'Mở khóa học' : 'Open the course'}</a></p>
+        <p style="font-size:13px;color:#666;word-break:break-all">${link}</p>` : ''}
+      <p>${vi ? 'Chúc bạn học vui!' : 'Happy learning!'}</p><p>${vi ? 'Đội ngũ Paxneo' : 'The Paxneo team'}</p></div>`;
+
+    const sent = await sendEmail({
+      from: 'Paxneo <support@paxneo.net>', to: [order.email], reply_to: 'support@paxneo.net',
+      subject: vi ? `Đã nhận thanh toán — Truy cập khóa học: ${order.courseName}` : `Payment received — Course access: ${order.courseName}`,
+      html, attachments: [{ filename: receiptNo + '.pdf', content: pdf }],
+    });
+
+    const updated = await updateOrder(id, {
+      status: sent.ok ? 'paid' : 'pending', receiptNo, paidAt: now.toISOString(), customerEmailed: sent.ok,
+    });
+    if (!sent.ok) return res.status(502).json({ error: 'Receipt email failed', detail: sent.body });
+    return res.status(200).json({ ok: true, order: updated });
+  }
+
+  return res.status(405).json({ error: 'Method not allowed' });
+}
