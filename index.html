@@ -538,11 +538,23 @@
   eForm&&eForm.addEventListener('submit', function(e){
     e.preventDefault();
     var name=document.getElementById('enrName').value.trim(),
-        email=document.getElementById('enrEmail').value.trim();
-    var subj='Paxneo enrollment'+(curCourse?(': '+curCourse):'');
-    var body='Course: '+curCourse+'\nName: '+name+'\nEmail: '+email+'\nAmount: '+(mCourse.textContent||'');
-    window.location.href='mailto:paxle86@gmail.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
-    eBody.style.display='none'; eDone.style.display='';
+        email=document.getElementById('enrEmail').value.trim(),
+        amount=(mCourse.textContent||''),
+        sbtn=eForm.querySelector('button[type=submit]');
+    function done(){ eBody.style.display='none'; eDone.style.display=''; }
+    function mailtoFallback(){
+      var subj='Paxneo enrollment'+(curCourse?(': '+curCourse):'');
+      var b='Course: '+curCourse+'\nName: '+name+'\nEmail: '+email+'\nAmount: '+amount;
+      window.location.href='mailto:paxle86@gmail.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(b);
+      done();
+    }
+    if(sbtn){ sbtn.disabled=true; }
+    fetch('/api/enroll',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({name:name,email:email,course:curCourse,amount:amount})})
+      .then(function(r){ return r.ok ? r.json() : Promise.reject(r); })
+      .then(function(){ done(); })
+      .catch(function(){ mailtoFallback(); })
+      .then(function(){ if(sbtn){ sbtn.disabled=false; } });
   });
 </script>
 </body>
