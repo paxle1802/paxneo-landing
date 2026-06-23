@@ -212,7 +212,7 @@
           <li data-vi="Tự động hóa vận hành doanh nghiệp đầu-cuối">Automate real business operations end-to-end</li>
           <li data-vi="Ship, sửa lỗi và mở rộng với AI làm kỹ sư">Ship, debug and scale with AI as your engineer</li>
         </ul>
-        <div class="price"><s>$499</s> <span class="grad-text">$300</span></div>
+        <div class="price" data-reg="499" data-now="300"><s>$499</s> <span class="grad-text">$300</span></div>
         <a href="#enroll" class="btn btn-primary" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
       </div>
 
@@ -228,7 +228,7 @@
           <li data-vi="Dùng AI an toàn cho việc hằng ngày">Use AI safely for day-to-day tasks</li>
           <li data-vi="Nền tảng hoàn hảo cho mọi khóa khác">The perfect base for every other course</li>
         </ul>
-        <div class="price"><s>$29</s> <span class="grad-text">$13.50</span></div>
+        <div class="price" data-reg="29" data-now="13.5"><s>$29</s> <span class="grad-text">$13.50</span></div>
         <a href="#enroll" class="btn btn-primary" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
       </div>
 
@@ -243,7 +243,7 @@
           <li data-vi="Xây quy trình sản xuất content lặp lại được">Build a repeatable content workflow</li>
           <li data-vi="Giữ mọi thứ nhất quán, đúng thương hiệu">Keep everything on-brand and consistent</li>
         </ul>
-        <div class="price"><s>$129</s> <span class="grad-text">$69</span></div>
+        <div class="price" data-reg="129" data-now="69"><s>$129</s> <span class="grad-text">$69</span></div>
         <a href="#enroll" class="btn btn-primary" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
       </div>
 
@@ -259,7 +259,7 @@
           <li data-vi="Nghiên cứu thị trường &amp; đối thủ tốc độ cao">High-speed market &amp; competitor research</li>
           <li data-vi="Tự động hóa quy trình marketing">Automate your marketing workflows</li>
         </ul>
-        <div class="price"><s>$249</s> <span class="grad-text">$149</span></div>
+        <div class="price" data-reg="249" data-now="149"><s>$249</s> <span class="grad-text">$149</span></div>
         <a href="#enroll" class="btn btn-primary" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
       </div>
 
@@ -275,7 +275,7 @@
           <li data-vi="Xây chatbot &amp; trợ lý cho công việc">Build chatbots &amp; assistants for your work</li>
           <li data-vi="Đo lường &amp; tối ưu hiệu suất">Measure &amp; optimize performance</li>
         </ul>
-        <div class="price"><s>$299</s> <span class="grad-text">$199</span></div>
+        <div class="price" data-reg="299" data-now="199"><s>$299</s> <span class="grad-text">$199</span></div>
         <a href="#enroll" class="btn btn-primary" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
       </div>
 
@@ -290,7 +290,7 @@
           <li data-vi="Tự động hóa báo cáo lặp đi lặp lại">Automate repetitive reports</li>
           <li data-vi="Biến dữ liệu thô thành insight, nhanh">Turn raw data into insights, fast</li>
         </ul>
-        <div class="price"><s>$149</s> <span class="grad-text">$99</span></div>
+        <div class="price" data-reg="149" data-now="99"><s>$149</s> <span class="grad-text">$99</span></div>
         <a href="#enroll" class="btn btn-primary" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
       </div>
 
@@ -420,9 +420,19 @@
   // i18n: EN default in markup, VI in data-vi. Capture EN on load, swap on toggle.
   var nodes=document.querySelectorAll('[data-vi]');
   nodes.forEach(function(el){ el.setAttribute('data-en', el.innerHTML); });
+  // Price conversion USD -> VND (rate 25600), formatted per language
+  var RATE=25600;
+  function fmtPrice(l,n){ return l==='vi' ? Math.round(n*RATE).toLocaleString('vi-VN')+'₫' : '$'+(Number.isInteger(n)?n:n.toFixed(2)); }
+  function renderPrices(l){
+    document.querySelectorAll('.price[data-now]').forEach(function(el){
+      var reg=parseFloat(el.getAttribute('data-reg'))||0, now=parseFloat(el.getAttribute('data-now'));
+      el.innerHTML=(reg?'<s>'+fmtPrice(l,reg)+'</s> ':'')+'<span class="grad-text">'+fmtPrice(l,now)+'</span>';
+    });
+  }
   function setLang(l){
     document.documentElement.lang=l;
     nodes.forEach(function(el){ var v=el.getAttribute('data-'+l); if(v!=null) el.innerHTML=v; });
+    renderPrices(l);
     document.querySelectorAll('#langsw button').forEach(function(btn){ btn.classList.toggle('active', btn.getAttribute('data-lang')===l); });
     try{ localStorage.setItem('paxneo_lang', l); }catch(e){}
   }
