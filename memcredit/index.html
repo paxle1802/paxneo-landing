@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MemCredit – Quẹt thẻ nào hôm nay? | Paxneo</title>
+<meta name="description" content="MemCredit cho biết hôm nay nên quẹt thẻ tín dụng nào để được nhiều ngày miễn lãi nhất, nhắc hạn thanh toán trước 7 ngày và tự đọc ngày từ PDF sao kê. Mọi dữ liệu chỉ nằm trên iPhone của bạn.">
+<meta property="og:title" content="MemCredit – Quẹt thẻ nào hôm nay?">
+<meta property="og:description" content="Chọn đúng thẻ để được lâu nhất, không bao giờ trễ hạn thanh toán. Dữ liệu chỉ nằm trên iPhone.">
+<meta property="og:url" content="https://paxneo.net/memcredit">
+<meta property="og:type" content="website">
+<meta name="robots" content="index,follow">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/memcredit/img/icon.png">
+<style>
+  :root{
+    --bg:#0a0a12;--bg-soft:#12121f;--card:#16162a;--line:rgba(255,255,255,.08);
+    --txt:#ECECF5;--muted:#9a9ab5;--violet:#7c5cff;--violet-2:#a78bff;--cyan:#22d3ee;
+    --green:#34d399;--amber:#fbbf24;--grad:linear-gradient(135deg,#7c5cff 0%,#22d3ee 100%);--radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    background:var(--bg);color:var(--txt);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+  .grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+  header{position:sticky;top:0;z-index:20;background:rgba(10,10,18,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  nav{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:1140px;margin:0 auto;padding:0 22px}
+  .logo{font-weight:800;font-size:20px;letter-spacing:-.5px}
+  .logo .b{color:#1ba0e2}
+  .nav-r{display:flex;align-items:center;gap:18px}
+  .langsw{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:rgba(255,255,255,.04)}
+  .langsw button{background:none;border:0;color:var(--muted);font-weight:700;font-size:12.5px;padding:7px 12px;cursor:pointer}
+  .langsw button.active{background:var(--grad);color:#0a0a12}
+
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;padding:14px 24px;border-radius:999px;transition:transform .15s,opacity .15s}
+  .btn:hover{transform:translateY(-1px)}
+  .btn-primary{background:var(--grad);color:#0a0a12}
+  .btn-ghost{border:1px solid var(--line);color:var(--txt);background:rgba(255,255,255,.04)}
+
+  .hero{padding:72px 0 64px;position:relative}
+  .hero::before{content:"";position:absolute;inset:-120px 0 auto;height:520px;background:radial-gradient(600px 300px at 30% 30%,rgba(124,92,255,.22),transparent 70%),radial-gradient(500px 260px at 80% 20%,rgba(34,211,238,.16),transparent 70%);pointer-events:none}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;position:relative}
+  .pill{display:inline-block;border:1px solid rgba(167,139,255,.35);background:rgba(124,92,255,.1);color:var(--violet-2);padding:7px 16px;border-radius:999px;font-size:13.5px;font-weight:600;margin-bottom:24px}
+  .hero h1{font-size:clamp(36px,6vw,60px);line-height:1.08;font-weight:800;letter-spacing:-1.5px;margin-bottom:20px}
+  .hero p.lead{color:#cfcfe0;font-size:clamp(16px,2vw,19px);max-width:560px;margin-bottom:30px}
+  .cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .soon{color:var(--muted);font-size:14px;margin-top:14px}
+
+  /* Phone mockup of the Today screen */
+  .phone{width:300px;max-width:100%;margin:0 auto;aspect-ratio:9/19;border-radius:44px;padding:12px;background:#1c1c2e;border:1px solid rgba(255,255,255,.12);box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 6px rgba(255,255,255,.03)}
+  .screen{height:100%;border-radius:34px;background:#f5f5f8;color:#111;padding:44px 16px 16px;overflow:hidden;display:flex;flex-direction:column;gap:10px}
+  .screen .t{font-size:24px;font-weight:800;letter-spacing:-.5px}
+  .screen .d{font-size:12px;color:#60646C;margin-top:-6px}
+  .best{background:#1A73E8;color:#fff;border-radius:16px;padding:14px}
+  .best small{font-size:11px;opacity:.85}
+  .best b{display:block;font-size:20px;margin:2px 0}
+  .best span{font-size:12px;font-weight:600}
+  .row{background:#fff;border-radius:12px;padding:10px 12px;display:flex;justify-content:space-between;font-size:12.5px;font-weight:600;box-shadow:0 1px 0 rgba(0,0,0,.04)}
+  .row em{font-style:normal;color:#60646C;font-weight:500}
+  .label{font-size:10.5px;font-weight:700;color:#60646C;letter-spacing:.6px;margin-top:4px}
+
+  section{padding:72px 0}
+  .sec-h{text-align:center;max-width:680px;margin:0 auto 44px}
+  .sec-h h2{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-1px;margin-bottom:12px}
+  .sec-h p{color:var(--muted);font-size:16.5px}
+
+  .features{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .feat{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+  .feat .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:22px;background:rgba(124,92,255,.14);margin-bottom:14px}
+  .feat h3{font-size:19px;margin-bottom:8px;letter-spacing:-.3px}
+  .feat p{color:#c3c3d6;font-size:15px}
+
+  .example{background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:860px;margin:0 auto}
+  .case{border-radius:var(--radius);padding:24px;border:1px solid var(--line);background:var(--card)}
+  .case.good{border-color:rgba(52,211,153,.4)}
+  .case.bad{border-color:rgba(251,191,36,.35)}
+  .case .big{font-size:40px;font-weight:800;letter-spacing:-1px;margin:6px 0}
+  .case.good .big{color:var(--green)}
+  .case.bad .big{color:var(--amber)}
+  .case p{color:#c3c3d6;font-size:14.5px}
+  .note{text-align:center;color:var(--muted);font-size:14px;margin-top:22px}
+
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .step{padding:24px;border-radius:var(--radius);border:1px solid var(--line);background:var(--card)}
+  .step .n{font-size:13px;font-weight:800;color:var(--cyan);letter-spacing:1px;margin-bottom:8px}
+  .step h3{font-size:17px;margin-bottom:6px}
+  .step p{color:#c3c3d6;font-size:14.5px}
+
+  .banks{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:8px}
+  .bank{border:1px solid var(--line);background:rgba(255,255,255,.04);border-radius:999px;padding:9px 18px;font-weight:600;font-size:14.5px}
+
+  .privacy{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .pv{text-align:center;padding:22px 16px;border-radius:var(--radius);background:var(--card);border:1px solid var(--line)}
+  .pv b{display:block;font-size:16px;margin:8px 0 4px}
+  .pv span{color:var(--muted);font-size:13.5px}
+  .pv .ic{font-size:26px}
+
+  .faq{max-width:760px;margin:0 auto}
+  details{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 20px;margin-bottom:12px}
+  summary{cursor:pointer;font-weight:700;font-size:16px;list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";float:right;color:var(--muted)}
+  details[open] summary::after{content:"–"}
+  details p{color:#c3c3d6;font-size:15px;margin-top:10px}
+
+  .more-app{display:grid;grid-template-columns:auto 1fr auto;gap:22px;align-items:center;max-width:860px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+  .more-app img{width:72px;height:72px;border-radius:16px}
+  .more-app h3{font-size:20px;letter-spacing:-.3px;margin-bottom:4px}
+  .more-app p{color:#c3c3d6;font-size:15px}
+  @media (max-width:880px){ .more-app{grid-template-columns:auto 1fr} .more-app .btn{grid-column:1/-1;justify-content:center} }
+
+  .final{text-align:center}
+  .final .box{background:radial-gradient(500px 220px at 50% 0%,rgba(124,92,255,.25),transparent 70%),var(--card);border:1px solid var(--line);border-radius:24px;padding:52px 24px}
+  .final h2{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-1px;margin-bottom:12px}
+  .final p{color:var(--muted);margin-bottom:24px}
+
+  footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:13.5px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  footer a:hover{color:var(--txt)}
+
+  @media (max-width:880px){
+    .hero-grid{grid-template-columns:1fr}
+    .phone{width:260px}
+    .features,.compare{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr}
+    .privacy{grid-template-columns:1fr 1fr}
+  }
+
+  /* Shared site navigation */
+  .nav-links{display:flex;gap:22px}
+  .nav-links a{color:var(--muted);font-size:15px;font-weight:500;text-decoration:none}
+  .nav-links a:hover{color:var(--txt);text-decoration:none}
+  .nav-links a.active{color:var(--txt);font-weight:700}
+  @media (max-width:880px){
+    nav{height:auto;flex-wrap:wrap;row-gap:8px;padding-top:12px;padding-bottom:10px}
+    .nav-r{display:contents}
+    .langsw{margin-left:auto}
+    .nav-links{order:3;width:100%;gap:18px;overflow-x:auto;white-space:nowrap;padding-bottom:2px}
+    .nav-links a{font-size:14px}
+  }
+</style>
+</head>
+<body>
+<header><nav>
+  <a href="/" class="logo">PAXNEO<span class="b">TECH</span></a>
+  <div class="nav-r">
+    <div class="nav-links">
+      <a href="/#apps" data-en="Apps">Ứng dụng</a>
+      <a href="/memcredit" class="active">MemCredit</a>
+      <a href="/wifimeter">WiFi Meter</a>
+      <a href="mailto:support@paxneo.net" data-en="Contact">Liên hệ</a>
+    </div>
+    <div class="langsw" id="langsw"><button data-lang="vi">VI</button><button data-lang="en">EN</button></div>
+  </div>
+</nav></header>
+
+<main>
+  <section class="hero"><div class="wrap hero-grid">
+    <div>
+      <span class="pill" data-en="iOS app · Coming soon to the App Store">Ứng dụng iOS · Sắp có trên App Store</span>
+      <h1 data-en="Which card should you &lt;span class='grad-text'&gt;swipe today?&lt;/span&gt;">Hôm nay nên quẹt <span class="grad-text">thẻ nào?</span></h1>
+      <p class="lead" data-en="MemCredit remembers every card's statement and due dates for you. It picks the card that gives the longest interest-free period today, and reminds you 7 days before each payment so you never pay late.">MemCredit nhớ giúp bạn ngày sao kê và hạn thanh toán của từng thẻ. App chọn thẻ cho bạn nhiều ngày miễn lãi nhất hôm nay, và nhắc trước hạn 7 ngày để không bao giờ trả trễ.</p>
+      <div class="cta">
+        <a href="#features" class="btn btn-primary" data-en="See how it works">Xem MemCredit làm gì</a>
+        <a href="mailto:support@paxneo.net?subject=MemCredit%20-%20b%C3%A1o%20khi%20ra%20m%E1%BA%AFt" class="btn btn-ghost" data-en="Notify me at launch">Báo tôi khi ra mắt</a>
+      </div>
+      <p class="soon" data-en="Free · No account · Your data never leaves your iPhone">Miễn phí · Không cần tài khoản · Dữ liệu không rời khỏi iPhone</p>
+    </div>
+    <div aria-hidden="true">
+      <div class="phone"><div class="screen">
+        <div class="t">Hôm nay</div>
+        <div class="d">Chủ nhật, 25/10/2026</div>
+        <div class="best"><small>Nên quẹt hôm nay</small><b>SC Journey</b><span>55 ngày miễn lãi · trả trước 19/12</span></div>
+        <div class="label">CÁC THẺ KHÁC</div>
+        <div class="row"><span>2. VIB</span><em>51 ngày</em></div>
+        <div class="row"><span>3. Techcombank</span><em>42 ngày</em></div>
+        <div class="row"><span>4. Cake</span><em>41 ngày</em></div>
+        <div class="label">SẮP ĐẾN HẠN</div>
+        <div class="row"><span>TPBank</span><em>Còn 1 ngày</em></div>
+        <div class="row"><span>HSBC</span><em>Còn 7 ngày</em></div>
+      </div></div>
+    </div>
+  </div></section>
+
+  <section id="features"><div class="wrap">
+    <div class="sec-h">
+      <h2 data-en="Built for people with many credit cards">Dành cho người dùng nhiều thẻ tín dụng</h2>
+      <p data-en="Five, ten cards, each with its own dates. MemCredit keeps track so you don't have to.">5 thẻ, 10 thẻ, mỗi thẻ một ngày sao kê và một hạn thanh toán. MemCredit nhớ hết thay bạn.</p>
+    </div>
+    <div class="features">
+      <div class="feat"><div class="ic">💳</div>
+        <h3 data-en="The best card, every day">Thẻ tốt nhất cho hôm nay</h3>
+        <p data-en="Ranks your cards by how many interest-free days a purchase made today would get, and warns when a card is too close to its statement date.">Xếp hạng các thẻ theo số ngày miễn lãi nếu bạn mua hôm nay, và cảnh báo thẻ nào đang sát ngày sao kê.</p></div>
+      <div class="feat"><div class="ic">⏰</div>
+        <h3 data-en="Reminders 7 days ahead">Nhắc trước hạn 7 ngày</h3>
+        <p data-en="A reminder 7 days before each due date and another on the day itself. Mark a period as paid and the reminders stop.">Nhắc 7 ngày trước hạn và nhắc lại đúng ngày hạn chót. Đánh dấu "Đã thanh toán" là app thôi nhắc kỳ đó.</p></div>
+      <div class="feat"><div class="ic">📄</div>
+        <h3 data-en="Reads your statement PDF">Đọc ngày từ PDF sao kê</h3>
+        <p data-en="Open your e-statement from Mail and MemCredit reads the statement and due dates for you (and, for some banks, the amount to pay), including password-protected PDFs.">Mở sao kê điện tử từ Mail, MemCredit tự đọc ngày sao kê và hạn thanh toán (với một số ngân hàng, cả số tiền cần trả), kể cả file có mật khẩu.</p></div>
+      <div class="feat"><div class="ic">💰</div>
+        <h3 data-en="Know what you owe">Biết tổng số cần trả</h3>
+        <p data-en="Enter the amount to pay for each statement, or let the app read it. The Today tab adds it all up, and due dates turn from green to red as they get closer.">Nhập số tiền cần trả mỗi kỳ, hoặc để app đọc từ sao kê. Tab Hôm nay cộng tổng số bạn cần trả, và hạn thanh toán đổi màu từ xanh sang đỏ khi đến gần.</p></div>
+      <div class="feat"><div class="ic">📷</div>
+        <h3 data-en="Scan a card with the camera">Quét thẻ bằng camera</h3>
+        <p data-en="Take a photo of the card and the app fills in the bank, card name and last 4 digits. The photo is read on your iPhone and deleted straight away.">Chụp mặt thẻ, app tự điền ngân hàng, tên thẻ và 4 số cuối. Ảnh được đọc ngay trên iPhone rồi xoá luôn.</p></div>
+      <div class="feat"><div class="ic">🔒</div>
+        <h3 data-en="Private by design">Riêng tư tuyệt đối</h3>
+        <p data-en="No server, no account, no tracking. Statements are read on your iPhone and deleted right after; PDF passwords stay in the iOS Keychain.">Không máy chủ, không tài khoản, không theo dõi. Sao kê được đọc ngay trên iPhone rồi xoá; mật khẩu PDF nằm trong Keychain của iOS.</p></div>
+    </div>
+  </div></section>
+
+  <section class="example"><div class="wrap">
+    <div class="sec-h">
+      <h2 data-en="One day apart, a month of difference">Lệch một ngày, khác cả tháng</h2>
+      <p data-en="Example: a card with its statement on the 24th and payment due 25 days later.">Ví dụ: thẻ sao kê ngày 24, hạn thanh toán 25 ngày sau sao kê.</p>
+    </div>
+    <div class="compare">
+      <div class="case bad">
+        <strong data-en="Swipe on the 24th (statement day)">Quẹt ngày 24 (đúng ngày sao kê)</strong>
+        <div class="big" data-en="25 days">25 ngày</div>
+        <p data-en="The purchase lands in this month's statement and is due within weeks.">Giao dịch vào ngay sao kê tháng này, vài tuần sau đã phải trả.</p>
+      </div>
+      <div class="case good">
+        <strong data-en="Swipe on the 25th (day after)">Quẹt ngày 25 (sau sao kê 1 ngày)</strong>
+        <div class="big" data-en="55 days">55 ngày</div>
+        <p data-en="The purchase waits for next month's statement: almost two months interest-free.">Giao dịch chờ sang sao kê tháng sau: gần 2 tháng miễn lãi.</p>
+      </div>
+    </div>
+    <p class="note" data-en="With 10 cards, nobody remembers this for every card. MemCredit does.">Với 10 thẻ thì không ai nhớ nổi cho từng thẻ. MemCredit nhớ giúp bạn.</p>
+  </div></section>
+
+  <section id="how"><div class="wrap">
+    <div class="sec-h"><h2 data-en="Three steps">Ba bước là xong</h2></div>
+    <div class="steps">
+      <div class="step"><div class="n">01</div>
+        <h3 data-en="Add your cards">Thêm thẻ</h3>
+        <p data-en="Import a statement PDF, or type the statement day and due rule yourself.">Nhập sao kê PDF, hoặc tự gõ ngày sao kê và quy tắc hạn thanh toán.</p></div>
+      <div class="step"><div class="n">02</div>
+        <h3 data-en="Check the Today tab">Mở tab Hôm nay</h3>
+        <p data-en="See which card to swipe before you pay, and what is due soon.">Xem nên quẹt thẻ nào trước khi thanh toán, và khoản nào sắp đến hạn.</p></div>
+      <div class="step"><div class="n">03</div>
+        <h3 data-en="Pay on time">Trả đúng hạn</h3>
+        <p data-en="Get reminded 7 days ahead and on the due day. No late fees, no bad credit.">Được nhắc trước 7 ngày và đúng ngày hạn. Không phí trễ hạn, không nợ xấu.</p></div>
+    </div>
+  </div></section>
+
+  <section class="example"><div class="wrap">
+    <div class="sec-h">
+      <h2 data-en="Reads statements from">Đọc được sao kê của</h2>
+      <p data-en="Other banks work too: enter the dates by hand, or the app tries a generic reader.">Ngân hàng khác vẫn dùng được: nhập ngày bằng tay, hoặc app thử đọc theo cách chung.</p>
+    </div>
+    <div class="banks">
+      <span class="bank">Techcombank</span><span class="bank">VIB</span><span class="bank">TPBank</span>
+      <span class="bank">HSBC</span><span class="bank">Standard Chartered</span><span class="bank">Cake</span>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <div class="sec-h"><h2 data-en="Your data stays yours">Dữ liệu là của bạn</h2></div>
+    <div class="privacy">
+      <div class="pv"><div class="ic">📱</div><b data-en="On-device only">Chỉ trên máy</b><span data-en="Nothing is uploaded">Không gửi đi đâu</span></div>
+      <div class="pv"><div class="ic">🚫</div><b data-en="No account">Không tài khoản</b><span data-en="Open and use">Mở là dùng</span></div>
+      <div class="pv"><div class="ic">🔑</div><b data-en="Keychain">Keychain</b><span data-en="For PDF passwords">Cho mật khẩu PDF</span></div>
+      <div class="pv"><div class="ic">🧾</div><b data-en="No card numbers">Không số thẻ</b><span data-en="Last 4 digits at most">Nhiều nhất 4 số cuối</span></div>
+    </div>
+  </div></section>
+
+  <section id="faq"><div class="wrap faq">
+    <div class="sec-h"><h2 data-en="Questions">Câu hỏi thường gặp</h2></div>
+    <details><summary data-en="Does MemCredit connect to my bank?">MemCredit có kết nối với ngân hàng không?</summary>
+      <p data-en="No. It never logs in to your bank and cannot see your account. It only knows what you enter or import from a statement: the statement date, the due date and the amount to pay.">Không. App không đăng nhập ngân hàng và không xem được tài khoản của bạn. App chỉ biết những gì bạn nhập hoặc đọc từ sao kê: ngày sao kê, hạn thanh toán và số tiền cần trả.</p></details>
+    <details><summary data-en="Is my statement uploaded anywhere?">Sao kê có bị gửi lên mạng không?</summary>
+      <p data-en="No. The PDF is read on your iPhone with Apple's PDFKit. The app keeps only the dates, the last 4 digits and the amount to pay, and deletes its copy of the file right away.">Không. File PDF được đọc ngay trên iPhone bằng PDFKit của Apple. App chỉ giữ lại các ngày, 4 số cuối thẻ và số tiền cần trả, rồi xoá bản sao của file ngay.</p></details>
+    <details><summary data-en="What if my bank posts a purchase late?">Ngân hàng ghi nhận giao dịch trễ thì sao?</summary>
+      <p data-en="MemCredit assumes the shorter case, so the real period is never shorter than shown. Cards within a few days of their statement date are flagged.">MemCredit luôn tính theo trường hợp ít ngày hơn, nên thực tế không bao giờ ngắn hơn số app hiển thị. Thẻ nào sát ngày sao kê sẽ được đánh dấu.</p></details>
+    <details><summary data-en="How much does it cost?">App có mất phí không?</summary>
+      <p data-en="MemCredit is free.">MemCredit miễn phí.</p></details>
+  </div></section>
+
+
+  <section class="final"><div class="wrap"><div class="box">
+    <h2 data-en="Never miss a due date again">Không bao giờ quên hạn thanh toán nữa</h2>
+    <p data-en="MemCredit is coming to the App Store for iPhone.">MemCredit sắp có mặt trên App Store cho iPhone.</p>
+    <a href="mailto:support@paxneo.net?subject=MemCredit%20-%20b%C3%A1o%20khi%20ra%20m%E1%BA%AFt" class="btn btn-primary" data-en="Notify me at launch">Báo tôi khi ra mắt</a>
+  </div></div></section>
+</main>
+
+<footer><div class="wrap">
+  <span>© 2026 MemCredit</span>
+  <span><a href="/memcredit/privacy" data-en="Privacy Policy">Chính sách bảo mật</a> · <a href="/memcredit/support" data-en="Support">Hỗ trợ</a> · <a href="/wifimeter">WiFi Meter</a> · <a href="mailto:support@paxneo.net">support@paxneo.net</a></span>
+</div></footer>
+
+<script>
+  // Vietnamese is the markup default; English lives in data-en.
+  var nodes=document.querySelectorAll('[data-en]');
+  nodes.forEach(function(el){ el.setAttribute('data-vi', el.innerHTML); });
+  function setLang(l){
+    document.documentElement.lang=l;
+    nodes.forEach(function(el){ var v=el.getAttribute('data-'+l); if(v!=null) el.innerHTML=v; });
+    document.querySelectorAll('#langsw button').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-lang')===l); });
+    try{ localStorage.setItem('paxneo_lang', l); }catch(e){}
+  }
+  var saved=null; try{ saved=localStorage.getItem('paxneo_lang'); }catch(e){}
+  var def=saved||((navigator.language||'vi').toLowerCase().indexOf('en')===0?'en':'vi');
+  document.querySelectorAll('#langsw button').forEach(function(b){ b.addEventListener('click',function(){ setLang(b.getAttribute('data-lang')); }); });
+  setLang(def);
+</script>
+</body>
+</html>

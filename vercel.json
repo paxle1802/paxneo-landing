@@ -4,5 +4,17 @@
     "api/*.js": {
       "includeFiles": "lib/fonts/**"
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/cardcycle/:path*",
+      "destination": "/memcredit/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/memcard/:path*",
+      "destination": "/memcredit/:path*",
+      "permanent": true
+    }
+  ]
 }

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MemCredit – Support</title>
+<meta name="description" content="Help for the MemCredit iOS app: adding cards, importing statement PDFs, reminders and deleting data.">
+<meta name="robots" content="index,follow">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<style>
+  :root{--bg:#0a0a12;--card:#16162a;--line:rgba(255,255,255,.08);--txt:#ECECF5;--muted:#9a9ab5;--violet-2:#a78bff;--cyan:#22d3ee}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--txt);line-height:1.7;-webkit-font-smoothing:antialiased}
+  a{color:var(--violet-2);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:820px;margin:0 auto;padding:0 22px}
+  header{border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(10,10,18,.82);backdrop-filter:blur(12px);z-index:10}
+  nav{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:1140px;margin:0 auto;padding:0 22px}
+  .logo{font-weight:800;font-size:20px;letter-spacing:-.5px;color:var(--txt)}
+  .logo .b{color:#1ba0e2}
+  .nav-r{display:flex;align-items:center;gap:14px}
+  .back{color:var(--muted);font-size:14px}
+  .langsw{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:rgba(255,255,255,.04)}
+  .langsw button{background:none;border:0;color:var(--muted);font-weight:700;font-size:12.5px;padding:6px 12px;cursor:pointer;transition:.15s}
+  .langsw button.active{background:linear-gradient(135deg,#7c5cff,#22d3ee);color:#0a0a12}
+  main{padding:54px 0 70px}
+  h1{font-size:clamp(28px,5vw,40px);font-weight:800;letter-spacing:-1px;margin-bottom:10px}
+  .updated{color:var(--muted);font-size:14px;margin-bottom:30px}
+  h2{font-size:20px;font-weight:700;margin:34px 0 12px;letter-spacing:-.3px}
+  p,li{color:#cfcfe0;font-size:15.5px;margin-bottom:12px}
+  ul{padding-left:22px;margin-bottom:12px}
+  li{margin-bottom:7px}
+  strong{color:var(--txt)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin:20px 0}
+  .card p:last-child{margin-bottom:0}
+  footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:13.5px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+  /* Shared site navigation */
+  .nav-links{display:flex;gap:22px}
+  .nav-links a{color:var(--muted);font-size:15px;font-weight:500;text-decoration:none}
+  .nav-links a:hover{color:var(--txt);text-decoration:none}
+  .nav-links a.active{color:var(--txt);font-weight:700}
+  @media (max-width:880px){
+    nav{height:auto;flex-wrap:wrap;row-gap:8px;padding-top:12px;padding-bottom:10px}
+    .nav-r{display:contents}
+    .langsw{margin-left:auto}
+    .nav-links{order:3;width:100%;gap:18px;overflow-x:auto;white-space:nowrap;padding-bottom:2px}
+    .nav-links a{font-size:14px}
+  }
+</style>
+</head>
+<body>
+<header><nav>
+  <a href="/" class="logo">PAXNEO<span class="b">TECH</span></a>
+  <div class="nav-r">
+    <div class="nav-links">
+      <a href="/#apps" data-vi="Ứng dụng">Apps</a>
+      <a href="/memcredit" class="active">MemCredit</a>
+      <a href="/wifimeter">WiFi Meter</a>
+      <a href="mailto:support@paxneo.net" data-vi="Liên hệ">Contact</a>
+    </div>
+    <div class="langsw" id="langsw"><button data-lang="en">EN</button><button data-lang="vi">VI</button></div>
+  </div>
+</nav></header>
+
+<main><div class="wrap">
+  <h1 data-vi="MemCredit – Hỗ trợ">MemCredit – Support</h1>
+  <p class="updated" data-vi="MemCredit cho biết hôm nay nên quẹt thẻ tín dụng nào để được nhiều ngày miễn lãi nhất, và nhắc anh/chị trước hạn thanh toán.">MemCredit tells you which credit card to use today for the longest interest-free period, and reminds you before each payment is due.</p>
+
+  <div class="card">
+    <p data-vi="Cần giúp đỡ? Gửi email tới &lt;a href=&quot;mailto:support@paxneo.net&quot;&gt;support@paxneo.net&lt;/a&gt;. Xin đừng gửi kèm file sao kê hay mật khẩu.">Need help? Email <a href="mailto:support@paxneo.net">support@paxneo.net</a>. Please do not attach statement files or passwords.</p>
+  </div>
+
+  <h2 data-vi="Thêm thẻ">Adding a card</h2>
+  <p data-vi="Vào tab Thẻ, chọn &quot;Thêm thẻ&quot;, nhập ngày sao kê hằng tháng và cách ngân hàng tính hạn thanh toán (số ngày sau sao kê, hoặc một ngày cố định trong tháng). Cách nhanh hơn là &quot;Nhập sao kê PDF&quot;: app tự đọc các ngày và có thể tạo thẻ mới từ sao kê.">Open the Cards tab, tap "Add card", and enter the monthly statement day and how your bank sets the due date (a number of days after the statement, or a fixed day of the month). Faster: tap "Import statement PDF" and the app reads the dates and can create the card from the statement.</p>
+
+  <h2 data-vi="Nhập sao kê PDF">Importing a statement PDF</h2>
+  <p data-vi="Chọn file từ app Tệp, hoặc mở file đính kèm trong Mail rồi chọn MemCredit trong mục chia sẻ. Nếu file có mật khẩu, app sẽ hỏi; anh/chị có thể cho app ghi nhớ mật khẩu trên máy này. Luôn kiểm tra lại các ngày app đọc được trước khi lưu.">Pick the file from the Files app, or open the Mail attachment and choose MemCredit from the share sheet. If the file has a password the app asks for it, and you can let the app remember it on this device. Always check the dates the app read before saving.</p>
+
+  <h2 data-vi="Quét thẻ bằng camera">Scanning a card</h2>
+  <p data-vi="Trong màn hình &quot;Thêm thẻ&quot;, chọn &quot;Quét thẻ bằng camera&quot; và chụp mặt thẻ có in số. App điền ngân hàng, tên thẻ và 4 số cuối; ảnh được đọc ngay trên iPhone rồi xoá. Nếu app không đọc được, hãy chụp gần hơn, đủ sáng và để thẻ nằm phẳng.">On the "Add card" screen, tap "Scan card with camera" and take a photo of the side with the number. The app fills in the bank, card name and last 4 digits; the photo is read on your iPhone and then deleted. If nothing is read, try again closer, in good light, with the card held flat.</p>
+
+  <h2 data-vi="Số tiền cần trả">Amount to pay</h2>
+  <p data-vi="Mở một thẻ và nhập số tiền phải trả cho kỳ đó; với sao kê Standard Chartered và Techcombank, app tự đọc số dư cuối kỳ. Tab Hôm nay cộng tổng số tiền cần trả của các kỳ chưa thanh toán.">Open a card and enter the amount to pay for that period; for Standard Chartered and Techcombank statements the app reads the statement balance for you. The Today tab adds up what you still owe across unpaid periods.</p>
+
+  <h2 data-vi="Không nhận được lời nhắc">Not getting reminders</h2>
+  <ul>
+    <li data-vi="Kiểm tra Cài đặt iPhone → Thông báo → MemCredit đã được bật.">Check that iPhone Settings → Notifications → MemCredit is turned on.</li>
+    <li data-vi="Mở app ít nhất vài tháng một lần: iOS giới hạn số lời nhắc đặt trước, nên app đặt lại lịch mỗi lần được mở.">Open the app at least every few months: iOS limits how many reminders can be scheduled ahead, so the app re-plans them each time it opens.</li>
+    <li data-vi="Kỳ nào đã đánh dấu &quot;Đã thanh toán&quot; thì app không nhắc nữa.">Periods marked "Paid" are no longer reminded.</li>
+  </ul>
+
+  <h2 data-vi="Xoá dữ liệu">Deleting your data</h2>
+  <p data-vi="Mọi dữ liệu chỉ nằm trên iPhone của anh/chị. Xoá thẻ trong app, hoặc xoá app để xoá toàn bộ. Mật khẩu PDF đã lưu được xoá trong Cài đặt của app. Xem thêm &lt;a href=&quot;/memcredit/privacy&quot;&gt;Chính sách bảo mật&lt;/a&gt;.">All data lives only on your iPhone. Delete cards in the app, or delete the app to remove everything. Saved PDF passwords are removed in the app's Settings. See the <a href="/memcredit/privacy">Privacy Policy</a>.</p>
+
+  <h2 data-vi="Lưu ý">Please note</h2>
+  <p data-vi="MemCredit là công cụ nhắc nhở và ước tính. Ngân hàng có thể ghi nhận giao dịch trễ hoặc dời hạn thanh toán; hạn in trên sao kê của ngân hàng luôn là căn cứ chính thức.">MemCredit is a reminder and estimation tool. Banks may post transactions late or move due dates; the due date printed on your bank's statement is always the authoritative one.</p>
+</div></main>
+
+<footer><div class="wrap">
+  <span>MemCredit</span>
+  <span><a href="/memcredit/privacy" data-vi="Chính sách bảo mật">Privacy Policy</a> · <a href="/memcredit/support" data-vi="Hỗ trợ">Support</a> · <a href="mailto:support@paxneo.net">support@paxneo.net</a></span>
+</div></footer>
+
+<script>
+  var nodes=document.querySelectorAll('[data-vi]');
+  nodes.forEach(function(el){ el.setAttribute('data-en', el.innerHTML); });
+  function setLang(l){
+    document.documentElement.lang=l;
+    nodes.forEach(function(el){ var v=el.getAttribute('data-'+l); if(v!=null) el.innerHTML=v; });
+    document.querySelectorAll('#langsw button').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-lang')===l); });
+    try{ localStorage.setItem('paxneo_lang', l); }catch(e){}
+  }
+  var saved=null; try{ saved=localStorage.getItem('paxneo_lang'); }catch(e){}
+  var def=saved||((navigator.language||'en').toLowerCase().indexOf('vi')===0?'vi':'en');
+  document.querySelectorAll('#langsw button').forEach(function(b){ b.addEventListener('click',function(){ setLang(b.getAttribute('data-lang')); }); });
+  setLang(def);
+</script>
+</body>
+</html>
