@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WiFi Meter – Đo sóng WiFi trên thanh menu Mac | Paxneo</title>
+<meta name="description" content="WiFi Meter là app miễn phí cho Mac: xem độ mạnh sóng WiFi (dBm) ngay trên thanh menu, tìm chỗ sóng yếu, chọn kênh ít bị chen và đo tốc độ Internet thực tế. Không quảng cáo, không thu thập dữ liệu.">
+<meta property="og:title" content="WiFi Meter – Đo sóng WiFi trên thanh menu Mac">
+<meta property="og:description" content="Xem sóng WiFi theo dBm, tìm chỗ sóng yếu, chọn kênh ít bị chen và đo tốc độ thật. Miễn phí cho Mac.">
+<meta property="og:url" content="https://paxneo.net/wifimeter">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://paxneo.net/wifimeter/img/1-signal-en.jpg">
+<meta name="robots" content="index,follow">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/wifimeter/img/icon.png">
+<style>
+  :root{
+    --bg:#0a0a12;--bg-soft:#12121f;--card:#16162a;--line:rgba(255,255,255,.08);
+    --txt:#ECECF5;--muted:#9a9ab5;--violet:#7c5cff;--violet-2:#a78bff;--cyan:#22d3ee;
+    --green:#34d399;--amber:#fbbf24;--grad:linear-gradient(135deg,#7c5cff 0%,#22d3ee 100%);--radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    background:var(--bg);color:var(--txt);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+  .grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+  header{position:sticky;top:0;z-index:20;background:rgba(10,10,18,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  nav{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:1140px;margin:0 auto;padding:0 22px}
+  .logo{font-weight:800;font-size:20px;letter-spacing:-.5px}
+  .logo .b{color:#1ba0e2}
+  .nav-r{display:flex;align-items:center;gap:18px}
+  .langsw{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:rgba(255,255,255,.04)}
+  .langsw button{background:none;border:0;color:var(--muted);font-weight:700;font-size:12.5px;padding:7px 12px;cursor:pointer}
+  .langsw button.active{background:var(--grad);color:#0a0a12}
+
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;padding:14px 24px;border-radius:999px;transition:transform .15s,opacity .15s}
+  .btn:hover{transform:translateY(-1px)}
+  .btn-primary{background:var(--grad);color:#0a0a12}
+  .btn-ghost{border:1px solid var(--line);color:var(--txt);background:rgba(255,255,255,.04)}
+
+  .hero{padding:72px 0 64px;position:relative}
+  .hero::before{content:"";position:absolute;inset:-120px 0 auto;height:520px;background:radial-gradient(600px 300px at 30% 30%,rgba(124,92,255,.22),transparent 70%),radial-gradient(500px 260px at 80% 20%,rgba(34,211,238,.16),transparent 70%);pointer-events:none}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;position:relative}
+  .pill{display:inline-block;border:1px solid rgba(167,139,255,.35);background:rgba(124,92,255,.1);color:var(--violet-2);padding:7px 16px;border-radius:999px;font-size:13.5px;font-weight:600;margin-bottom:24px}
+  .hero h1{font-size:clamp(36px,6vw,60px);line-height:1.08;font-weight:800;letter-spacing:-1.5px;margin-bottom:20px}
+  .hero p.lead{color:#cfcfe0;font-size:clamp(16px,2vw,19px);max-width:560px;margin-bottom:30px}
+  .cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .soon{color:var(--muted);font-size:14px;margin-top:14px}
+
+
+  section{padding:72px 0}
+  .sec-h{text-align:center;max-width:680px;margin:0 auto 44px}
+  .sec-h h2{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-1px;margin-bottom:12px}
+  .sec-h p{color:var(--muted);font-size:16.5px}
+
+  .features{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .feat{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+  .feat .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:22px;background:rgba(124,92,255,.14);margin-bottom:14px}
+  .feat h3{font-size:19px;margin-bottom:8px;letter-spacing:-.3px}
+  .feat p{color:#c3c3d6;font-size:15px}
+
+  .example{background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:860px;margin:0 auto}
+  .case{border-radius:var(--radius);padding:24px;border:1px solid var(--line);background:var(--card)}
+  .case.good{border-color:rgba(52,211,153,.4)}
+  .case.bad{border-color:rgba(251,191,36,.35)}
+  .case .big{font-size:40px;font-weight:800;letter-spacing:-1px;margin:6px 0}
+  .case.good .big{color:var(--green)}
+  .case.bad .big{color:var(--amber)}
+  .case p{color:#c3c3d6;font-size:14.5px}
+  .note{text-align:center;color:var(--muted);font-size:14px;margin-top:22px}
+
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .step{padding:24px;border-radius:var(--radius);border:1px solid var(--line);background:var(--card)}
+  .step .n{font-size:13px;font-weight:800;color:var(--cyan);letter-spacing:1px;margin-bottom:8px}
+  .step h3{font-size:17px;margin-bottom:6px}
+  .step p{color:#c3c3d6;font-size:14.5px}
+
+  .banks{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:8px}
+  .bank{border:1px solid var(--line);background:rgba(255,255,255,.04);border-radius:999px;padding:9px 18px;font-weight:600;font-size:14.5px}
+
+  .privacy{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .pv{text-align:center;padding:22px 16px;border-radius:var(--radius);background:var(--card);border:1px solid var(--line)}
+  .pv b{display:block;font-size:16px;margin:8px 0 4px}
+  .pv span{color:var(--muted);font-size:13.5px}
+  .pv .ic{font-size:26px}
+
+  .faq{max-width:760px;margin:0 auto}
+  details{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 20px;margin-bottom:12px}
+  summary{cursor:pointer;font-weight:700;font-size:16px;list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";float:right;color:var(--muted)}
+  details[open] summary::after{content:"–"}
+  details p{color:#c3c3d6;font-size:15px;margin-top:10px}
+
+  .final{text-align:center}
+  .final .box{background:radial-gradient(500px 220px at 50% 0%,rgba(124,92,255,.25),transparent 70%),var(--card);border:1px solid var(--line);border-radius:24px;padding:52px 24px}
+  .final h2{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-1px;margin-bottom:12px}
+  .final p{color:var(--muted);margin-bottom:24px}
+
+  footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:13.5px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  footer a:hover{color:var(--txt)}
+
+  @media (max-width:880px){
+    .hero-grid{grid-template-columns:1fr}
+    .phone{width:260px}
+    .features,.compare{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr}
+    .privacy{grid-template-columns:1fr 1fr}
+  }
+
+  .app-id{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+  .app-id img{width:64px;height:64px;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+  .app-id b{font-size:20px;letter-spacing:-.3px;display:block}
+  .app-id span{color:var(--muted);font-size:14px}
+  .shot{width:100%;border-radius:16px;border:1px solid var(--line);box-shadow:0 30px 80px rgba(0,0,0,.55);display:block}
+  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .gallery figure{margin:0}
+  .gallery figcaption{color:var(--muted);font-size:14px;text-align:center;margin-top:10px}
+  .levels{max-width:760px;margin:0 auto;display:grid;gap:10px}
+  .lv{display:grid;grid-template-columns:14px 130px 1fr;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px}
+  .lv i{width:12px;height:12px;border-radius:50%;display:block}
+  .lv b{font-size:15px}
+  .lv span{color:#c3c3d6;font-size:14.5px}
+  @media (max-width:880px){ .gallery{grid-template-columns:1fr} .lv{grid-template-columns:14px 1fr} .lv span{grid-column:2} }
+
+  /* Shared site navigation */
+  .nav-links{display:flex;gap:22px}
+  .nav-links a{color:var(--muted);font-size:15px;font-weight:500;text-decoration:none}
+  .nav-links a:hover{color:var(--txt);text-decoration:none}
+  .nav-links a.active{color:var(--txt);font-weight:700}
+  @media (max-width:880px){
+    nav{height:auto;flex-wrap:wrap;row-gap:8px;padding-top:12px;padding-bottom:10px}
+    .nav-r{display:contents}
+    .langsw{margin-left:auto}
+    .nav-links{order:3;width:100%;gap:18px;overflow-x:auto;white-space:nowrap;padding-bottom:2px}
+    .nav-links a{font-size:14px}
+  }
+</style>
+</head>
+<body>
+<header><nav>
+  <a href="/" class="logo">PAXNEO<span class="b">TECH</span></a>
+  <div class="nav-r">
+    <div class="nav-links">
+      <a href="/#apps" data-en="Apps">Ứng dụng</a>
+      <a href="/memcredit">MemCredit</a>
+      <a href="/wifimeter" class="active">WiFi Meter</a>
+      <a href="mailto:support@paxneo.net" data-en="Contact">Liên hệ</a>
+    </div>
+    <div class="langsw" id="langsw"><button data-lang="vi">VI</button><button data-lang="en">EN</button></div>
+  </div>
+</nav></header>
+
+<main>
+  <section class="hero"><div class="wrap hero-grid">
+    <div>
+      <div class="app-id"><img src="/wifimeter/img/icon.png" alt="WiFi Meter"><div><b>WiFi Meter</b><span data-en="Free for Mac · macOS 13 or later">Miễn phí cho Mac · macOS 13 trở lên</span></div></div>
+      <span class="pill" data-en="Mac app · Coming soon to the Mac App Store">Ứng dụng Mac · Sắp có trên Mac App Store</span>
+      <h1 data-en="How strong is your &lt;span class='grad-text'&gt;Wi-Fi, really?&lt;/span&gt;">Sóng WiFi của bạn <span class="grad-text">mạnh đến đâu?</span></h1>
+      <p class="lead" data-en="WiFi Meter shows your Wi-Fi signal in dBm right in the Mac menu bar. Find weak spots at home, pick a less crowded channel for your router and test your real Internet speed.">WiFi Meter hiện độ mạnh sóng WiFi theo dBm ngay trên thanh menu của máy Mac. Tìm chỗ sóng yếu trong nhà, chọn kênh ít bị chen cho router và đo tốc độ Internet thực tế.</p>
+      <div class="cta">
+        <a href="#features" class="btn btn-primary" data-en="See what it does">Xem WiFi Meter làm gì</a>
+        <a href="mailto:support@paxneo.net?subject=WiFi%20Meter%20-%20b%C3%A1o%20khi%20ra%20m%E1%BA%AFt" class="btn btn-ghost" data-en="Notify me at launch">Báo tôi khi ra mắt</a>
+      </div>
+      <p class="soon" data-en="Free · No ads · No data collected">Miễn phí · Không quảng cáo · Không thu thập dữ liệu</p>
+    </div>
+    <div><img class="shot" data-img="2-menubar" src="/wifimeter/img/2-menubar-vi.jpg" alt="WiFi Meter menu bar panel"></div>
+  </div></section>
+
+  <section id="features"><div class="wrap">
+    <div class="sec-h">
+      <h2 data-en="Everything about your Wi-Fi, one click away">Mọi thông số WiFi, chỉ một cú bấm</h2>
+      <p data-en="Slow video calls, dropped connections? Measure first, then fix.">Gọi video giật, mạng chập chờn? Đo trước rồi hãy sửa.</p>
+    </div>
+    <div class="features">
+      <div class="feat"><div class="ic">📶</div>
+        <h3 data-en="Signal in the menu bar">Sóng ngay trên thanh menu</h3>
+        <p data-en="Your signal in dBm next to the Wi-Fi bars, plus noise, signal-to-noise ratio, link rate, channel, band, Wi-Fi standard and security.">Độ mạnh sóng theo dBm cạnh vạch WiFi, kèm nhiễu, tỉ lệ tín hiệu/nhiễu, tốc độ liên kết, kênh, băng tần, chuẩn WiFi và bảo mật.</p></div>
+      <div class="feat"><div class="ic">📈</div>
+        <h3 data-en="Find weak spots">Tìm chỗ sóng yếu</h3>
+        <p data-en="A five-minute chart of signal and noise. Walk around with your MacBook and see exactly where the signal drops.">Biểu đồ sóng và nhiễu trong 5 phút. Cầm MacBook đi quanh nhà là thấy sóng tụt ở đâu.</p></div>
+      <div class="feat"><div class="ic">📡</div>
+        <h3 data-en="Pick a quieter channel">Chọn kênh ít bị chen</h3>
+        <p data-en="Scan nearby networks and count how many share each channel on 2.4, 5 and 6 GHz. Your channel is highlighted.">Quét mạng xung quanh và đếm số mạng trên mỗi kênh 2.4, 5 và 6 GHz. Kênh của bạn được tô màu.</p></div>
+      <div class="feat"><div class="ic">⚡</div>
+        <h3 data-en="Test your real speed">Đo tốc độ thực tế</h3>
+        <p data-en="Download, upload and latency, measured with the networkQuality tool built into macOS against Apple's servers.">Tốc độ tải xuống, tải lên và độ trễ, đo bằng công cụ networkQuality có sẵn trong macOS tới máy chủ của Apple.</p></div>
+      <div class="feat"><div class="ic">🔔</div>
+        <h3 data-en="Weak signal alerts">Báo khi sóng yếu</h3>
+        <p data-en="Get a notification when the signal stays below a threshold you choose for 10 seconds.">Nhận thông báo khi sóng thấp hơn ngưỡng bạn chọn liên tục 10 giây.</p></div>
+      <div class="feat"><div class="ic">🌏</div>
+        <h3 data-en="Seven languages">7 ngôn ngữ</h3>
+        <p data-en="English, French, Spanish, Simplified Chinese, Japanese, Korean and Vietnamese, following your Mac's language.">Anh, Pháp, Tây Ban Nha, Trung giản thể, Nhật, Hàn và Việt, tự theo ngôn ngữ của máy.</p></div>
+    </div>
+  </div></section>
+
+  <section class="example"><div class="wrap">
+    <div class="sec-h"><h2 data-en="See it in action">Xem app hoạt động</h2></div>
+    <div class="gallery">
+      <figure><img class="shot" data-img="1-signal" src="/wifimeter/img/1-signal-vi.jpg" alt="Signal tab" loading="lazy"><figcaption data-en="Five minutes of signal and noise">Sóng và nhiễu trong 5 phút</figcaption></figure>
+      <figure><img class="shot" data-img="3-nearby" src="/wifimeter/img/3-nearby-vi.jpg" alt="Nearby networks" loading="lazy"><figcaption data-en="Networks per channel">Số mạng trên mỗi kênh</figcaption></figure>
+      <figure><img class="shot" data-img="4-speed" src="/wifimeter/img/4-speed-vi.jpg" alt="Speed test" loading="lazy"><figcaption data-en="Real Internet speed">Tốc độ Internet thực tế</figcaption></figure>
+    </div>
+  </div></section>
+
+  <section id="levels"><div class="wrap">
+    <div class="sec-h">
+      <h2 data-en="What the numbers mean">Con số dBm nghĩa là gì?</h2>
+      <p data-en="dBm is negative: the closer to zero, the stronger the signal.">dBm là số âm: càng gần 0 thì sóng càng mạnh.</p>
+    </div>
+    <div class="levels">
+      <div class="lv"><i style="background:#34c759"></i><b data-en="-50 dBm or stronger">-50 dBm trở lên</b><span data-en="Excellent: good for everything, including video calls and gaming.">Rất mạnh: đủ cho mọi việc, kể cả gọi video và chơi game.</span></div>
+      <div class="lv"><i style="background:#00c7be"></i><b data-en="-51 to -60 dBm">-51 đến -60 dBm</b><span data-en="Good: stable for HD video and video calls.">Tốt: ổn định cho phim HD và gọi video.</span></div>
+      <div class="lv"><i style="background:#ffcc00"></i><b data-en="-61 to -67 dBm">-61 đến -67 dBm</b><span data-en="Fair: browsing is fine, video calls may stutter.">Khá: lướt web ổn, gọi video có thể giật.</span></div>
+      <div class="lv"><i style="background:#ff9500"></i><b data-en="-68 to -75 dBm">-68 đến -75 dBm</b><span data-en="Weak: likely to slow down or drop.">Yếu: dễ chậm và rớt mạng.</span></div>
+      <div class="lv"><i style="background:#ff3b30"></i><b data-en="Below -75 dBm">Dưới -75 dBm</b><span data-en="Very weak: move closer to the router or switch networks.">Rất yếu: lại gần router hoặc đổi mạng.</span></div>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <div class="sec-h"><h2 data-en="Private by design">Tôn trọng quyền riêng tư</h2></div>
+    <div class="privacy">
+      <div class="pv"><div class="ic">💻</div><b data-en="On your Mac only">Chỉ trên máy Mac</b><span data-en="Readings never leave it">Số đo không rời khỏi máy</span></div>
+      <div class="pv"><div class="ic">🚫</div><b data-en="No account">Không tài khoản</b><span data-en="Open and use">Mở là dùng</span></div>
+      <div class="pv"><div class="ic">📵</div><b data-en="No ads, no tracking">Không quảng cáo</b><span data-en="No analytics either">Không theo dõi</span></div>
+      <div class="pv"><div class="ic">📍</div><b data-en="No location read">Không đọc vị trí</b><span data-en="Only to show network names">Chỉ để hiện tên mạng</span></div>
+    </div>
+  </div></section>
+
+  <section id="faq"><div class="wrap faq">
+    <div class="sec-h"><h2 data-en="Questions">Câu hỏi thường gặp</h2></div>
+    <details><summary data-en="Which Macs does it run on?">App chạy trên máy Mac nào?</summary>
+      <p data-en="Any Mac with Wi-Fi running macOS 13 Ventura or later, on both Apple silicon and Intel.">Mọi máy Mac có WiFi chạy macOS 13 Ventura trở lên, cả chip Apple lẫn Intel.</p></details>
+    <details><summary data-en="Why does it ask for Location?">Sao app xin quyền vị trí?</summary>
+      <p data-en="On newer macOS versions, Apple only shows Wi-Fi network names to apps allowed to use Location Services. WiFi Meter never reads, stores or sends your location; you can decline and still measure the signal.">Trên macOS mới, Apple chỉ cho app xem tên mạng WiFi khi được phép dùng vị trí. WiFi Meter không đọc, không lưu và không gửi vị trí của bạn; bạn có thể từ chối mà vẫn đo được sóng.</p></details>
+    <details><summary data-en="Is the speed test the same as my Wi-Fi signal?">Đo tốc độ có giống đo sóng WiFi không?</summary>
+      <p data-en="No. The signal shows how well your Mac hears the router. The speed test measures your whole Internet connection, including your provider's line.">Không. Sóng cho biết máy Mac &quot;nghe&quot; router rõ đến đâu. Đo tốc độ là đo cả đường Internet, gồm cả đường truyền của nhà mạng.</p></details>
+    <details><summary data-en="How much does it cost?">App có mất phí không?</summary>
+      <p data-en="WiFi Meter is free, with no ads and no in-app purchases.">WiFi Meter miễn phí, không quảng cáo và không có mua bán trong app.</p></details>
+  </div></section>
+
+  <section class="final"><div class="wrap"><div class="box">
+    <h2 data-en="Know your Wi-Fi">Hiểu rõ sóng WiFi nhà bạn</h2>
+    <p data-en="WiFi Meter is coming to the Mac App Store.">WiFi Meter sắp có mặt trên Mac App Store.</p>
+    <a href="mailto:support@paxneo.net?subject=WiFi%20Meter%20-%20b%C3%A1o%20khi%20ra%20m%E1%BA%AFt" class="btn btn-primary" data-en="Notify me at launch">Báo tôi khi ra mắt</a>
+  </div></div></section>
+</main>
+
+<footer><div class="wrap">
+  <span>© 2026 WiFi Meter · Paxneo</span>
+  <span><a href="/wifimeter/privacy" data-en="Privacy Policy">Chính sách bảo mật</a> · <a href="/wifimeter/support" data-en="Support">Hỗ trợ</a> · <a href="mailto:support@paxneo.net">support@paxneo.net</a></span>
+</div></footer>
+
+<script>
+  // Vietnamese is the markup default; English lives in data-en. Screenshots follow the language too.
+  var nodes=document.querySelectorAll('[data-en]');
+  nodes.forEach(function(el){ el.setAttribute('data-vi', el.innerHTML); });
+  function setLang(l){
+    document.documentElement.lang=l;
+    nodes.forEach(function(el){ var v=el.getAttribute('data-'+l); if(v!=null) el.innerHTML=v; });
+    document.querySelectorAll('img[data-img]').forEach(function(img){ img.src='/wifimeter/img/'+img.getAttribute('data-img')+'-'+l+'.jpg'; });
+    document.querySelectorAll('#langsw button').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-lang')===l); });
+    try{ localStorage.setItem('paxneo_lang', l); }catch(e){}
+  }
+  var saved=null; try{ saved=localStorage.getItem('paxneo_lang'); }catch(e){}
+  var def=saved||((navigator.language||'vi').toLowerCase().indexOf('en')===0?'en':'vi');
+  document.querySelectorAll('#langsw button').forEach(function(b){ b.addEventListener('click',function(){ setLang(b.getAttribute('data-lang')); }); });
+  setLang(def);
+</script>
+</body>
+</html>

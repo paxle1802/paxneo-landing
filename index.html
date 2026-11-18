@@ -1,674 +1,259 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Paxneo — Master AI for Business: Claude Code, Marketing & Excel</title>
-<meta name="description" content="Hands-on AI courses: master AI in business with Claude Code (build real apps, no coding background), use AI in marketing, and automate Excel with AI. Learn by building.">
-<meta property="og:title" content="Paxneo — Master AI for Business">
-<meta property="og:description" content="Mastering AI in Business with Claude Code · AI in Marketing · AI with Excel. Practical, project-based, ship real results.">
+<title>Paxneo Tech – Ứng dụng cho iPhone và Mac</title>
+<meta name="description" content="Paxneo Tech làm những ứng dụng gọn nhẹ cho iPhone và Mac: MemCredit chọn thẻ tín dụng và nhắc hạn thanh toán, WiFi Meter đo sóng WiFi trên thanh menu Mac. Miễn phí, không quảng cáo, dữ liệu nằm trên máy của bạn.">
+<meta property="og:title" content="Paxneo Tech – Ứng dụng cho iPhone và Mac">
+<meta property="og:description" content="MemCredit cho iPhone và WiFi Meter cho Mac. Miễn phí, không quảng cáo, dữ liệu nằm trên máy của bạn.">
+<meta property="og:url" content="https://paxneo.net/">
 <meta property="og:type" content="website">
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="robots" content="index,follow">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <style>
   :root{
     --bg:#0a0a12;--bg-soft:#12121f;--card:#16162a;--line:rgba(255,255,255,.08);
     --txt:#ECECF5;--muted:#9a9ab5;--violet:#7c5cff;--violet-2:#a78bff;--cyan:#22d3ee;
-    --accent:#ffb347;--grad:linear-gradient(135deg,#7c5cff 0%,#22d3ee 100%);--radius:18px;
+    --green:#34d399;--amber:#fbbf24;--grad:linear-gradient(135deg,#7c5cff 0%,#22d3ee 100%);--radius:18px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Apple Color Emoji",sans-serif;
-    background:var(--bg);color:var(--txt);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    background:var(--bg);color:var(--txt);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   a{color:inherit;text-decoration:none}
   .wrap{max-width:1140px;margin:0 auto;padding:0 22px}
-  .grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;
-    padding:14px 26px;border-radius:999px;border:0;cursor:pointer;transition:.2s transform,.2s box-shadow;}
-  .btn-primary{background:var(--grad);color:#0a0a12;box-shadow:0 8px 30px rgba(124,92,255,.35)}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 38px rgba(124,92,255,.5)}
-  .btn-ghost{background:rgba(255,255,255,.06);color:var(--txt);border:1px solid var(--line)}
-  .btn-ghost:hover{background:rgba(255,255,255,.12)}
+  .grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 
-  header{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(10,10,18,.7);border-bottom:1px solid var(--line)}
-  nav{display:flex;align-items:center;justify-content:space-between;height:68px}
-  .logo{display:flex;align-items:center;gap:1px;font-weight:800;font-size:21px;letter-spacing:-.5px}
-  .logo .px-blue{color:#1ba0e2}
-  .nav-links{display:flex;gap:28px;align-items:center}
-  .nav-links a{color:var(--muted);font-size:15px;font-weight:500}
-  .nav-links a:hover{color:var(--txt)}
-  .nav-cta{display:flex;gap:12px;align-items:center}
-  .burger{display:none;background:none;border:0;color:var(--txt);font-size:26px;cursor:pointer}
-
-  /* LANGUAGE SWITCHER */
+  header{position:sticky;top:0;z-index:20;background:rgba(10,10,18,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  nav{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:1140px;margin:0 auto;padding:0 22px}
+  .logo{font-weight:800;font-size:20px;letter-spacing:-.5px}
+  .logo .b{color:#1ba0e2}
+  .nav-r{display:flex;align-items:center;gap:18px}
   .langsw{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:rgba(255,255,255,.04)}
-  .langsw button{background:none;border:0;color:var(--muted);font-weight:700;font-size:12.5px;padding:7px 12px;cursor:pointer;transition:.15s}
+  .langsw button{background:none;border:0;color:var(--muted);font-weight:700;font-size:12.5px;padding:7px 12px;cursor:pointer}
   .langsw button.active{background:var(--grad);color:#0a0a12}
-  .langsw button:not(.active):hover{color:var(--txt)}
 
-  .hero{position:relative;padding:90px 0 70px;text-align:center;overflow:hidden}
-  .hero::before{content:"";position:absolute;top:-200px;left:50%;transform:translateX(-50%);
-    width:900px;height:600px;background:radial-gradient(ellipse at center,rgba(124,92,255,.28),transparent 60%);filter:blur(20px);z-index:0}
-  .hero::after{content:"";position:absolute;bottom:-150px;right:-100px;width:500px;height:500px;
-    background:radial-gradient(circle,rgba(34,211,238,.18),transparent 60%);z-index:0}
-  .hero .wrap{position:relative;z-index:1}
-  .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(124,92,255,.12);border:1px solid rgba(124,92,255,.3);
-    color:var(--violet-2);padding:7px 16px;border-radius:999px;font-size:13.5px;font-weight:600;margin-bottom:26px}
-  .hero h1{font-size:clamp(34px,6vw,60px);line-height:1.08;font-weight:800;letter-spacing:-1.5px;margin-bottom:22px}
-  .hero p.sub{font-size:clamp(16px,2.2vw,20px);color:var(--muted);max-width:700px;margin:0 auto 36px}
-  .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-  .hero-note{margin-top:18px;font-size:13.5px;color:var(--muted)}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;padding:14px 24px;border-radius:999px;transition:transform .15s,opacity .15s}
+  .btn:hover{transform:translateY(-1px)}
+  .btn-primary{background:var(--grad);color:#0a0a12}
+  .btn-ghost{border:1px solid var(--line);color:var(--txt);background:rgba(255,255,255,.04)}
 
-  .stats{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:54px}
-  .stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 26px;min-width:150px}
-  .stat b{display:block;font-size:26px;font-weight:800}
-  .stat span{font-size:13px;color:var(--muted)}
+  .hero{padding:72px 0 64px;position:relative}
+  .hero::before{content:"";position:absolute;inset:-120px 0 auto;height:520px;background:radial-gradient(600px 300px at 30% 30%,rgba(124,92,255,.22),transparent 70%),radial-gradient(500px 260px at 80% 20%,rgba(34,211,238,.16),transparent 70%);pointer-events:none}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;position:relative}
+  .pill{display:inline-block;border:1px solid rgba(167,139,255,.35);background:rgba(124,92,255,.1);color:var(--violet-2);padding:7px 16px;border-radius:999px;font-size:13.5px;font-weight:600;margin-bottom:24px}
+  .hero h1{font-size:clamp(36px,6vw,60px);line-height:1.08;font-weight:800;letter-spacing:-1.5px;margin-bottom:20px}
+  .hero p.lead{color:#cfcfe0;font-size:clamp(16px,2vw,19px);max-width:560px;margin-bottom:30px}
+  .cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .soon{color:var(--muted);font-size:14px;margin-top:14px}
 
-  section{padding:78px 0}
-  .sec-head{text-align:center;max-width:660px;margin:0 auto 50px}
-  .sec-head .kick{color:var(--cyan);font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase}
-  .sec-head h2{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-1px;margin:10px 0 14px;line-height:1.15}
-  .sec-head p{color:var(--muted);font-size:17px}
 
-  .courses{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:22px}
-  .course{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px;position:relative;
-    transition:.25s transform,.25s border-color;overflow:hidden;display:flex;flex-direction:column}
-  .course:hover{transform:translateY(-6px);border-color:rgba(124,92,255,.5)}
-  .course.featured{border-color:rgba(124,92,255,.55);box-shadow:0 0 0 1px rgba(124,92,255,.3),0 20px 60px rgba(124,92,255,.18)}
-  .course.featured::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at top right,rgba(124,92,255,.12),transparent 55%);pointer-events:none}
-  .course .ico{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;font-size:26px;margin-bottom:20px;
-    background:rgba(124,92,255,.14);border:1px solid rgba(124,92,255,.25)}
-  .course .eyebrow{font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--cyan);margin-bottom:6px}
-  .course h3{font-size:21px;font-weight:800;margin-bottom:10px;letter-spacing:-.4px}
-  .course p{color:var(--muted);font-size:15px;margin-bottom:18px}
-  .course ul{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:22px}
-  .course li{font-size:14.5px;display:flex;gap:9px;align-items:flex-start;color:#c9c9dd}
-  .course li::before{content:"✓";color:var(--cyan);font-weight:800;flex-shrink:0}
-  .course .tag{position:absolute;top:22px;right:22px;font-size:11.5px;font-weight:700;padding:5px 11px;border-radius:999px;
-    background:rgba(34,211,238,.14);color:var(--cyan);border:1px solid rgba(34,211,238,.3)}
-  .course .tag.flag{background:var(--grad);color:#0a0a12;border:0}
-  .course .price{font-weight:800;font-size:22px;margin-bottom:16px;margin-top:auto}
-  .course .price s{color:var(--muted);font-weight:500;font-size:16px;margin-right:8px}
+  section{padding:72px 0}
+  .sec-h{text-align:center;max-width:680px;margin:0 auto 44px}
+  .sec-h h2{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-1px;margin-bottom:12px}
+  .sec-h p{color:var(--muted);font-size:16.5px}
 
-  .benefits{background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px}
-  .ben{display:flex;gap:16px;align-items:flex-start}
-  .ben .e{font-size:30px;flex-shrink:0}
-  .ben h4{font-size:18px;font-weight:700;margin-bottom:6px}
-  .ben p{color:var(--muted);font-size:14.5px}
+  .features{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .feat{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+  .feat .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:22px;background:rgba(124,92,255,.14);margin-bottom:14px}
+  .feat h3{font-size:19px;margin-bottom:8px;letter-spacing:-.3px}
+  .feat p{color:#c3c3d6;font-size:15px}
 
-  .aud{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-  .aud .a{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
-  .aud .a .e{font-size:28px;margin-bottom:12px}
-  .aud .a h4{font-size:17px;margin-bottom:6px}
-  .aud .a p{font-size:14px;color:var(--muted)}
+  .example{background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:860px;margin:0 auto}
+  .case{border-radius:var(--radius);padding:24px;border:1px solid var(--line);background:var(--card)}
+  .case.good{border-color:rgba(52,211,153,.4)}
+  .case.bad{border-color:rgba(251,191,36,.35)}
+  .case .big{font-size:40px;font-weight:800;letter-spacing:-1px;margin:6px 0}
+  .case.good .big{color:var(--green)}
+  .case.bad .big{color:var(--amber)}
+  .case p{color:#c3c3d6;font-size:14.5px}
+  .note{text-align:center;color:var(--muted);font-size:14px;margin-top:22px}
 
-  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;counter-reset:s}
-  .step{position:relative;padding:28px;background:var(--card);border:1px solid var(--line);border-radius:14px;counter-increment:s}
-  .step::before{content:counter(s);position:absolute;top:-16px;left:24px;width:38px;height:38px;border-radius:10px;
-    background:var(--grad);color:#0a0a12;font-weight:800;display:grid;place-items:center;font-size:18px}
-  .step h4{margin:14px 0 8px;font-size:18px}
-  .step p{color:var(--muted);font-size:14.5px}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .step{padding:24px;border-radius:var(--radius);border:1px solid var(--line);background:var(--card)}
+  .step .n{font-size:13px;font-weight:800;color:var(--cyan);letter-spacing:1px;margin-bottom:8px}
+  .step h3{font-size:17px;margin-bottom:6px}
+  .step p{color:#c3c3d6;font-size:14.5px}
 
-  .cta-band{position:relative;text-align:center;background:linear-gradient(135deg,rgba(124,92,255,.18),rgba(34,211,238,.12));
-    border:1px solid rgba(124,92,255,.3);border-radius:26px;padding:56px 30px;overflow:hidden}
-  .cta-band h2{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-1px;margin-bottom:14px}
-  .cta-band p{color:var(--muted);font-size:17px;margin-bottom:28px;max-width:540px;margin-left:auto;margin-right:auto}
+  .banks{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:8px}
+  .bank{border:1px solid var(--line);background:rgba(255,255,255,.04);border-radius:999px;padding:9px 18px;font-weight:600;font-size:14.5px}
 
-  .faq{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
-  details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:0 22px;transition:.2s}
-  details[open]{border-color:rgba(124,92,255,.4)}
-  summary{cursor:pointer;list-style:none;padding:20px 0;font-weight:600;font-size:16.5px;display:flex;justify-content:space-between;align-items:center;gap:14px}
+  .privacy{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .pv{text-align:center;padding:22px 16px;border-radius:var(--radius);background:var(--card);border:1px solid var(--line)}
+  .pv b{display:block;font-size:16px;margin:8px 0 4px}
+  .pv span{color:var(--muted);font-size:13.5px}
+  .pv .ic{font-size:26px}
+
+  .faq{max-width:760px;margin:0 auto}
+  details{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px 20px;margin-bottom:12px}
+  summary{cursor:pointer;font-weight:700;font-size:16px;list-style:none}
   summary::-webkit-details-marker{display:none}
-  summary::after{content:"+";font-size:24px;color:var(--violet-2);font-weight:400;transition:.2s}
-  details[open] summary::after{transform:rotate(45deg)}
-  details p{color:var(--muted);font-size:15px;padding:0 0 22px}
+  summary::after{content:"+";float:right;color:var(--muted)}
+  details[open] summary::after{content:"–"}
+  details p{color:#c3c3d6;font-size:15px;margin-top:10px}
 
-  footer{border-top:1px solid var(--line);padding:46px 0 30px;background:var(--bg-soft)}
-  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:26px}
-  .foot .col h5{font-size:14px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:14px}
-  .foot .col a{display:block;color:#c9c9dd;font-size:14.5px;margin-bottom:9px}
-  .foot .col a:hover{color:var(--txt)}
-  .foot-bottom{margin-top:34px;padding-top:22px;border-top:1px solid var(--line);
-    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:var(--muted);font-size:13.5px}
 
-  @media(max-width:760px){
-    .nav-links{display:none}
-    .burger{display:block}
-    .nav-links.open{display:flex;position:absolute;top:68px;left:0;right:0;flex-direction:column;
-      background:var(--bg-soft);padding:20px 22px;border-bottom:1px solid var(--line);gap:18px}
-    .hero{padding:60px 0 50px}
+  .final{text-align:center}
+  .final .box{background:radial-gradient(500px 220px at 50% 0%,rgba(124,92,255,.25),transparent 70%),var(--card);border:1px solid var(--line);border-radius:24px;padding:52px 24px}
+  .final h2{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-1px;margin-bottom:12px}
+  .final p{color:var(--muted);margin-bottom:24px}
+
+  footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:13.5px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  footer a:hover{color:var(--txt)}
+
+  @media (max-width:880px){
+    .hero-grid{grid-template-columns:1fr}
+    .phone{width:260px}
+    .features,.compare{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr}
+    .privacy{grid-template-columns:1fr 1fr}
   }
-  /* ENROLL MODAL */
-  .modal-overlay{position:fixed;inset:0;background:rgba(5,5,12,.8);backdrop-filter:blur(6px);z-index:100;display:none;align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto}
-  .modal-overlay.open{display:flex}
-  .modal{background:var(--card);border:1px solid var(--line);border-radius:20px;max-width:520px;width:100%;padding:32px;position:relative;margin:auto}
-  .modal-close{position:absolute;top:14px;right:16px;background:none;border:0;color:var(--muted);font-size:30px;line-height:1;cursor:pointer}
-  .modal-close:hover{color:var(--txt)}
-  .modal h3{font-size:23px;font-weight:800;margin-bottom:4px;letter-spacing:-.4px}
-  .modal-course{color:var(--violet-2);font-weight:700;font-size:15px;margin-bottom:18px;min-height:1px}
-  .modal label{display:block;font-size:13px;font-weight:600;color:var(--muted);margin:14px 0 6px}
-  .modal input{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;color:var(--txt);font-size:15px;font-family:inherit}
-  .modal input:focus{outline:none;border-color:var(--violet)}
-  .bank{margin:20px 0;border:1px solid var(--line);border-radius:14px;overflow:hidden}
-  .bank h4{font-size:14px;padding:13px 16px;background:rgba(124,92,255,.1);border-bottom:1px solid var(--line)}
-  .bank-block{padding:14px 16px;border-bottom:1px solid var(--line)}
-  .bank-block:last-child{border-bottom:0}
-  .bank-block strong{display:block;color:var(--cyan);font-size:12px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
-  .bank-block .row{display:flex;justify-content:space-between;gap:14px;padding:3px 0;font-size:13.5px}
-  .bank-block .row span:first-child{color:var(--muted);flex-shrink:0}
-  .bank-block .row span:last-child{font-weight:600;text-align:right;word-break:break-word}
-  .modal .note{font-size:13px;color:var(--muted);margin:16px 0}
-  .modal-success{text-align:center;padding:14px 0}
-  .modal-success .e{font-size:46px;margin-bottom:6px}
-  /* Course curriculum (roadmap) */
-  .course{cursor:pointer}
-  .cur-hint{font-size:13px;font-weight:700;color:var(--cyan);margin-bottom:16px;display:inline-flex;align-items:center;gap:6px}
-  .modal.wide{max-width:680px}
-  .cur-meta{color:var(--cyan);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.6px;margin:2px 0 16px}
-  .cur-intro{color:var(--muted);font-size:15px;margin-bottom:22px}
-  .roadmap{list-style:none;counter-reset:mod;margin-bottom:24px}
-  .roadmap li{position:relative;padding:0 0 20px 44px;border-left:2px solid rgba(124,92,255,.28);margin-left:13px}
-  .roadmap li:last-child{border-left-color:transparent;padding-bottom:4px}
-  .roadmap li::before{counter-increment:mod;content:counter(mod);position:absolute;left:-14px;top:-2px;width:28px;height:28px;border-radius:50%;background:var(--grad);color:#0a0a12;font-weight:800;font-size:13px;display:grid;place-items:center}
-  .roadmap h4{font-size:16px;font-weight:700;margin-bottom:4px;letter-spacing:-.2px}
-  .roadmap p{color:var(--muted);font-size:14px;margin:0;line-height:1.55}
+
+  .apps{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .app{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:28px;display:flex;flex-direction:column;gap:16px}
+  .app-top{display:flex;gap:16px;align-items:center}
+  .app-top img{width:76px;height:76px;border-radius:18px;background:#0f1022;box-shadow:0 12px 30px rgba(0,0,0,.45)}
+  .app h3{font-size:24px;letter-spacing:-.4px}
+  .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+  .tag{font-size:12.5px;font-weight:600;padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+  .tag.wait{border-color:rgba(251,191,36,.45);color:var(--amber)}
+  .app > p{color:#cfcfe0;font-size:15.5px}
+  .app ul{list-style:none;display:grid;gap:8px}
+  .app li{color:#c3c3d6;font-size:15px;padding-left:24px;position:relative}
+  .app li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:800}
+  .app .cta{margin-top:auto}
+  .btn-sm{padding:11px 18px;font-size:14px}
+  .hero.studio .lead{max-width:640px}
+  @media (max-width:880px){ .apps{grid-template-columns:1fr} }
+
+  /* Shared site navigation */
+  .nav-links{display:flex;gap:22px}
+  .nav-links a{color:var(--muted);font-size:15px;font-weight:500;text-decoration:none}
+  .nav-links a:hover{color:var(--txt);text-decoration:none}
+  .nav-links a.active{color:var(--txt);font-weight:700}
+  @media (max-width:880px){
+    nav{height:auto;flex-wrap:wrap;row-gap:8px;padding-top:12px;padding-bottom:10px}
+    .nav-r{display:contents}
+    .langsw{margin-left:auto}
+    .nav-links{order:3;width:100%;gap:18px;overflow-x:auto;white-space:nowrap;padding-bottom:2px}
+    .nav-links a{font-size:14px}
+  }
 </style>
 </head>
 <body>
+<header><nav>
+  <a href="/" class="logo">PAXNEO<span class="b">TECH</span></a>
+  <div class="nav-r">
+    <div class="nav-links">
+      <a href="/#apps" class="active" data-en="Apps">Ứng dụng</a>
+      <a href="/memcredit">MemCredit</a>
+      <a href="/wifimeter">WiFi Meter</a>
+      <a href="mailto:support@paxneo.net" data-en="Contact">Liên hệ</a>
+    </div>
+    <div class="langsw" id="langsw"><button data-lang="vi">VI</button><button data-lang="en">EN</button></div>
+  </div>
+</nav></header>
 
-<header>
-  <div class="wrap">
-    <nav>
-      <a href="#" class="logo">PAXNEO<span class="px-blue">TECH</span></a>
-      <div class="nav-links" id="navlinks">
-        <a href="#courses" data-vi="Khóa học">Courses</a>
-        <a href="#benefits" data-vi="Lợi ích">What you'll gain</a>
-        <a href="#how" data-vi="Lộ trình">How it works</a>
-        <a href="#faq" data-vi="Hỏi đáp">FAQ</a>
-      </div>
-      <div class="nav-cta">
-        <div class="langsw" id="langsw">
-          <button data-lang="en">EN</button>
-          <button data-lang="vi">VI</button>
+<main>
+  <section class="hero studio"><div class="wrap">
+    <span class="pill" data-en="Paxneo Tech · Independent app studio">Paxneo Tech · Studio ứng dụng độc lập</span>
+    <h1 data-en="Small apps that &lt;span class='grad-text'&gt;solve real problems&lt;/span&gt;">Ứng dụng nhỏ, <span class="grad-text">giải quyết việc thật</span></h1>
+    <p class="lead" data-en="We build focused apps for iPhone and Mac. They are free, have no ads, and keep your data on your own device.">Chúng tôi làm những ứng dụng gọn nhẹ cho iPhone và Mac. Miễn phí, không quảng cáo, và dữ liệu của bạn luôn nằm trên máy của bạn.</p>
+    <div class="cta">
+      <a href="#apps" class="btn btn-primary" data-en="See our apps">Xem các ứng dụng</a>
+      <a href="mailto:support@paxneo.net" class="btn btn-ghost" data-en="Contact us">Liên hệ</a>
+    </div>
+  </div></section>
+
+  <section id="apps" class="example"><div class="wrap">
+    <div class="sec-h">
+      <h2 data-en="Apps in development">Ứng dụng đang phát triển</h2>
+      <p data-en="Both apps have been submitted to Apple and are waiting for review.">Cả hai ứng dụng đã được gửi lên Apple và đang chờ duyệt.</p>
+    </div>
+    <div class="apps">
+      <article class="app">
+        <div class="app-top">
+          <img src="/memcredit/img/icon.png" alt="MemCredit">
+          <div>
+            <h3>MemCredit</h3>
+            <div class="tags"><span class="tag">iPhone</span><span class="tag" data-en="Free">Miễn phí</span><span class="tag wait" data-en="Waiting for App Store review">Đang chờ Apple duyệt</span></div>
+          </div>
         </div>
-        <a href="#courses" class="btn btn-primary" data-vi="Đăng ký ngay">Enroll now</a>
-        <button class="burger" id="burger" aria-label="Menu">☰</button>
-      </div>
-    </nav>
-  </div>
-</header>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="wrap">
-    <span class="badge" data-vi="🚀 Học AI thực chiến — học là làm được">🚀 Hands-on AI training — learn it, ship it</span>
-    <h1 data-vi="Làm chủ <span class='grad-text'>AI</span> và<br>làm việc nhanh gấp 10 lần">Master <span class="grad-text">AI</span> and<br>get 10× more done</h1>
-    <p class="sub" data-vi="Khóa học AI thực chiến biến kỹ năng thành kết quả: làm chủ AI trong kinh doanh với Claude Code (dựng app thật dù không biết code), đưa AI vào marketing, và biến Excel thành trợ lý tự động. Không lý thuyết suông — học tới đâu làm tới đó.">Practical AI courses that turn skills into results: master AI in business with Claude Code (and build real apps without a coding background), put AI to work in your marketing, and turn Excel into an automated assistant. No fluff — you build as you learn.</p>
-    <div class="hero-cta">
-      <a href="#courses" class="btn btn-primary" data-vi="Xem các khóa học →">Explore the courses →</a>
-      <a href="#how" class="btn btn-ghost" data-vi="Xem lộ trình">See how it works</a>
-    </div>
-    <p class="hero-note" data-vi="✦ 100% digital · Giao qua Google Drive · Truy cập trọn đời &amp; cập nhật">✦ 100% digital · Delivered via Google Drive · Lifetime access &amp; updates</p>
-
-    <div class="stats">
-      <div class="stat"><b class="grad-text">6</b><span data-vi="khóa học thực chiến">hands-on courses</span></div>
-      <div class="stat"><b class="grad-text">100%</b><span data-vi="thực hành, dự án thật">practical, real projects</span></div>
-      <div class="stat"><b class="grad-text">∞</b><span data-vi="hỗ trợ &amp; cập nhật">support &amp; updates</span></div>
-      <div class="stat"><b class="grad-text">0</b><span data-vi="cần biết code">coding background needed</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- COURSES -->
-<section id="courses">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="kick" data-vi="Các khóa học">The Courses</span>
-      <h2 data-vi="Chọn kỹ năng AI bạn muốn làm chủ">Pick the AI skill you want to master</h2>
-      <p data-vi="Mỗi khóa xoay quanh một nguyên tắc — học là làm. Kết thúc khóa, bạn có sản phẩm thật và quy trình dùng được ngay.">Every course is built around one principle — learn it, build it. You finish with a real product and a workflow you can use the next day.</p>
-    </div>
-
-    <div class="courses">
-
-      <div class="course" data-cid="foundations">
-        <span class="tag" data-vi="Bắt đầu từ đây">Start here</span>
-        <span class="eyebrow" data-vi="Khóa Digital">Digital Course</span>
-        <div class="ico">🧠</div>
-        <h3 data-vi="AI Căn bản">AI Foundations</h3>
-        <p data-vi="Mới toanh với AI? Nắm các khái niệm cốt lõi và bắt đầu dùng công cụ AI tự tin trong công việc hằng ngày.">Brand-new to AI? Get the core concepts and start using AI tools with confidence in your everyday work.</p>
+        <p data-en="Tells you which credit card to swipe today for the longest interest-free period, and reminds you before every due date.">Cho biết hôm nay nên quẹt thẻ tín dụng nào để được nhiều ngày miễn lãi nhất, và nhắc bạn trước mỗi hạn thanh toán.</p>
         <ul>
-          <li data-vi="Hiểu cách AI &amp; chatbot thật sự hoạt động">Understand how AI &amp; chatbots really work</li>
-          <li data-vi="Viết prompt hiệu quả, ra kết quả">Write effective prompts that get results</li>
-          <li data-vi="Dùng AI an toàn cho việc hằng ngày">Use AI safely for day-to-day tasks</li>
-          <li data-vi="Nền tảng hoàn hảo cho mọi khóa khác">The perfect base for every other course</li>
+          <li data-en="Ranks your cards by interest-free days">Xếp hạng thẻ theo số ngày miễn lãi</li>
+          <li data-en="Reminders 7 days before each due date">Nhắc trước hạn thanh toán 7 ngày</li>
+          <li data-en="Reads dates from statement PDFs on your iPhone">Đọc ngày từ PDF sao kê ngay trên iPhone</li>
         </ul>
-        <div class="price" data-reg="29" data-now="13.5"><s>$29</s> <span class="grad-text">$13.50</span></div>
-        <a href="#enroll" class="btn btn-primary enroll-btn" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
-      </div>
-
-      <div class="course" data-cid="content">
-        <span class="eyebrow" data-vi="Khóa Digital">Digital Course</span>
-        <div class="ico">✍️</div>
-        <h3 data-vi="Tạo Content bằng AI">Content Creation with AI</h3>
-        <p data-vi="Sản xuất blog, nội dung mạng xã hội, kịch bản và hình ảnh bằng AI — nhanh, nhất quán, đúng thương hiệu.">Produce blog posts, social content, scripts and visuals with AI — fast, consistent and on-brand.</p>
+        <div class="cta">
+          <a href="/memcredit" class="btn btn-primary btn-sm" data-en="Learn more">Tìm hiểu thêm</a>
+          <a href="/memcredit/support" class="btn btn-ghost btn-sm" data-en="Support">Hỗ trợ</a>
+        </div>
+      </article>
+      <article class="app">
+        <div class="app-top">
+          <img src="/wifimeter/img/icon.png" alt="WiFi Meter">
+          <div>
+            <h3>WiFi Meter</h3>
+            <div class="tags"><span class="tag">Mac</span><span class="tag" data-en="Free">Miễn phí</span><span class="tag wait" data-en="Waiting for App Store review">Đang chờ Apple duyệt</span></div>
+          </div>
+        </div>
+        <p data-en="Shows your Wi-Fi signal in dBm right in the Mac menu bar, so you can find weak spots and fix slow connections.">Hiện độ mạnh sóng WiFi theo dBm ngay trên thanh menu Mac, giúp bạn tìm chỗ sóng yếu và xử lý mạng chậm.</p>
         <ul>
-          <li data-vi="Tạo blog, content social &amp; quảng cáo bằng AI">Generate blog, social &amp; ad copy with AI</li>
-          <li data-vi="Tạo hình ảnh &amp; video ngắn bằng AI">Create images &amp; short videos with AI</li>
-          <li data-vi="Xây quy trình sản xuất content lặp lại được">Build a repeatable content workflow</li>
-          <li data-vi="Giữ mọi thứ nhất quán, đúng thương hiệu">Keep everything on-brand and consistent</li>
+          <li data-en="Live signal, noise and a 5-minute chart">Sóng, nhiễu và biểu đồ 5 phút theo thời gian thực</li>
+          <li data-en="Scans nearby networks and crowded channels">Quét mạng xung quanh và kênh bị chen</li>
+          <li data-en="Tests your real Internet speed">Đo tốc độ Internet thực tế</li>
         </ul>
-        <div class="price" data-reg="129" data-now="69"><s>$129</s> <span class="grad-text">$69</span></div>
-        <a href="#enroll" class="btn btn-primary enroll-btn" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
-      </div>
+        <div class="cta">
+          <a href="/wifimeter" class="btn btn-primary btn-sm" data-en="Learn more">Tìm hiểu thêm</a>
+          <a href="/wifimeter/support" class="btn btn-ghost btn-sm" data-en="Support">Hỗ trợ</a>
+        </div>
+      </article>
+    </div>
+  </div></section>
 
-      <div class="course" data-cid="excel">
-        <span class="eyebrow" data-vi="Khóa Digital">Digital Course</span>
-        <div class="ico">📊</div>
-        <h3 data-vi="AI với Excel">AI with Excel</h3>
-        <p data-vi="Biến bảng tính thành trợ lý: để AI viết công thức, phân tích dữ liệu và tự động hóa các báo cáo bạn ngại làm.">Turn spreadsheets into an assistant: let AI write formulas, analyze data and automate the reports you dread.</p>
-        <ul>
-          <li data-vi="Để AI viết &amp; giải thích công thức phức tạp">Let AI write &amp; explain complex formulas</li>
-          <li data-vi="Làm sạch &amp; phân tích dữ liệu trong vài phút">Clean &amp; analyze data in minutes</li>
-          <li data-vi="Tự động hóa báo cáo lặp đi lặp lại">Automate repetitive reports</li>
-          <li data-vi="Biến dữ liệu thô thành insight, nhanh">Turn raw data into insights, fast</li>
-        </ul>
-        <div class="price" data-reg="149" data-now="99"><s>$149</s> <span class="grad-text">$99</span></div>
-        <a href="#enroll" class="btn btn-primary enroll-btn" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
-      </div>
+  <section><div class="wrap">
+    <div class="sec-h"><h2 data-en="How we build apps">Cách chúng tôi làm ứng dụng</h2></div>
+    <div class="privacy">
+      <div class="pv"><div class="ic">🎁</div><b data-en="Free">Miễn phí</b><span data-en="No paywalls">Không thu phí</span></div>
+      <div class="pv"><div class="ic">📵</div><b data-en="No ads">Không quảng cáo</b><span data-en="No tracking either">Không theo dõi</span></div>
+      <div class="pv"><div class="ic">📱</div><b data-en="On your device">Dữ liệu trên máy</b><span data-en="Nothing is uploaded">Không gửi đi đâu</span></div>
+      <div class="pv"><div class="ic">🚫</div><b data-en="No account">Không tài khoản</b><span data-en="Open and use">Mở là dùng</span></div>
+    </div>
+  </div></section>
 
-      <div class="course" data-cid="marketing">
-        <span class="tag" data-vi="Bán chạy">Best seller</span>
-        <span class="eyebrow" data-vi="Khóa Digital">Digital Course</span>
-        <div class="ico">📈</div>
-        <h3 data-vi="AI trong Marketing">AI in Marketing</h3>
-        <p data-vi="Sản xuất content, quảng cáo và SEO với tốc độ của cả một team — một mình. Đưa AI vào trung tâm cỗ máy marketing.">Produce content, ads and SEO at the speed of a whole team — on your own. Put AI at the center of your marketing engine.</p>
-        <ul>
-          <li data-vi="Viết content &amp; kịch bản đúng giọng thương hiệu bằng AI">Write on-brand content &amp; scripts with AI</li>
-          <li data-vi="Tạo ảnh &amp; video quảng cáo bằng AI">Generate ad images &amp; videos with AI</li>
-          <li data-vi="Nghiên cứu thị trường &amp; đối thủ tốc độ cao">High-speed market &amp; competitor research</li>
-          <li data-vi="Tự động hóa quy trình marketing">Automate your marketing workflows</li>
-        </ul>
-        <div class="price" data-reg="249" data-now="149"><s>$249</s> <span class="grad-text">$149</span></div>
-        <a href="#enroll" class="btn btn-primary enroll-btn" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
-      </div>
+  <section class="final"><div class="wrap"><div class="box">
+    <h2 data-en="Ideas or feedback?">Có ý tưởng hay góp ý?</h2>
+    <p data-en="We read every email and reply within a few days.">Chúng tôi đọc mọi email và trả lời trong vài ngày.</p>
+    <a href="mailto:support@paxneo.net" class="btn btn-primary">support@paxneo.net</a>
+  </div></div></section>
+</main>
 
-      <div class="course" data-cid="automation">
-        <span class="tag" data-vi="Mới">New</span>
-        <span class="eyebrow" data-vi="Khóa Digital">Digital Course</span>
-        <div class="ico">🤖</div>
-        <h3 data-vi="Tự động hóa &amp; Quy trình AI">AI Automation &amp; Workflow</h3>
-        <p data-vi="Nối các công cụ AI thành quy trình tự chạy — và giành lại hàng giờ mỗi ngày khỏi việc lặp lại.">Wire AI tools into workflows that run themselves — and win back hours every day from repetitive work.</p>
-        <ul>
-          <li data-vi="Thiết kế quy trình tự động, tự chạy">Design automated, self-running workflows</li>
-          <li data-vi="Kết nối AI với các app bạn đang dùng">Connect AI to the apps you already use</li>
-          <li data-vi="Xây chatbot &amp; trợ lý cho công việc">Build chatbots &amp; assistants for your work</li>
-          <li data-vi="Đo lường &amp; tối ưu hiệu suất">Measure &amp; optimize performance</li>
-        </ul>
-        <div class="price" data-reg="299" data-now="199"><s>$299</s> <span class="grad-text">$199</span></div>
-        <a href="#enroll" class="btn btn-primary enroll-btn" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
-      </div>
-
-      <div class="course featured" data-cid="claude-code">
-        <span class="tag flag" data-vi="Chủ lực">Flagship</span>
-        <span class="eyebrow" data-vi="Khóa Digital">Digital Course</span>
-        <div class="ico">🛠️</div>
-        <h3 data-vi="Làm chủ AI trong Kinh doanh với Claude Code">Mastering AI in Business with Claude Code</h3>
-        <p data-vi="Đi từ ý tưởng tới sản phẩm chạy được. Dựng app, công cụ và hệ thống nội bộ thật với Claude Code — và tự động hóa doanh nghiệp — dù không biết code.">Go from idea to a working product. Build real apps, tools and internal systems with Claude Code — and automate your business — even with no coding background.</p>
-        <ul>
-          <li data-vi="Bắt đầu Claude Code từ con số 0">Start with Claude Code from zero</li>
-          <li data-vi="Biến ý tưởng thành sản phẩm chạy thật">Turn an idea into a shipped, working product</li>
-          <li data-vi="Tự động hóa vận hành doanh nghiệp đầu-cuối">Automate real business operations end-to-end</li>
-          <li data-vi="Ship, sửa lỗi và mở rộng với AI làm kỹ sư">Ship, debug and scale with AI as your engineer</li>
-        </ul>
-        <div class="price" data-reg="499" data-now="300"><s>$499</s> <span class="grad-text">$300</span></div>
-        <a href="#enroll" class="btn btn-primary enroll-btn" style="width:100%;justify-content:center" data-vi="Đăng ký">Enroll</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- BENEFITS -->
-<section class="benefits" id="benefits">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="kick" data-vi="Vì sao chọn Paxneo">Why Paxneo</span>
-      <h2 data-vi="Học để LÀM ĐƯỢC — không chỉ để biết">Learn to DO it — not just to know it</h2>
-    </div>
-    <div class="bgrid">
-      <div class="ben"><div class="e">🎯</div><div><h4 data-vi="Thực chiến 100%">100% hands-on</h4><p data-vi="Mỗi bài là một việc thật. Học xong có sản phẩm và quy trình áp dụng được ngay.">Every lesson is a real task. You finish with a product and a workflow you can apply immediately.</p></div></div>
-      <div class="ben"><div class="e">⚡</div><div><h4 data-vi="Đi thẳng vào kết quả">Straight to results</h4><p data-vi="Bỏ qua lý thuyết hàn lâm. Tập trung vào công cụ và cách làm ra kết quả nhanh nhất.">No academic fluff. Focused on the tools and methods that get results the fastest.</p></div></div>
-      <div class="ben"><div class="e">🧩</div><div><h4 data-vi="Không cần nền tảng">No background required</h4><p data-vi="Bắt đầu từ con số 0. Không cần biết code hay nền tảng kỹ thuật vẫn theo được.">Start from zero. No coding, no technical background needed to keep up.</p></div></div>
-      <div class="ben"><div class="e">🔄</div><div><h4 data-vi="Luôn cập nhật">Always up to date</h4><p data-vi="AI thay đổi từng tháng — khóa học cập nhật theo, bạn không học cái lỗi thời.">AI changes monthly — the courses update with it, so you never learn outdated material.</p></div></div>
-      <div class="ben"><div class="e">💬</div><div><h4 data-vi="Hỗ trợ trọn đời">Lifetime support</h4><p data-vi="Cộng đồng học viên &amp; hỗ trợ khi bạn áp dụng vào việc thật.">A learner community and support to help you when you apply it to real work.</p></div></div>
-      <div class="ben"><div class="e">🚀</div><div><h4 data-vi="Cho kinh doanh thật">Built for real business</h4><p data-vi="Ví dụ và dự án gắn với kết quả kinh doanh thật, không phải demo cho có.">Examples and projects mapped to actual business outcomes, not toy demos.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- AUDIENCE -->
-<section>
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="kick" data-vi="Dành cho ai">Who it's for</span>
-      <h2 data-vi="Khóa học này hợp với bạn nếu…">This is for you if…</h2>
-    </div>
-    <div class="aud">
-      <div class="a"><div class="e">💼</div><h4 data-vi="Marketer &amp; chủ doanh nghiệp">Marketers &amp; business owners</h4><p data-vi="Muốn marketing nhanh hơn, rẻ hơn, hiệu quả hơn với AI.">You want marketing that's faster, cheaper and more effective with AI.</p></div>
-      <div class="a"><div class="e">🚀</div><h4 data-vi="Founder &amp; người khởi nghiệp">Founders &amp; builders</h4><p data-vi="Muốn tự ship sản phẩm mà không cần thuê team dev.">You want to ship your own product without hiring a dev team.</p></div>
-      <div class="a"><div class="e">📋</div><h4 data-vi="Dân văn phòng &amp; team">Professionals &amp; teams</h4><p data-vi="Muốn tự động hóa Excel, báo cáo và việc lặp lại.">You want to automate Excel, reports and repetitive work.</p></div>
-      <div class="a"><div class="e">🌱</div><h4 data-vi="Người mới với AI">New to AI</h4><p data-vi="Muốn bắt đầu bài bản — không lan man, dùng được từ ngày đầu.">You want a structured start — no rabbit holes, usable from day one.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- HOW -->
-<section class="benefits" id="how">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="kick" data-vi="Lộ trình">How it works</span>
-      <h2 data-vi="Bốn bước từ học tới ship">Four steps from learning to shipping</h2>
-    </div>
-    <div class="steps">
-      <div class="step"><h4 data-vi="Chọn khóa">Pick a course</h4><p data-vi="Chọn kỹ năng AI mà công việc bạn cần nhất lúc này.">Choose the AI skill your work needs most right now.</p></div>
-      <div class="step"><h4 data-vi="Học &amp; làm">Learn &amp; build</h4><p data-vi="Làm theo trên dự án thật — hướng dẫn từng bước.">Follow along on a real project — guided, step by step.</p></div>
-      <div class="step"><h4 data-vi="Áp dụng việc thật">Apply to real work</h4><p data-vi="Mang thẳng vào công việc, có hỗ trợ khi vướng.">Bring it straight into your job, with support when you're stuck.</p></div>
-      <div class="step"><h4 data-vi="Tối ưu &amp; mở rộng">Optimize &amp; scale</h4><p data-vi="Nâng cấp quy trình và kết hợp nhiều công cụ AI.">Level up your workflow and combine multiple AI tools together.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section id="enroll">
-  <div class="wrap">
-    <div class="cta-band">
-      <h2 data-vi="Sẵn sàng để AI làm việc cho bạn?">Ready to put AI to work for you?</h2>
-      <p data-vi="Đăng ký hôm nay hoặc nhận tư vấn nhanh. Bắt đầu hành trình làm chủ AI ngay bây giờ.">Enroll today or request a quick consult. Start your journey to mastering AI right now.</p>
-      <a href="#enroll" class="btn btn-primary enroll-btn" data-vi="Đăng ký / Nhận tư vấn →">Enroll / Request info →</a>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section id="faq">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="kick" data-vi="Hỏi đáp">FAQ</span>
-      <h2 data-vi="Câu hỏi thường gặp">Frequently asked questions</h2>
-    </div>
-    <div class="faq">
-      <details open><summary data-vi="Tôi mới với AI — học theo nổi không?">I'm new to AI — can I keep up?</summary><p data-vi="Hoàn toàn được. Mọi khóa bắt đầu từ con số 0 với hướng dẫn rõ ràng, từng bước. Bạn chỉ cần biết dùng máy tính cơ bản.">Absolutely. Every course starts from zero with clear, step-by-step guidance. You only need basic computer skills.</p></details>
-      <details><summary data-vi="Khóa 'Làm chủ AI với Claude Code' có cần biết code không?">Does "Mastering AI in Business with Claude Code" require coding?</summary><p data-vi="Không. Khóa thiết kế cho người không biết code. Bạn học cách mô tả điều mình muốn, để AI viết code, còn bạn điều phối và kiểm tra kết quả.">No. The course is designed for people without a coding background. You learn to describe what you want, let AI write the code, and you direct and review the results.</p></details>
-      <details><summary data-vi="Các khóa được giao thế nào?">How are the courses delivered?</summary><p data-vi="Tất cả khóa là 100% digital. Sau khi xác nhận đăng ký, chúng tôi gửi email link mời Google Drive chứa toàn bộ tài liệu — video, template và tài nguyên. Quyền truy cập cấp cho email bạn đăng ký, nên hãy dùng email bạn hay kiểm tra.">All courses are 100% digital. Once your enrollment is confirmed, we email you a Google Drive invite link with all course materials — videos, templates and resources. Access is granted to the email address you enroll with, so use the one you check.</p></details>
-      <details><summary data-vi="Sau khi đăng ký tôi nhận được gì?">What do I get after enrolling?</summary><p data-vi="Link mời Google Drive vào toàn bộ khóa (video + tài nguyên), bộ template quy trình/prompt làm sẵn, dự án thật bạn xây trong khóa, và quyền truy cập các bản cập nhật sau này — tất cả online, theo lịch của bạn.">A Google Drive invite to the full course (videos + resources), ready-made workflow/prompt templates, the real project you build during the course, and access to future updates — all online, on your own schedule.</p></details>
-      <details><summary data-vi="Thanh toán &amp; giá thế nào?">How does payment &amp; pricing work?</summary><p data-vi="Bấm 'Đăng ký / Nhận tư vấn' để biết chi tiết thanh toán và ưu đãi sớm. Đang có giá ưu đãi giới hạn cho tất cả các khóa.">Click "Enroll / Request info" for payment details and early-bird offers. Limited introductory pricing is currently available across all courses.</p></details>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="wrap">
-    <div class="foot">
-      <div class="col" style="max-width:300px">
-        <a href="#" class="logo" style="margin-bottom:14px">PAXNEO<span class="px-blue">TECH</span></a>
-        <p style="color:var(--muted);font-size:14.5px" data-vi="Đào tạo AI thực chiến. Học là làm được — làm nhiều hơn cùng AI.">Hands-on AI training. Learn it, ship it — get more done with AI.</p>
-      </div>
-      <div class="col">
-        <h5 data-vi="Khóa học">Courses</h5>
-        <a href="#courses" data-vi="Làm chủ AI với Claude Code">Mastering AI with Claude Code</a>
-        <a href="#courses" data-vi="AI trong Marketing">AI in Marketing</a>
-        <a href="#courses" data-vi="Tự động hóa &amp; Quy trình AI">AI Automation &amp; Workflow</a>
-        <a href="#courses" data-vi="AI với Excel">AI with Excel</a>
-      </div>
-      <div class="col">
-        <h5 data-vi="Khám phá">Explore</h5>
-        <a href="#benefits" data-vi="Lợi ích">What you'll gain</a>
-        <a href="#how" data-vi="Lộ trình">How it works</a>
-        <a href="#faq" data-vi="Hỏi đáp">FAQ</a>
-        <a href="#enroll" data-vi="Đăng ký">Enroll</a>
-      </div>
-      <div class="col">
-        <h5 data-vi="Pháp lý">Legal</h5>
-        <a href="/terms" data-vi="Điều khoản dịch vụ">Terms of Service</a>
-        <a href="/privacy" data-vi="Chính sách bảo mật">Privacy Policy</a>
-        <a href="/refund" data-vi="Chính sách hoàn tiền">Refund Policy</a>
-      </div>
-      <div class="col">
-        <h5 data-vi="Liên hệ">Contact</h5>
-        <a href="mailto:support@paxneo.net">support@paxneo.net</a>
-        <a href="https://paxneo.net">paxneo.net</a>
-        <p style="color:var(--muted);font-size:13.5px;margin-top:4px;line-height:1.55">Paxneo LLC<br>30 N. Gould Street, Suite R<br>Sheridan, WY 82801, USA</p>
-      </div>
-    </div>
-    <div class="foot-bottom">
-      <span>© 2026 Paxneo LLC. All rights reserved.</span>
-      <span>paxneo.net</span>
-    </div>
-  </div>
-</footer>
-
-<!-- ENROLL MODAL -->
-<div class="modal-overlay" id="curModal" aria-hidden="true">
-  <div class="modal wide" role="dialog" aria-modal="true">
-    <button class="modal-close" id="curClose" aria-label="Close">&times;</button>
-    <h3 id="curTitle"></h3>
-    <p class="cur-meta" id="curMeta"></p>
-    <p class="cur-intro" id="curIntro"></p>
-    <ol class="roadmap" id="curList"></ol>
-    <button class="btn btn-primary" id="curEnroll" style="width:100%;justify-content:center"></button>
-  </div>
-</div>
-
-<div class="modal-overlay" id="enrollModal" aria-hidden="true">
-  <div class="modal" role="dialog" aria-modal="true">
-    <button class="modal-close" id="modalClose" aria-label="Close">×</button>
-    <div id="enrollBody">
-      <h3 data-vi="Đăng ký khóa học">Enroll in a course</h3>
-      <p class="modal-course" id="modalCourse"></p>
-      <form id="enrollForm">
-        <label data-vi="Họ và tên">Full name</label>
-        <input id="enrName" name="name" required autocomplete="name">
-        <label>Email</label>
-        <input id="enrEmail" name="email" type="email" required autocomplete="email">
-        <p class="note" data-vi="Điền tên và email rồi bấm Gửi đơn. Chúng tôi sẽ gửi hướng dẫn thanh toán và cách truy cập khóa học (link Google Drive) tới email của bạn.">Enter your name and email, then click Submit. We'll email you payment instructions and how to access your course (Google Drive link).</p>
-        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center" data-vi="Gửi đơn đăng ký">Submit order</button>
-      </form>
-    </div>
-    <div id="enrollDone" class="modal-success" style="display:none">
-      <div class="e">✅</div>
-      <h3 data-vi="Đã nhận đơn của bạn!">Order received!</h3>
-      <p class="note" data-vi="Cảm ơn bạn! Chúng tôi đã nhận đơn và sẽ gửi hướng dẫn thanh toán cùng cách truy cập khóa học tới email của bạn trong thời gian sớm nhất.">Thank you! We've received your order and will email you payment instructions and course-access details shortly.</p>
-    </div>
-  </div>
-</div>
+<footer><div class="wrap">
+  <span>© 2026 Paxneo Tech</span>
+  <span><a href="/memcredit">MemCredit</a> · <a href="/wifimeter">WiFi Meter</a> · <a href="mailto:support@paxneo.net">support@paxneo.net</a></span>
+</div></footer>
 
 <script>
-  // Mobile menu
-  var b=document.getElementById('burger'),n=document.getElementById('navlinks');
-  b&&b.addEventListener('click',function(){n.classList.toggle('open')});
-  n&&n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){n.classList.remove('open')})});
-
-  // Inject a "view curriculum" hint into each course card (before i18n capture so it localizes).
-  document.querySelectorAll('.course').forEach(function(card){
-    var ul=card.querySelector('ul'); if(!ul) return;
-    var hint=document.createElement('div'); hint.className='cur-hint';
-    hint.setAttribute('data-vi','📋 Xem lộ trình chi tiết →'); hint.innerHTML='📋 View curriculum →';
-    ul.insertAdjacentElement('afterend', hint);
-  });
-
-  // i18n: EN default in markup, VI in data-vi. Capture EN on load, swap on toggle.
-  var nodes=document.querySelectorAll('[data-vi]');
-  nodes.forEach(function(el){ el.setAttribute('data-en', el.innerHTML); });
-  // Price conversion USD -> VND (rate 25600), formatted per language
-  var RATE=25600;
-  function fmtPrice(l,n){ return l==='vi' ? Math.round(n*RATE).toLocaleString('vi-VN')+'₫' : '$'+(Number.isInteger(n)?n:n.toFixed(2)); }
-  function renderPrices(l){
-    document.querySelectorAll('.price[data-now]').forEach(function(el){
-      var reg=parseFloat(el.getAttribute('data-reg'))||0, now=parseFloat(el.getAttribute('data-now'));
-      el.innerHTML=(reg?'<s>'+fmtPrice(l,reg)+'</s> ':'')+'<span class="grad-text">'+fmtPrice(l,now)+'</span>';
-    });
-  }
+  // Vietnamese is the markup default; English lives in data-en.
+  var nodes=document.querySelectorAll('[data-en]');
+  nodes.forEach(function(el){ el.setAttribute('data-vi', el.innerHTML); });
   function setLang(l){
     document.documentElement.lang=l;
     nodes.forEach(function(el){ var v=el.getAttribute('data-'+l); if(v!=null) el.innerHTML=v; });
-    renderPrices(l);
-    document.querySelectorAll('#langsw button').forEach(function(btn){ btn.classList.toggle('active', btn.getAttribute('data-lang')===l); });
+    document.querySelectorAll('#langsw button').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-lang')===l); });
     try{ localStorage.setItem('paxneo_lang', l); }catch(e){}
   }
   var saved=null; try{ saved=localStorage.getItem('paxneo_lang'); }catch(e){}
-  var def = saved || ((navigator.language||'en').toLowerCase().indexOf('vi')===0 ? 'vi' : 'en');
-  document.querySelectorAll('#langsw button').forEach(function(btn){
-    btn.addEventListener('click', function(){ setLang(btn.getAttribute('data-lang')); });
-  });
+  var def=saved||((navigator.language||'vi').toLowerCase().indexOf('en')===0?'en':'vi');
+  document.querySelectorAll('#langsw button').forEach(function(b){ b.addEventListener('click',function(){ setLang(b.getAttribute('data-lang')); }); });
   setLang(def);
-
-  // Enroll modal
-  var modal=document.getElementById('enrollModal'),
-      mClose=document.getElementById('modalClose'),
-      mCourse=document.getElementById('modalCourse'),
-      eForm=document.getElementById('enrollForm'),
-      eBody=document.getElementById('enrollBody'),
-      eDone=document.getElementById('enrollDone'),
-      curCourse='', curCid='';
-  function openModal(course,price,cid){
-    curCourse=course||''; curCid=cid||'';
-    mCourse.textContent = course ? (course + (price ? (' — '+price) : '')) : '';
-    eBody.style.display=''; eDone.style.display='none'; if(eForm){eForm.reset();}
-    modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
-  }
-  function closeModal(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); }
-  document.querySelectorAll('.enroll-btn').forEach(function(btn){
-    btn.addEventListener('click', function(e){
-      e.preventDefault();
-      var card=btn.closest('.course'), course='', price='', cid='';
-      if(card){ var h=card.querySelector('h3'), p=card.querySelector('.price .grad-text');
-        course=h?h.textContent.trim():''; price=p?p.textContent.trim():''; cid=card.getAttribute('data-cid')||''; }
-      openModal(course, price, cid);
-    });
-  });
-  mClose&&mClose.addEventListener('click', closeModal);
-  modal&&modal.addEventListener('click', function(e){ if(e.target===modal) closeModal(); });
-  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
-  eForm&&eForm.addEventListener('submit', function(e){
-    e.preventDefault();
-    var name=document.getElementById('enrName').value.trim(),
-        email=document.getElementById('enrEmail').value.trim(),
-        amount=(mCourse.textContent||''),
-        sbtn=eForm.querySelector('button[type=submit]');
-    function done(){ eBody.style.display='none'; eDone.style.display=''; }
-    function mailtoFallback(){
-      var subj='Paxneo enrollment'+(curCourse?(': '+curCourse):'');
-      var b='Course: '+curCourse+'\nName: '+name+'\nEmail: '+email+'\nAmount: '+amount;
-      window.location.href='mailto:support@paxneo.net?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(b);
-      done();
-    }
-    if(sbtn){ sbtn.disabled=true; }
-    fetch('/api/enroll',{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({name:name,email:email,course:curCourse,courseId:curCid,amount:amount,lang:document.documentElement.lang})})
-      .then(function(r){ return r.ok ? r.json() : Promise.reject(r); })
-      .then(function(){ done(); })
-      .catch(function(){ mailtoFallback(); })
-      .then(function(){ if(sbtn){ sbtn.disabled=false; } });
-  });
-
-  // ---- Course curriculum (roadmap) modal. Module count scales with price (higher = more). ----
-  var CURRICULA = {
-    "foundations": [
-      {t_en:"How AI really works",d_en:"Models, tokens and what AI can and cannot do, in plain language.",t_vi:"AI thực sự hoạt động thế nào",d_vi:"Mô hình, token và giới hạn của AI, giải thích dễ hiểu."},
-      {t_en:"Prompting that gets results",d_en:"Structure prompts, add context and iterate to better answers.",t_vi:"Viết prompt ra kết quả",d_vi:"Cấu trúc prompt, thêm ngữ cảnh và lặp lại để có câu trả lời tốt hơn."},
-      {t_en:"AI for everyday work",d_en:"Email, summaries, research and planning with AI assistants.",t_vi:"AI cho công việc hằng ngày",d_vi:"Email, tóm tắt, nghiên cứu và lập kế hoạch với trợ lý AI."},
-      {t_en:"Using AI safely",d_en:"Protect privacy, check accuracy and verify what AI gives you.",t_vi:"Dùng AI an toàn",d_vi:"Bảo vệ riêng tư, kiểm tra độ chính xác và xác minh kết quả AI."}
-    ],
-    "content": [
-      {t_en:"Your AI content stack",d_en:"The writing, image and video tools and when to use each.",t_vi:"Bộ công cụ content AI",d_vi:"Công cụ viết, ảnh, video và khi nào dùng cái nào."},
-      {t_en:"On-brand writing with AI",d_en:"Turn your voice and brand rules into reusable prompts.",t_vi:"Viết đúng giọng thương hiệu",d_vi:"Biến giọng văn và quy tắc thương hiệu thành prompt dùng lại được."},
-      {t_en:"Blog, social and ad copy",d_en:"Templates for every format, plus repurposing one idea many ways.",t_vi:"Blog, social và quảng cáo",d_vi:"Mẫu cho từng định dạng, tái sử dụng một ý tưởng nhiều cách."},
-      {t_en:"AI images and short videos",d_en:"Generate visuals and clips that match your brand.",t_vi:"Ảnh và video ngắn bằng AI",d_vi:"Tạo hình ảnh và clip hợp thương hiệu."},
-      {t_en:"A repeatable content workflow",d_en:"Plan, produce, review and publish on a schedule.",t_vi:"Quy trình content lặp lại được",d_vi:"Lên kế hoạch, sản xuất, duyệt và xuất bản theo lịch."}
-    ],
-    "excel": [
-      {t_en:"AI inside your spreadsheet",d_en:"Set up AI helpers for Excel and Google Sheets.",t_vi:"AI ngay trong bảng tính",d_vi:"Thiết lập trợ lý AI cho Excel và Google Sheets."},
-      {t_en:"Formulas written by AI",d_en:"Get complex formulas built and explained without memorizing them.",t_vi:"Công thức do AI viết",d_vi:"Tạo và giải thích công thức phức tạp mà không cần thuộc lòng."},
-      {t_en:"Cleaning messy data",d_en:"Prepare and structure raw data in minutes, not hours.",t_vi:"Làm sạch dữ liệu lộn xộn",d_vi:"Chuẩn bị và sắp xếp dữ liệu thô trong vài phút."},
-      {t_en:"Analysis and pivot insights",d_en:"Ask questions in plain language and get charts and summaries.",t_vi:"Phân tích và insight",d_vi:"Hỏi bằng ngôn ngữ thường, nhận biểu đồ và tóm tắt."},
-      {t_en:"Automating recurring reports",d_en:"Build report templates that refresh themselves.",t_vi:"Tự động hóa báo cáo định kỳ",d_vi:"Xây mẫu báo cáo tự cập nhật."},
-      {t_en:"From raw data to decisions",d_en:"Turn numbers into clear, defensible recommendations.",t_vi:"Từ dữ liệu thô đến quyết định",d_vi:"Biến con số thành đề xuất rõ ràng, thuyết phục."}
-    ],
-    "marketing": [
-      {t_en:"The AI marketing engine",d_en:"Map your funnel and find the highest-leverage AI wins.",t_vi:"Cỗ máy marketing AI",d_vi:"Vẽ phễu và tìm điểm AI tạo đòn bẩy lớn nhất."},
-      {t_en:"On-brand content at scale",d_en:"Voice-locked copy and scripts produced with AI.",t_vi:"Content đúng giọng, quy mô lớn",d_vi:"Bài viết và kịch bản khóa-giọng tạo bằng AI."},
-      {t_en:"Ad creative: images and video",d_en:"Generate scroll-stopping ad visuals and short videos.",t_vi:"Sáng tạo quảng cáo: ảnh và video",d_vi:"Tạo ảnh và video quảng cáo bắt mắt."},
-      {t_en:"SEO and content that ranks",d_en:"Keyword research, briefs and on-page optimization with AI.",t_vi:"SEO và content lên top",d_vi:"Nghiên cứu từ khóa, brief và tối ưu on-page bằng AI."},
-      {t_en:"Market and competitor research",d_en:"Gather insights at high speed and act on them.",t_vi:"Nghiên cứu thị trường và đối thủ",d_vi:"Thu thập insight tốc độ cao và hành động."},
-      {t_en:"Email and social campaigns",d_en:"Sequences, content calendars and smart repurposing.",t_vi:"Chiến dịch email và social",d_vi:"Chuỗi email, lịch nội dung và tái sử dụng thông minh."},
-      {t_en:"Marketing automation",d_en:"Wire your tools into campaigns that run themselves.",t_vi:"Tự động hóa marketing",d_vi:"Nối công cụ thành chiến dịch tự chạy."},
-      {t_en:"Measure and optimize",d_en:"Track, test and improve return on every channel.",t_vi:"Đo lường và tối ưu",d_vi:"Theo dõi, thử nghiệm và cải thiện hiệu quả mỗi kênh."}
-    ],
-    "automation": [
-      {t_en:"The automation mindset",d_en:"Spot the repetitive work that is worth automating.",t_vi:"Tư duy tự động hóa",d_vi:"Nhận diện việc lặp lại đáng để tự động hóa."},
-      {t_en:"Your no-code toolkit",d_en:"The platforms that connect your apps without code.",t_vi:"Bộ công cụ no-code",d_vi:"Các nền tảng nối app mà không cần code."},
-      {t_en:"Connecting AI to your apps",d_en:"Triggers, actions and APIs made simple.",t_vi:"Nối AI với app của bạn",d_vi:"Trigger, action và API một cách đơn giản."},
-      {t_en:"Designing self-running workflows",d_en:"Go from a trigger to a finished outcome automatically.",t_vi:"Thiết kế quy trình tự chạy",d_vi:"Từ trigger đến kết quả hoàn chỉnh tự động."},
-      {t_en:"Building chatbots and assistants",d_en:"Task-specific helpers for your team and customers.",t_vi:"Xây chatbot và trợ lý",d_vi:"Trợ lý chuyên việc cho đội ngũ và khách hàng."},
-      {t_en:"Document and data pipelines",d_en:"Auto-process files, sheets and inboxes.",t_vi:"Pipeline tài liệu và dữ liệu",d_vi:"Tự xử lý file, bảng tính và hộp thư."},
-      {t_en:"Error handling and reliability",d_en:"Make automations robust so they do not break silently.",t_vi:"Xử lý lỗi và độ tin cậy",d_vi:"Làm quy trình bền vững, không hỏng âm thầm."},
-      {t_en:"Measuring performance",d_en:"Use logs and metrics to see what is working.",t_vi:"Đo lường hiệu suất",d_vi:"Dùng log và chỉ số để biết cái gì hiệu quả."},
-      {t_en:"Scaling your system",d_en:"Orchestrate many workflows into one reliable engine.",t_vi:"Mở rộng hệ thống",d_vi:"Điều phối nhiều quy trình thành một cỗ máy tin cậy."}
-    ],
-    "claude-code": [
-      {t_en:"Claude Code from zero",d_en:"Install, set up and run your first commands with confidence.",t_vi:"Claude Code từ con số 0",d_vi:"Cài đặt, thiết lập và chạy lệnh đầu tiên tự tin."},
-      {t_en:"Thinking in projects",d_en:"Learn to brief AI so it builds exactly what you need.",t_vi:"Tư duy theo dự án",d_vi:"Học cách brief AI để nó xây đúng thứ bạn cần."},
-      {t_en:"From idea to spec",d_en:"Turn a business need into a clear, buildable plan.",t_vi:"Từ ý tưởng đến spec",d_vi:"Biến nhu cầu kinh doanh thành kế hoạch xây được."},
-      {t_en:"Build your first real app",d_en:"Ship a working product end to end.",t_vi:"Xây app thật đầu tiên",d_vi:"Hoàn thiện một sản phẩm chạy được từ đầu đến cuối."},
-      {t_en:"Working with data and databases",d_en:"Store, query and manage real business data.",t_vi:"Làm việc với dữ liệu và database",d_vi:"Lưu, truy vấn và quản lý dữ liệu thật."},
-      {t_en:"Connecting APIs and services",d_en:"Add payments, email and third-party tools.",t_vi:"Nối API và dịch vụ",d_vi:"Thêm thanh toán, email và công cụ bên thứ ba."},
-      {t_en:"Automating business operations",d_en:"Build internal systems that run the busywork.",t_vi:"Tự động hóa vận hành",d_vi:"Xây hệ thống nội bộ lo việc lặp lại."},
-      {t_en:"Debugging with AI as your engineer",d_en:"Find and fix issues fast, without fear.",t_vi:"Sửa lỗi với AI là kỹ sư",d_vi:"Tìm và sửa lỗi nhanh, không sợ hãi."},
-      {t_en:"Shipping and deploying",d_en:"Get your product live for real users.",t_vi:"Phát hành và deploy",d_vi:"Đưa sản phẩm lên cho người dùng thật."},
-      {t_en:"Scaling and maintaining",d_en:"Grow your product without it breaking.",t_vi:"Mở rộng và bảo trì",d_vi:"Phát triển sản phẩm mà không vỡ."},
-      {t_en:"Internal tools and dashboards",d_en:"Build custom tools and dashboards for your team.",t_vi:"Công cụ và dashboard nội bộ",d_vi:"Xây công cụ và dashboard riêng cho đội ngũ."},
-      {t_en:"Your capstone business system",d_en:"Build one complete, real-world system end to end.",t_vi:"Dự án tốt nghiệp",d_vi:"Xây một hệ thống thực tế hoàn chỉnh từ đầu đến cuối."}
-    ]
-  };
-  var CUR_L = { en:{m:"modules",intro:"Your detailed, module-by-module learning path.",cta:"Enroll in this course"},
-                vi:{m:"mô-đun",intro:"Lộ trình học chi tiết theo từng mô-đun.",cta:"Đăng ký khóa này"} };
-  var curM=document.getElementById('curModal'),
-      curCloseBtn=document.getElementById('curClose'),
-      curEnrollBtn=document.getElementById('curEnroll');
-  function esc2(s){return String(s==null?'':s).replace(/[<>&]/g,function(c){return {'<':'&lt;','>':'&gt;','&':'&amp;'}[c];});}
-  function openCurriculum(cid){
-    var data=CURRICULA[cid]; if(!data||!curM) return;
-    var l=document.documentElement.lang==='vi'?'vi':'en';
-    var card=document.querySelector('.course[data-cid="'+cid+'"]');
-    var title=card?card.querySelector('h3').textContent.trim():'';
-    var pe=card?card.querySelector('.price .grad-text'):null, price=pe?pe.textContent.trim():'';
-    document.getElementById('curTitle').textContent=title;
-    document.getElementById('curMeta').textContent=price+(price?'  ·  ':'')+data.length+' '+CUR_L[l].m;
-    document.getElementById('curIntro').textContent=CUR_L[l].intro;
-    document.getElementById('curList').innerHTML=data.map(function(m){
-      return '<li><h4>'+esc2(m['t_'+l])+'</h4><p>'+esc2(m['d_'+l])+'</p></li>'; }).join('');
-    curEnrollBtn.textContent=CUR_L[l].cta;
-    curEnrollBtn._c=title; curEnrollBtn._p=price; curEnrollBtn._cid=cid;
-    curM.classList.add('open'); curM.setAttribute('aria-hidden','false');
-  }
-  function closeCur(){ if(curM){ curM.classList.remove('open'); curM.setAttribute('aria-hidden','true'); } }
-  document.querySelectorAll('.course').forEach(function(card){
-    card.addEventListener('click', function(e){
-      if(e.target.closest('.enroll-btn')) return; // let the Enroll button do its own thing
-      openCurriculum(card.getAttribute('data-cid'));
-    });
-  });
-  curCloseBtn&&curCloseBtn.addEventListener('click', closeCur);
-  curM&&curM.addEventListener('click', function(e){ if(e.target===curM) closeCur(); });
-  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeCur(); });
-  curEnrollBtn&&curEnrollBtn.addEventListener('click', function(){
-    closeCur(); openModal(curEnrollBtn._c, curEnrollBtn._p, curEnrollBtn._cid);
-  });
 </script>
 </body>
 </html>

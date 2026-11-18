@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WiFi Meter – Support</title>
+<meta name="description" content="Help for WiFi Meter, a free Mac menu bar app that measures your Wi-Fi signal, scans nearby networks and tests your speed.">
+<meta name="robots" content="index,follow">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<style>
+  :root{--bg:#0a0a12;--card:#16162a;--line:rgba(255,255,255,.08);--txt:#ECECF5;--muted:#9a9ab5;--violet-2:#a78bff;--cyan:#22d3ee}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--txt);line-height:1.7;-webkit-font-smoothing:antialiased}
+  a{color:var(--violet-2);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:820px;margin:0 auto;padding:0 22px}
+  header{border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(10,10,18,.82);backdrop-filter:blur(12px);z-index:10}
+  nav{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:1140px;margin:0 auto;padding:0 22px}
+  .logo{font-weight:800;font-size:20px;letter-spacing:-.5px;color:var(--txt)}
+  .logo .b{color:#1ba0e2}
+  .nav-r{display:flex;align-items:center;gap:14px}
+  .back{color:var(--muted);font-size:14px}
+  .langsw{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:rgba(255,255,255,.04)}
+  .langsw button{background:none;border:0;color:var(--muted);font-weight:700;font-size:12.5px;padding:6px 12px;cursor:pointer;transition:.15s}
+  .langsw button.active{background:linear-gradient(135deg,#7c5cff,#22d3ee);color:#0a0a12}
+  main{padding:54px 0 70px}
+  h1{font-size:clamp(28px,5vw,40px);font-weight:800;letter-spacing:-1px;margin-bottom:10px}
+  .updated{color:var(--muted);font-size:14px;margin-bottom:30px}
+  h2{font-size:20px;font-weight:700;margin:34px 0 12px;letter-spacing:-.3px}
+  p,li{color:#cfcfe0;font-size:15.5px;margin-bottom:12px}
+  ul{padding-left:22px;margin-bottom:12px}
+  li{margin-bottom:7px}
+  strong{color:var(--txt)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin:20px 0}
+  .card p:last-child{margin-bottom:0}
+  footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:13.5px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+  /* Shared site navigation */
+  .nav-links{display:flex;gap:22px}
+  .nav-links a{color:var(--muted);font-size:15px;font-weight:500;text-decoration:none}
+  .nav-links a:hover{color:var(--txt);text-decoration:none}
+  .nav-links a.active{color:var(--txt);font-weight:700}
+  @media (max-width:880px){
+    nav{height:auto;flex-wrap:wrap;row-gap:8px;padding-top:12px;padding-bottom:10px}
+    .nav-r{display:contents}
+    .langsw{margin-left:auto}
+    .nav-links{order:3;width:100%;gap:18px;overflow-x:auto;white-space:nowrap;padding-bottom:2px}
+    .nav-links a{font-size:14px}
+  }
+</style>
+</head>
+<body>
+<header><nav>
+  <a href="/" class="logo">PAXNEO<span class="b">TECH</span></a>
+  <div class="nav-r">
+    <div class="nav-links">
+      <a href="/#apps" data-vi="Ứng dụng">Apps</a>
+      <a href="/memcredit">MemCredit</a>
+      <a href="/wifimeter" class="active">WiFi Meter</a>
+      <a href="mailto:support@paxneo.net" data-vi="Liên hệ">Contact</a>
+    </div>
+    <div class="langsw" id="langsw"><button data-lang="en">EN</button><button data-lang="vi">VI</button></div>
+  </div>
+</nav></header>
+
+<main><div class="wrap">
+  <h1 data-vi="WiFi Meter – Hỗ trợ">WiFi Meter – Support</h1>
+  <p class="updated" data-vi="Đo sóng WiFi ngay trên thanh menu của máy Mac.">Measure your Wi-Fi signal right from your Mac's menu bar.</p>
+
+  <div class="card">
+    <p data-vi="Cần giúp đỡ hay muốn góp ý? Gửi email tới &lt;a href=&quot;mailto:support@paxneo.net&quot;&gt;support@paxneo.net&lt;/a&gt;. Chúng tôi thường trả lời trong vài ngày.">Need help or have feedback? Email <a href="mailto:support@paxneo.net">support@paxneo.net</a>. We usually reply within a few days.</p>
+  </div>
+
+  <h2 data-vi="Bắt đầu">Getting started</h2>
+  <p data-vi="Sau khi mở app, độ mạnh sóng (dBm) hiện trên thanh menu. Bấm vào để xem nhiễu, tỉ lệ tín hiệu/nhiễu, tốc độ liên kết, kênh và biểu đồ 60 giây. Bấm &quot;Mở cửa sổ chi tiết&quot; để xem biểu đồ 5 phút, mạng xung quanh, đo tốc độ và cài đặt.">Once the app is open, your signal strength (dBm) appears in the menu bar. Click it to see noise, signal-to-noise ratio, link rate, channel and a 60-second chart. Click "Open details window" for a 5-minute chart, nearby networks, the speed test and settings.</p>
+
+  <h2 data-vi="Đọc số dBm thế nào?">How do I read dBm?</h2>
+  <ul>
+    <li data-vi="&lt;strong&gt;-50 dBm trở lên:&lt;/strong&gt; rất mạnh, đủ cho mọi việc.">-50 dBm or stronger: excellent, good for everything.</li>
+    <li data-vi="&lt;strong&gt;-51 đến -60 dBm:&lt;/strong&gt; tốt, ổn định cho phim HD và gọi video.">-51 to -60 dBm: good, stable for HD video and video calls.</li>
+    <li data-vi="&lt;strong&gt;-61 đến -67 dBm:&lt;/strong&gt; khá, gọi video có thể giật.">-61 to -67 dBm: fair, video calls may stutter.</li>
+    <li data-vi="&lt;strong&gt;-68 đến -75 dBm:&lt;/strong&gt; yếu, dễ chậm và rớt mạng.">-68 to -75 dBm: weak, likely to slow down or drop.</li>
+    <li data-vi="&lt;strong&gt;Dưới -75 dBm:&lt;/strong&gt; rất yếu, nên lại gần router hoặc đổi mạng.">Below -75 dBm: very weak; move closer to the router or switch networks.</li>
+  </ul>
+
+  <h2 data-vi="Tìm chỗ sóng yếu trong nhà">Finding weak spots at home</h2>
+  <p data-vi="Mở tab Tín hiệu rồi cầm MacBook đi quanh nhà. Biểu đồ 5 phút cho thấy sóng tụt ở đâu.">Open the Signal tab and walk around with your MacBook. The 5-minute chart shows where the signal drops.</p>
+
+  <h2 data-vi="Chọn kênh ít bị chen">Picking a less crowded channel</h2>
+  <p data-vi="Tab Mạng xung quanh liệt kê các mạng gần bạn và đếm số mạng trên mỗi kênh. Kênh của bạn được tô màu. Nếu kênh đó đông, hãy đổi kênh trong phần cài đặt của router.">The Nearby networks tab lists networks around you and counts how many share each channel. Yours is highlighted. If it is crowded, change the channel in your router's settings.</p>
+
+  <h2 data-vi="Vì sao không thấy tên mạng?">Why are network names missing?</h2>
+  <p data-vi="Trên các bản macOS mới, Apple chỉ cho app xem tên mạng khi app được phép dùng vị trí. Vào Cài đặt hệ thống → Quyền riêng tư &amp; Bảo mật → Dịch vụ định vị và bật WiFi Meter. App không đọc vị trí của bạn.">On newer versions of macOS, Apple only shows network names to apps allowed to use Location Services. Go to System Settings → Privacy &amp; Security → Location Services and turn on WiFi Meter. The app never reads your location.</p>
+
+  <h2 data-vi="Báo khi sóng yếu">Weak-signal alerts</h2>
+  <p data-vi="Trong Cài đặt của app, bật thông báo và chọn ngưỡng (mặc định -75 dBm). App báo khi sóng thấp hơn ngưỡng liên tục 10 giây. Nếu không thấy thông báo, kiểm tra Cài đặt hệ thống → Thông báo → WiFi Meter.">In the app's Settings, turn on alerts and pick a threshold (default -75 dBm). You are alerted when the signal stays below it for 10 seconds. If no alert appears, check System Settings → Notifications → WiFi Meter.</p>
+
+  <h2 data-vi="Đo tốc độ">Speed test</h2>
+  <p data-vi="Tab Tốc độ đo tốc độ tải xuống, tải lên và độ trễ bằng công cụ có sẵn của macOS tới máy chủ của Apple, mất khoảng 20–30 giây. Kết quả là tốc độ Internet thực tế, gồm cả WiFi lẫn đường truyền nhà mạng.">The Speed tab measures download, upload and latency with macOS's built-in tool against Apple's servers, in about 20–30 seconds. The result is your real Internet speed, including both Wi-Fi and your provider's line.</p>
+
+  <h2 data-vi="Tự chạy khi mở máy và ngôn ngữ">Open at login and language</h2>
+  <p data-vi="Trong Cài đặt của app, bật &quot;Tự chạy khi mở máy&quot; để WiFi Meter luôn có trên thanh menu. App có 7 ngôn ngữ: Anh, Pháp, Trung, Nhật, Hàn, Tây Ban Nha và Việt; mặc định theo ngôn ngữ của máy.">In the app's Settings, turn on "Open at login" to keep WiFi Meter in your menu bar. The app comes in 7 languages: English, French, Chinese, Japanese, Korean, Spanish and Vietnamese, following your Mac's language by default.</p>
+
+  <h2 data-vi="Gỡ app">Removing the app</h2>
+  <p data-vi="Thoát app bằng nút Thoát trong bảng thanh menu, rồi kéo WiFi Meter từ thư mục Applications vào Thùng rác.">Quit the app with the Quit button in its menu bar panel, then drag WiFi Meter from Applications to the Trash.</p>
+
+  <h2 data-vi="Quyền riêng tư">Privacy</h2>
+  <p data-vi="WiFi Meter không thu thập dữ liệu nào. Xem &lt;a href=&quot;/wifimeter/privacy&quot;&gt;Chính sách bảo mật&lt;/a&gt;.">WiFi Meter collects no data. See the <a href="/wifimeter/privacy">Privacy Policy</a>.</p>
+</div></main>
+
+<footer><div class="wrap">
+  <span><a href="/wifimeter">WiFi Meter</a></span>
+  <span><a href="/wifimeter/privacy" data-vi="Chính sách bảo mật">Privacy Policy</a> · <a href="/wifimeter/support" data-vi="Hỗ trợ">Support</a> · <a href="mailto:support@paxneo.net">support@paxneo.net</a></span>
+</div></footer>
+
+<script>
+  var nodes=document.querySelectorAll('[data-vi]');
+  nodes.forEach(function(el){ el.setAttribute('data-en', el.innerHTML); });
+  function setLang(l){
+    document.documentElement.lang=l;
+    nodes.forEach(function(el){ var v=el.getAttribute('data-'+l); if(v!=null) el.innerHTML=v; });
+    document.querySelectorAll('#langsw button').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-lang')===l); });
+    try{ localStorage.setItem('paxneo_lang', l); }catch(e){}
+  }
+  var saved=null; try{ saved=localStorage.getItem('paxneo_lang'); }catch(e){}
+  var def=saved||((navigator.language||'en').toLowerCase().indexOf('vi')===0?'vi':'en');
+  document.querySelectorAll('#langsw button').forEach(function(b){ b.addEventListener('click',function(){ setLang(b.getAttribute('data-lang')); }); });
+  setLang(def);
+</script>
+</body>
+</html>
